@@ -45,4 +45,7 @@ See the ligo-flow for an example
    - Repository and how it works
 9. Case Study: RK-Diagram Toolkit w/ LIGO
    - Ligo Repository
-
+10. Areas of further reasearch and known shortcomings
+   - Serial pipeline
+   - ML
+   - PH
