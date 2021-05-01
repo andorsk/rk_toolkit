@@ -41,11 +41,13 @@ See the ligo-flow for an example
    - As a composite structure built from 3,4,and 5
 7. Visualization
    - RK-Models -> RK-Diagrams. Visualization Functions and Interfacing (locally and globally)
-8. Rk-Diagram Toolkit
+8. Datastore 
+   - NoSQL database
+9. Rk-Diagram Toolkit
    - Repository and how it works
-9. Case Study: RK-Diagram Toolkit w/ LIGO
+10. Case Study: RK-Diagram Toolkit w/ LIGO
    - Ligo Repository
-10. Areas of further reasearch and known shortcomings
+11. Areas of further reasearch and known shortcomings
    - Serial pipeline
    - ML
    - PH
