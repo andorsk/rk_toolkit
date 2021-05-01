@@ -28,21 +28,21 @@ See the ligo-flow for an example
 
 0. Introduction
 1. Prepocess Pipeline
-   NxM Tensor -> NxM Tensor
+   - NxM Tensor -> NxM Tensor
 2. Localization Algorithm
-   NxM Tensor -> nD Tensor that localizes
+   - NxM Tensor -> nD Tensor that localizes
 3. Hierarchical Feature Extraction
-   NxM Tensor -> HierarchicalGraphModel (HGM)
+   - NxM Tensor -> HierarchicalGraphModel (HGM)
 4. Filter Functions
-   HGM -> GraphMask
+   - HGM -> GraphMask
 5. Linkage Functions
-   HGM -> List[Edges]
+   - HGM -> List[Edges]
 6. RK-Models. 
-   As a composite structure built from 3,4,and 5
+   - As a composite structure built from 3,4,and 5
 7. Visualization
-   RK-Models -> RK-Diagrams. Visualization Functions and Interfacing (locally and globally)
+   - RK-Models -> RK-Diagrams. Visualization Functions and Interfacing (locally and globally)
 8. Rk-Diagram Toolkit
-   Repository and how it works
+   - Repository and how it works
 9. Case Study: RK-Diagram Toolkit w/ LIGO
-   Ligo Repository
+   - Ligo Repository
 
