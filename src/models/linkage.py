@@ -2,6 +2,9 @@ from typing import List
 from .graph import Edge
 from .graph import Node
 
+class LinkageSpec():
+    pass
+
 class LinkageFunction():
     '''
     A linkage function takes in a list of nodes
