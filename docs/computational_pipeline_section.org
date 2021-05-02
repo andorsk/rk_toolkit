@@ -85,3 +85,44 @@ For some analysis such as LIGO analysis from <paper>, this preprocess step is
 critical.
 
 * Localization Algorithm
+
+The localization algorithm takes in an NxM tensor and localizes it to some
+global space. This is important when looking at RK-Models in conjunction with
+eachother. It could be driven by temporal, spatial, or other concerns.
+
+It's process is forked from the original pipeline, and does not impact
+the rest of the pipeline. It's only use is to localize a model in a global
+setting, to give better contextual ability to the model and allow for easier
+comparisions.
+
+In the case where there is no ability to localize models, models will
+be placed in index in n dimensions.
+
+* Hierarchical Feature Extraction
+
+Following the preprocess steps, an NxM tensor is generated, which now must go through
+the HFE pipeline.
+
+** NxM tensor -> HFE(X)
+where HFE creates an Heirarchical Feature Graph
+
+* Graph Filter Functions
+A filter function is a function that takes in a node and filters
+based upon a set of contraints
+
+* Linkage Functions
+
+* RK-Models
+An RK-Model is a composite datastructure build from an RK-Pipeline.
+
+* RK-Diagrams
+An RK-Digram is a visualization of an RK-Model. It contains properties
+related to visualization and aesthetics that are not contained in the core
+RK-Model.
+
+* RK Toolkit
+Hosted on github.com and can be extended.
+
+* Scalability concerns and Other Interfaces
+
+* Future Research
