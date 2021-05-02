@@ -27,6 +27,8 @@ See the ligo-flow for an example
 ### Section: Computational Pipeline
 
 0. Introduction
+   - NxM Tensor -> RK-Model -> RK-Diagram
+   - RK SDK
 1. Prepocess Pipeline
    - NxM Tensor -> NxM Tensor
 2. Localization Algorithm
@@ -38,15 +40,15 @@ See the ligo-flow for an example
 5. Linkage Functions
    - HGM -> List[Edges]
 6. RK-Models. 
-   - As a composite structure built from 3,4,and 5
-7. Visualization
+   - As a composite structure built from 3,4, and 5
+7. Putting it together in an RK-Model Pipeline
+8. Visualization
    - RK-Models -> RK-Diagrams. Visualization Functions and Interfacing (locally and globally)
-8. Datastore 
-9. Rk-Diagram Toolkit
+9. Datastore 
+10. RK Toolkit
    - Repository and how it works
-10. Case Study: RK-Diagram Toolkit w/ LIGO
-   - Ligo Repository
-11. Areas of further reasearch and known shortcomings
+11. Extension: RK-Diagram Toolkit w/ LIGO
+12. Areas of further reasearch and known shortcomings
    - Serial pipeline
    - ML
    - PH
