@@ -1,4 +1,4 @@
-from visualizer import RKModelVisualizer
+from visualizer import RKModelVisualizer, RKDiagram
 import matplotlib.pyplot as plt
 import numpy as np
 from typing import List
@@ -32,6 +32,8 @@ class CircularVisualizer(RKModelVisualizer):
     pattern in 3D space
 
     It assumes the RKModel is at least in 3d
+    TODO: Visualizer only gives locations and specs.
+    RK-Diagram Renderer renders the specs
     '''
     def __init__(self, spec: CircularVisualizerSpec = None,
                  *args, **kwargs):
@@ -45,7 +47,8 @@ class CircularVisualizer(RKModelVisualizer):
     def build(self, model: RKModel):
         _plot_cluster_centroid(model) # plot the centroid
         placed_nodes = _plot_clusters(model) # plot the clusters
-        _plot_links(model, placed_nodes) # plot the links
+        links = _plot_links(model, placed_nodes) # plot the links
+        return RKDiagram(model=model, placed_nodes=placed_nodes, links=links)
 
     def _plot_clusters(self, model):
         '''
