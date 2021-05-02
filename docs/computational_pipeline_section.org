@@ -124,7 +124,8 @@ RK-Model.
 Hosted on github.com and can be extended.
 
 An example of building a pipeline is below
-```
+
+#+BEGIN_SRC python
    example_pipeline = RKPipeline(preprocess_nodes=[MinMaxNormalizerNode()],
                                   localization_algorithm=MaxLocalizer(),
                                   hierarchical_embedding_nodes= [
@@ -151,7 +152,8 @@ An example of building a pipeline is below
     visualizer = RKModelVisualizer(method="circular")
     visualizer.build(rk_models) # build requires a list of rk_models
     visualizer.show()
-```
+
+#+END_SRC
 * Scalability concerns and Other Interfaces
 
 * Future Research
