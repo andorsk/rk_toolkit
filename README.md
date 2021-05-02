@@ -42,7 +42,6 @@ See the ligo-flow for an example
 7. Visualization
    - RK-Models -> RK-Diagrams. Visualization Functions and Interfacing (locally and globally)
 8. Datastore 
-   - NoSQL database
 9. Rk-Diagram Toolkit
    - Repository and how it works
 10. Case Study: RK-Diagram Toolkit w/ LIGO
