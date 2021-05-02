@@ -95,3 +95,36 @@ class GraphMask(BaseModel):
     nodeMasks: List[bool]
     edgeMasks: List[bool]
     graph: GraphModel
+
+
+class RKModel(BaseModel):
+    '''
+    An RK-Model is the core data-structure that can be manifested in an
+    RK-Diagram or interpreted.
+
+    RK-Models are different from most models due to a number of important
+    features:
+
+    - HierarchicalGraph(h) => a heierarchical graph of features. Which features
+    have a directional relationship with eachother
+    - Mask (mask) =>  A graph mask. Represents a masking function on top of
+    the Hierarchical Graph
+    - Links => Links just edges. They can be computed with a Linkage Function
+    - Locatoin => A global position for reference. When plotting an rkmodel against
+    other rk-models, this positions the rk-models relative to eachtother
+    '''
+    def __init__(self,
+                 mask: GraphMask = None,
+                 h: HierarchicalGraph = None,
+                 links:List[Edge] = None,
+                 location: List[float] = None):
+        self.mask = mask
+        self.h = h
+        self.links = links
+        self.location = location
+
+    def complete(self) -> bool:
+        if self.mask is None or self.h is None \
+           or self.links is None or self.location is None:
+            return False
+        return True

@@ -33,7 +33,6 @@ class CircularVisualizer(RKModelVisualizer):
 
     It assumes the RKModel is at least in 3d
     '''
-
     def __init__(self, spec: CircularVisualizerSpec = None,
                  *args, **kwargs):
 
