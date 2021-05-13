@@ -9,32 +9,33 @@ class EdgeType(Enum):
     UNDIRECTED=1
     DIRECTED=2
 
-'''
-A graph edge links nodes together
-using the nodeid.
-'''
 class Edge(BaseModel):
     from_id: str
     to_id: str
     edge_type: EdgeType
     weight: Optional[float] = EdgeType.UNDIRECTED
     attributes: Optional[dict] = None
+    '''
+    A graph edge links nodes together
+    using the nodeid.
+    '''
 
-'''
-A node represents a distinct object in a graph
-'''
+
 class Node(BaseModel):
     id: Optional[str] = str(uuid.uuid4())
     name: Optional[str] = None,
     value: Optional[float] = None
     attributes: Optional[dict] = {}
 
-'''
-A subclass of node that speiciflcally is used
-in DAG creation. It has a couple features a normal
-node doesn't have, such as checking boundary conditions
-and an executing function for data transformation
-'''
+    '''
+    A node represents a distinct object in a graph
+
+    A subclass of node that speiciflcally is used
+    in DAG creation. It has a couple features a normal
+    node doesn't have, such as checking boundary conditions
+    and an executing function for data transformation
+    '''
+
 class TransformNode(Node):
 
     def getInputSchema(self) -> dict:
@@ -46,12 +47,12 @@ class TransformNode(Node):
     def transform(self, X): # the model transform function
         pass
 
-'''
-The underlying graph model is a relationship
-of nodes and edges
-'''
-class GraphModel(BaseModel):
 
+class GraphModel(BaseModel):
+    '''
+    The underlying graph model is a relationship
+    of nodes and edges
+    '''
     nodes: Optional[Node] = []
     edges: Optional[Edge] = []
 
@@ -62,13 +63,13 @@ class GraphModel(BaseModel):
     def add_edge(self, edge: Edge):
         self.edges.append(edge)
 
-'''
-A Hierarchical Graph
-is a subset of the general graph in which
-all elements are directed.
-'''
-class HierarchicalGraph(GraphModel):
 
+class HierarchicalGraph(GraphModel):
+    '''
+    A Hierarchical Graph
+    is a subset of the general graph in which
+    all elements are directed.
+    '''
     def add_edge(self, edge:Edge):
         if edge.edge_type != EdgeType.DIRECTED:
             raise ValueError("Edge type needs to be directed in heirarchial graph")
@@ -85,13 +86,13 @@ class HierarchicalGraph(GraphModel):
         return True
 
 
-'''
-Graph masks are similar to numpy masks.
-They represent a masking of graph elements
-and are ultimately what the filter functions
-are generating.
-'''
 class GraphMask(BaseModel):
+    '''
+    Graph masks are similar to numpy masks.
+    They represent a masking of graph elements
+    and are ultimately what the filter functions
+    are generating.
+    '''
     nodeMasks: List[bool]
     edgeMasks: List[bool]
     graph: GraphModel
@@ -113,6 +114,10 @@ class RKModel(BaseModel):
     - Locatoin => A global position for reference. When plotting an rkmodel against
     other rk-models, this positions the rk-models relative to eachtother
     '''
+    mask: GraphMask
+    h: HierarchicalGraph
+    links: List[Edge]
+    location: List[float]
     def __init__(self,
                  mask: GraphMask = None,
                  h: HierarchicalGraph = None,
