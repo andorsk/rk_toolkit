@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 from pydantic import BaseModel
 from enum import Enum
-from typing import List
+from typing import List, Optional
 import uuid
 
 # Edge types for edges
@@ -67,7 +67,7 @@ A Hierarchical Graph
 is a subset of the general graph in which
 all elements are directed.
 '''
-class HierarchicalGraph(Graph):
+class HierarchicalGraph(GraphModel):
 
     def add_edge(self, edge:Edge):
         if edge.edge_type != EdgeType.DIRECTED:

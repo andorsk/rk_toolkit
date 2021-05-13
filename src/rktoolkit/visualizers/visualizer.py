@@ -1,4 +1,4 @@
-from ..models import RKModel
+from ..models.graph import RKModel
 import matplotlib.pyplot as plt
 from matplotlib.patches import FancyArrowPatch
 
@@ -27,7 +27,7 @@ class RKModelVisualizer():
         self.id = str(uuid.uuid4())
         self.method = "unspecified"
 
-    def build(self, model: RKmodel):
+    def build(self, model: RKModel):
         raise ValueError("Not implemented!")
 
     def render(self):
@@ -48,7 +48,7 @@ class Arrow3D(FancyArrowPatch):
         self.set_positions((xs[0],ys[0]),(xs[1],ys[1]))
         FancyArrowPatch.draw(self, renderer)
 
-class RKDiagram(Object):
+class RKDiagram():
     '''
     An RKDiagram is the manifestation of an RK-Model
 

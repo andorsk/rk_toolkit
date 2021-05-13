@@ -1,8 +1,8 @@
-from visualizer import RKModelVisualizer, RKDiagram
+from .visualizer import RKModelVisualizer, RKDiagram
 import matplotlib.pyplot as plt
 import numpy as np
 from typing import List
-from ..model import Node
+from ..models.graph import Node, RKModel
 
 class CircularVisualizerSpec():
     '''
@@ -66,7 +66,7 @@ class CircularVisualizer(RKModelVisualizer):
             rads = angle_width/(self.ncount() + 1)
             _plot_cluster(model.hgraph.get_parent(i))
 
-    def _plot_links(self, model: RKmodel, placed_nodes: List[Node]):
+    def _plot_links(self, model: RKModel, placed_nodes: List[Node]):
         pass
 
     def _plot_cluster(self, cluster, start_angle, end_angle, center):
