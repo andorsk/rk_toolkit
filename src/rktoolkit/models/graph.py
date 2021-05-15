@@ -21,11 +21,10 @@ class Edge(BaseModel):
     '''
 
 class Node(BaseModel):
-    id: Optional[str] = str(uuid.uuid4())
+    id: Optional[str] = None
     name: Optional[str] = None,
     value: Optional[float] = None
     attributes: Optional[dict] = {}
-
     '''
     A node represents a distinct object in a graph
 
@@ -34,6 +33,11 @@ class Node(BaseModel):
     node doesn't have, such as checking boundary conditions
     and an executing function for data transformation
     '''
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        if self.id is None:
+            self.id = str(uuid.uuid4())
+
 
 class TreeNode(Node):
     parent: Optional[Node] = None
@@ -116,7 +120,7 @@ class HierarchicalGraph(GraphModel):
     def get_root(self) -> Node:
         return self.root
 
-    def get_level(self, level, rebuild=False) -> List[Node]:
+    def get_level(self, level, rebuild=True) -> List[Node]:
         if self._level_ref is None or rebuild:
             self._level_ref, self._node_ref = self._build_levels()
         return self._level_ref.get(level, [])

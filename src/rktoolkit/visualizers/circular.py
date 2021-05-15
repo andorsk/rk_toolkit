@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from typing import List
 from ..models.graph import Node, RKModel
+import copy
 
 class CircularVisualizerSpec():
     '''
@@ -19,11 +20,13 @@ class CircularVisualizerSpec():
                  center_color='#000000',
                  center_size=300,
                  distance_from_center=10,
+                 cluster_size=10,
                  alpha=.5):
         self.center_color = center_color
         self.center_size = center_size
         self.distance_from_center = distance_from_center
         self.alpha = alpha
+        self.cluster_size = cluster_size
 
 class CircularVisualizer(RKModelVisualizer):
     '''
@@ -43,6 +46,7 @@ class CircularVisualizer(RKModelVisualizer):
         if spec is None:
             spec = CircularVisualizerSpec()
         self.spec = spec
+        self.positions = {}
 
     def build(self, model: RKModel):
         try:
@@ -53,7 +57,13 @@ class CircularVisualizer(RKModelVisualizer):
         except Exception as e:
             raise e
 
-    def _plot_clusters(self, model):
+    def _register_node(self, node, pos):
+        self.positions[node.id] = pos
+
+    def _get_node_position(self, node) -> []:
+        return self.positions.get(node.id, None)
+
+    def _plot_children(self, parent, level=1):
         '''
         Plots a first level child of an rkmodel
 
@@ -63,32 +73,38 @@ class CircularVisualizer(RKModelVisualizer):
         The entire RKModel must be built out so the spacing can be
         determined between clusters.
         '''
-        if model.hgraph is None:
-            raise ValueError("Hierarchical Graph Needs To Be Present")
-
-        l1 = model.hgraph.get_level(1)
-        nclusters = len(l1)
-        angle_width= 2*np.pi / (nclusters)
-
-        for i in l1:
-            rads = angle_width/(len(i.children) + 1)
-            #_plot_cluster(l1)
+        lnodes = parent.children
+        if lnodes is None or len(lnodes) == 0:
+            return
+        angle_width= 2 * np.pi / (len(lnodes))
+        for i, node in enumerate(lnodes):
+            if node.parent.id not in self.positions:
+                raise ValueError("parent id must have been placed.\
+                Something is wrong.")
+            pos = copy.copy(self._get_node_position(node.parent))
+            dangle = (i * angle_width)
+            dist = self.spec.distance_from_center / level
+            offset = [0, np.cos(dangle) * dist, np.sin(dangle) * dist]
+            pos = [pos[0] + offset[0], pos[1] + offset[1], pos[2] + offset[2]]
+            self.ax.plot([pos[0]], [pos[1]], [pos[2]],
+                         marker='o', markersize=node.attributes.get('size', 10),
+                         color=node.attributes.get("color", "blue"))
+            self._register_node(node, pos)
+            self._plot_children(node, level+1)
 
     def _plot_links(self, model: RKModel, placed_nodes: List[Node]):
         pass
 
-    def _plot_cluster(self, cluster, start_angle, end_angle, center):
-        angle_v = (end_angle - start_angle) / (len(cluster.nodes()) + 1)
-        for i in range(len(cluster.nodes())):
-            dangle = start_angle + (angle_v * i)
-            center + [0, np.cos(dangle), np.sin(dangle)]
+    def _plot_clusters(self, model):
+        self._plot_children(model.hgraph.get_root())
 
     def _plot_cluster_centroid(self, model):
         pos = model.location
         if pos == None or len(pos) < 3:
             raise ValueError("No model position")
-        self.ax.scatter(pos[0], pos[1], pos[2],
-                        c=self.spec.center_color,
-                        s=self.spec.center_size,
-                        alpha = self.spec.alpha)
-
+        self._register_node(model.hgraph.get_root(), pos)
+        self.ax.plot([pos[0]], [pos[1]], [pos[2]],
+                     marker='o',
+                     markersize=10,
+                     color='black',
+                     alpha = self.spec.alpha)
