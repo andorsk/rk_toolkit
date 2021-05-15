@@ -12,8 +12,8 @@ class EdgeType(Enum):
 class Edge(BaseModel):
     from_id: str
     to_id: str
-    edge_type: EdgeType
-    weight: Optional[float] = EdgeType.UNDIRECTED
+    edge_type: EdgeType = EdgeType.UNDIRECTED
+    weight: Optional[float]  = 1
     attributes: Optional[dict] = None
     '''
     A graph edge links nodes together
