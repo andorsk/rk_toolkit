@@ -45,10 +45,13 @@ class CircularVisualizer(RKModelVisualizer):
         self.spec = spec
 
     def build(self, model: RKModel):
-        _plot_cluster_centroid(model) # plot the centroid
-        placed_nodes = _plot_clusters(model) # plot the clusters
-        links = _plot_links(model, placed_nodes) # plot the links
-        return RKDiagram(model=model, placed_nodes=placed_nodes, links=links)
+        try:
+            self._plot_cluster_centroid(model) # plot the centroid
+            placed_nodes = self._plot_clusters(model) # plot the clusters
+            links = self._plot_links(model, placed_nodes) # plot the links
+            return RKDiagram(rkmodel=model, placed_nodes=placed_nodes, links=links)
+        except Exception as e:
+            raise e
 
     def _plot_clusters(self, model):
         '''
@@ -60,11 +63,16 @@ class CircularVisualizer(RKModelVisualizer):
         The entire RKModel must be built out so the spacing can be
         determined between clusters.
         '''
-        nclusters = len(model.hgraph.get_level(1))
+        if model.hgraph is None:
+            raise ValueError("Hierarchical Graph Needs To Be Present")
+
+        l1 = model.hgraph.get_level(1)
+        nclusters = len(l1)
         angle_width= 2*np.pi / (nclusters)
-        for i in range(nclusters):
-            rads = angle_width/(self.ncount() + 1)
-            _plot_cluster(model.hgraph.get_parent(i))
+
+        for i in l1:
+            rads = angle_width/(len(i.children) + 1)
+            #_plot_cluster(l1)
 
     def _plot_links(self, model: RKModel, placed_nodes: List[Node]):
         pass
@@ -76,7 +84,9 @@ class CircularVisualizer(RKModelVisualizer):
             center + [0, np.cos(dangle), np.sin(dangle)]
 
     def _plot_cluster_centroid(self, model):
-        pos = self.model.location
+        pos = model.location
+        if pos == None or len(pos) < 3:
+            raise ValueError("No model position")
         self.ax.scatter(pos[0], pos[1], pos[2],
                         c=self.spec.center_color,
                         s=self.spec.center_size,

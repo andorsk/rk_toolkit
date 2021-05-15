@@ -31,7 +31,9 @@ class RKModelVisualizer():
         raise ValueError("Not implemented!")
 
     def render(self):
+        print("Showing")
         self.fig.show()
+        plt.show()
 
 
 class Arrow3D(FancyArrowPatch):
@@ -65,4 +67,4 @@ class RKDiagram():
 
     def render(self):
         # render specs here are done
-        pass
+        plt.show()
