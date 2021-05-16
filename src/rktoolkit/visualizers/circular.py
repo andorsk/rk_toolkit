@@ -2,9 +2,22 @@ from .visualizer import RKModelVisualizer, RKDiagram
 import matplotlib.pyplot as plt
 import numpy as np
 from typing import List
-from ..models.graph import Node, RKModel
+from ..models.graph import Node, RKModel, GraphMask
 import copy
 
+'''
+Cicular Visualizer Makes an almost "Mandlebot" like visualization
+of the RKModel.
+
+How it works: based on the center, and relative number of children nodes,
+it expands outward using a circular pattern. As the expansion continues,
+children birth more children in circular patterns.
+
+The distance and sizes of of the node between each parent -> child in the visualization
+decreases each iteration.
+
+You can override any particular value using the attributes of a node.
+'''
 class CircularVisualizerSpec():
     '''
     These are specs for the circular visualiation
@@ -52,7 +65,7 @@ class CircularVisualizer(RKModelVisualizer):
         try:
             self._plot_cluster_centroid(model) # plot the centroid
             placed_nodes = self._plot_clusters(model) # plot the clusters
-            links = self._plot_links(model) # plot the links
+            links = self._plot_links(model, model.mask) # plot the links
             return RKDiagram(rkmodel=model, placed_nodes=placed_nodes, links=links)
         except Exception as e:
             raise e
@@ -63,7 +76,7 @@ class CircularVisualizer(RKModelVisualizer):
     def _get_node_position(self, node) -> []:
         return self.positions.get(node.id, None)
 
-    def _plot_children(self, parent, mask, level=1):
+    def _plot_children(self, parent, mask=None, level=1):
         '''
         Plots a first level child of an rkmodel
 
@@ -73,10 +86,10 @@ class CircularVisualizer(RKModelVisualizer):
         The entire RKModel must be built out so the spacing can be
         determined between clusters.
         '''
-        childen_unmasked = parent.children
+        children_unmasked = parent.children
         children_masked = []
         for i, l in enumerate(children_unmasked):
-            if not mask.node_is_masked(l.id):
+            if mask is None or not mask.node_is_masked(l.id):
                 children_masked.append(l)
 
         # TODO: Add mask
@@ -98,9 +111,9 @@ class CircularVisualizer(RKModelVisualizer):
                          marker='o', markersize=node.attributes.get('size', 10),
                          color=node.attributes.get("color", "blue"))
             self._register_node(node, pos)
-            self._plot_children(node, level+1)
+            self._plot_children(node, mask, level+1)
 
-    def _plot_links(self, model: RKModel, mask: GraphMask):
+    def _plot_links(self, model: RKModel, mask: GraphMask = None):
         '''
         plots the links between the nodes
         '''
@@ -110,7 +123,7 @@ class CircularVisualizer(RKModelVisualizer):
         links = model.links
         for l in links:
 
-            if mask.edge_is_masked(l.id):
+            if mask is not None and mask.edge_is_masked(l.id):
                 # skipped masked edges
                 continue
 

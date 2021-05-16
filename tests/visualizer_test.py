@@ -1,5 +1,5 @@
 from rktoolkit.visualizers.circular import CircularVisualizer, CircularVisualizerSpec
-from rktoolkit.models.graph import RKModel, HierarchicalGraph, TreeNode, Edge
+from rktoolkit.models.graph import RKModel, HierarchicalGraph, TreeNode, Edge, GraphMask
 
 def test_rkmodel_visualizer_circular(): # Tests an rkmodel visaulizer: Circular pattern
 
@@ -26,15 +26,24 @@ def test_rkmodel_visualizer_circular(): # Tests an rkmodel visaulizer: Circular 
 
     [hgraph.add_node(n) for n in [measures, mass, m1, m2, spin, s1, s2, s3, s4, l1, l2, lin, h1, h2, h3]]
 
+    gmask =GraphMask()
+    gmask.mask_node(h1)
+    gmask.mask_node(h2)
+
     model = RKModel(
         location=[100.0, 100.0, 100.0],
         hgraph=hgraph,
-        links=[Edge(from_id=l1.id, to_id=l2.id,edge_type=2)]
+        links=[Edge(from_id=l1.id, to_id=l2.id,edge_type=2)],
+        mask=gmask
     )
 
     spec = CircularVisualizerSpec()
     visualizer = CircularVisualizer(spec=spec)
     visualizer.build(model)
+    visualizer.ax.set_title("Test Render")
+    visualizer.ax.set_xlabel("X label")
+    visualizer.ax.set_ylabel("Y label")
+    visualizer.ax.set_zlabel("Z label")
     visualizer.render()
 
 

@@ -12,7 +12,7 @@ class EdgeType(Enum):
 class Edge(BaseModel):
     from_id: str
     to_id: str
-    id: str
+    id: Optional[str]
     edge_type: EdgeType = EdgeType.UNDIRECTED
     weight: Optional[float]  = 1
     attributes: Optional[dict] = None
@@ -138,8 +138,8 @@ class GraphMask(BaseModel):
     and are ultimately what the filter functions
     are generating.
     '''
-    nodeMasks: dict() = dict()
-    edgeMasks: dict() = dict()
+    nodeMasks: dict = dict()
+    edgeMasks: dict = dict()
 
     def node_is_masked(self, id):
         return self.nodeMasks.get(id, False)
