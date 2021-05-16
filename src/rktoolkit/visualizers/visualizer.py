@@ -31,7 +31,6 @@ class RKModelVisualizer():
         raise ValueError("Not implemented!")
 
     def render(self):
-        print("Showing")
         self.fig.show()
         plt.show()
 

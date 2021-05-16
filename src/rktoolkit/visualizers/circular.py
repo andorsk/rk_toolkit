@@ -63,7 +63,7 @@ class CircularVisualizer(RKModelVisualizer):
     def _get_node_position(self, node) -> []:
         return self.positions.get(node.id, None)
 
-    def _plot_children(self, parent, level=1):
+    def _plot_children(self, parent, mask, level=1):
         '''
         Plots a first level child of an rkmodel
 
@@ -73,13 +73,18 @@ class CircularVisualizer(RKModelVisualizer):
         The entire RKModel must be built out so the spacing can be
         determined between clusters.
         '''
-        lnodes = parent.children
+        childen_unmasked = parent.children
+        children_masked = []
+        for i, l in enumerate(children_unmasked):
+            if not mask.node_is_masked(l.id):
+                children_masked.append(l)
+
         # TODO: Add mask
-        if lnodes is None or len(lnodes) == 0:
+        if children_masked is None or len(children_masked) == 0:
             return
 
-        angle_width= 2 * np.pi / (len(lnodes))
-        for i, node in enumerate(lnodes):
+        angle_width= 2 * np.pi / (len(children_masked))
+        for i, node in enumerate(children_masked):
             if node.parent.id not in self.positions:
                 raise ValueError("parent id must have been placed.\
                 Something is wrong.")
@@ -95,7 +100,7 @@ class CircularVisualizer(RKModelVisualizer):
             self._register_node(node, pos)
             self._plot_children(node, level+1)
 
-    def _plot_links(self, model: RKModel):
+    def _plot_links(self, model: RKModel, mask: GraphMask):
         '''
         plots the links between the nodes
         '''
@@ -104,16 +109,20 @@ class CircularVisualizer(RKModelVisualizer):
 
         links = model.links
         for l in links:
+
+            if mask.edge_is_masked(l.id):
+                # skipped masked edges
+                continue
+
             fr = self.positions[l.from_id]
             to = self.positions[l.to_id]
-            print(fr)
             x = np.array((fr[0], to[0]))
             y = np.array((fr[1], to[1]))
             z = np.array((fr[2], to[2]))
             self.ax.plot(x, y, z, c='black', alpha=0.5)
 
     def _plot_clusters(self, model):
-        self._plot_children(model.hgraph.get_root())
+        self._plot_children(model.hgraph.get_root(), model.mask)
 
     def _plot_cluster_centroid(self, model):
         pos = model.location

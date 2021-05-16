@@ -12,6 +12,7 @@ class EdgeType(Enum):
 class Edge(BaseModel):
     from_id: str
     to_id: str
+    id: str
     edge_type: EdgeType = EdgeType.UNDIRECTED
     weight: Optional[float]  = 1
     attributes: Optional[dict] = None
@@ -19,6 +20,11 @@ class Edge(BaseModel):
     A graph edge links nodes together
     using the nodeid.
     '''
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        if self.id is None:
+            self.id = str(uuid.uuid4())
 
 class Node(BaseModel):
     id: Optional[str] = None
@@ -132,9 +138,26 @@ class GraphMask(BaseModel):
     and are ultimately what the filter functions
     are generating.
     '''
-    nodeMasks: List[bool]
-    edgeMasks: List[bool]
-    graph: GraphModel
+    nodeMasks: dict() = dict()
+    edgeMasks: dict() = dict()
+
+    def node_is_masked(self, id):
+        return self.nodeMasks.get(id, False)
+
+    def edge_is_masked(self, id):
+        return self.nodeMasks.get(id, False)
+
+    def mask_node(self, node):
+        self.nodeMasks[node.id] = True
+
+    def unmask_node(self, node):
+        self.nodeMasks[node.id] = False
+
+    def mask_edge(self, edge):
+        self.edgeMasks[edge.id] = True
+
+    def unmask_edge(self, edge):
+        self.edgeMasks[edge.id] = False
 
 class RKModel(BaseModel):
     '''
