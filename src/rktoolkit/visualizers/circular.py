@@ -61,14 +61,15 @@ class CircularVisualizer(RKModelVisualizer):
         self.spec = spec
         self.positions = {}
 
-    def build(self, model: RKModel):
-        try:
-            self._plot_cluster_centroid(model) # plot the centroid
-            placed_nodes = self._plot_clusters(model) # plot the clusters
-            links = self._plot_links(model, model.mask) # plot the links
-            return RKDiagram(rkmodel=model, placed_nodes=placed_nodes, links=links)
-        except Exception as e:
-            raise e
+    def build(self, models: List[RKModel]):
+        for model in models:
+            try:
+                self._plot_cluster_centroid(model) # plot the centroid
+                placed_nodes = self._plot_clusters(model) # plot the clusters
+                links = self._plot_links(model, model.mask) # plot the links
+                return RKDiagram(rkmodel=model, placed_nodes=placed_nodes, links=links)
+            except Exception as e:
+                raise e
 
     def _register_node(self, node, pos):
         self.positions[node.id] = pos

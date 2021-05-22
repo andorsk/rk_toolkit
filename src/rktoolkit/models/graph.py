@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 from pydantic import BaseModel, PrivateAttr
 from enum import Enum
-from typing import List, Optional
+from typing import List, Optional, Callable
 import uuid
+from copy import deepcopy
 
 # Edge types for edges
 class EdgeType(Enum):
@@ -58,6 +59,20 @@ class TreeNode(Node):
         return level
 
 
+class TreeTransformNode(TreeNode):
+
+    predictf: Optional[Callable] = lambda x: x
+    fitf: Optional[Callable] = lambda X,y: None
+
+    def __init__(self, **data):
+        super().__init__(**data)
+
+    def predict(self, X):
+        return self.predictf(X)
+
+    def fit(self, X, y):
+        self.fit(X,y)
+
 class PipelineNode(TreeNode):
     '''
     defines a pipeline node
@@ -75,16 +90,24 @@ class GraphModel(BaseModel):
     '''
     nodes: Optional[Node] = []
     edges: Optional[Edge] = []
-    _ids: Optional[set] = PrivateAttr()
+    _secret_value: str = PrivateAttr()
+    _nids: dict = PrivateAttr()
+
+    def __init__(self, **data):
+        super().__init__(**data)
+        self._nids = {}
 
     def add_node(self, node: Node):
         self.nodes.append(node)
-        self._ids = set()
-        self._ids.add(node.id)
+        self._nids[node.id] = node
 
     def add_edge(self, edge: Edge):
         self.edges.append(edge)
 
+    def get_node_by_id(self, id: str) -> Node:
+        if id not in self._nids:
+            raise ValueError("Node ID not in graph.")
+        return self._nids[id]
 
 class HierarchicalGraph(GraphModel):
     '''
@@ -141,6 +164,29 @@ class HierarchicalGraph(GraphModel):
         if self._level_ref is None or rebuild:
             self._level_ref, self._node_ref = self._build_levels()
         return self._level_ref.get(level, [])
+
+class HierarchicalTransformGraph(HierarchicalGraph):
+    '''
+    Heirarchical Transform Graph contains
+    transform functions
+    '''
+    def __init__(self, **data):
+        super().__init__(**data)
+
+    def _transform(self, parent, X, hgraph):
+        for n in parent.children:
+            n1 = deepcopy(n)
+            if hasattr(n, 'transform'):
+                v = n.transform(X)
+                n1.value = v
+            hgraph.add_node(n1)
+            self._transform(n, X, hgraph)
+
+    def transform(self, X):
+        r = deepcopy(self.get_root())
+        _hh = HierarchicalGraph(root=r)
+        self._transform(self.get_root(), X, _hh)
+        return _hh
 
 class GraphMask(BaseModel):
     '''

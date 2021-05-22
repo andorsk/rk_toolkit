@@ -42,7 +42,7 @@ def test_rkmodel_visualizer_circular(): # Tests an rkmodel visaulizer: Circular 
 
     spec = CircularVisualizerSpec()
     visualizer = CircularVisualizer(spec=spec)
-    visualizer.build(model)
+    visualizer.build([model])
     visualizer.ax.set_title("Test Render")
     visualizer.ax.set_xlabel("X label")
     visualizer.ax.set_ylabel("Y label")

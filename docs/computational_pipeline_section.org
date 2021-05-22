@@ -126,14 +126,13 @@ Hosted on github.com and can be extended.
 An example of building a pipeline is below
 
 #+BEGIN_SRC python
+
+   H = HeirarchicalExtractionPipeline()
+
    example_pipeline = RKPipeline(preprocess_nodes=[MinMaxNormalizerNode()],
                                  localization_algorithm=MaxLocalizer(),
-                                 hierarchical_embedding_nodes= [
-                                      {
-                                          "HFeatureExtractor1": HierarchicalFeatureExtractor1()
-                                      }
-                                  ],
-                                  filter_functions=[
+                                 hierarchical_embedding_nodes= H,
+                                 filter_functions=[
                                       {
                                           "HFeatureExtractor1" :
                                           {

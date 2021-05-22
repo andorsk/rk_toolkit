@@ -5,6 +5,8 @@ Must implement the LocalizationFunction interface
 '''
 import numpy as np
 from ..models.functions import LocalizationFunction
+from typing import Optional
+from pydantic import PrivateAttr
 
 class NDMaxLocalizationFunction(LocalizationFunction):
 
@@ -22,20 +24,23 @@ class NDMaxLocalizationFunction(LocalizationFunction):
 
 class IterableLocalizationFunction(LocalizationFunction):
 
+    _iterateX: bool = PrivateAttr()
+    _iterateY: bool = PrivateAttr()
+    _xcount: int = PrivateAttr()
+    _ycount: int = PrivateAttr()
     def __init__(self, iterateX=True, iterateY=True):
         super().__init__()
-        self.iterateX = iterateX
-        self.iterateY = iterateY
+        self._iterateX = iterateX
+        self._iterateY = iterateY
         self._xcount = -1
         self._ycount = -1
-        self.counter
 
-    def predict(self, X):
+    def localize(self, X):
         '''
         given a matrix NxD. Localizes around the max of the matrix
         '''
-        if self.iterateX:
+        if self._iterateX:
             self._xcount += 1
-        if self.iterateY:
+        if self._iterateY:
             self._ycount += 1
-        return self._xcount, self.y_count
+        return self._xcount, self._ycount

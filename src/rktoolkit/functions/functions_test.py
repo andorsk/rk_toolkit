@@ -17,7 +17,6 @@ def test_NDLocalizationFunction():
     assert z.max() == z[x1, y2]
 
 def test_simple_linkage_function():
-
     sl = SimpleLinkageFunction(threshold=4)
     measures = TreeNode(parent=None, id='measures')
     hgraph = HierarchicalGraph(root=measures)
