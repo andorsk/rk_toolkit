@@ -105,7 +105,7 @@ class GraphModel(BaseModel):
 
     def get_node_by_id(self, id: str) -> Node:
         if id not in self._nids:
-            raise ValueError("Node ID not in graph.")
+            raise ValueError("Node ID: {} not in graph.".format(id))
         return self._nids[id]
 
 class HierarchicalGraph(GraphModel):

@@ -163,7 +163,7 @@ class CircularVisualizer(RKModelVisualizer):
         self.ax.plot([pos[0]], [pos[1]], [pos[2]],
                      marker='o',
                      markersize=10,
-                     color='black',
+                     color=self.spec.center_color,
                      alpha = self.spec.alpha)
 
         if self.spec.add_node_labels:

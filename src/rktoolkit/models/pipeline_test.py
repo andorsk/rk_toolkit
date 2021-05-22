@@ -42,12 +42,16 @@ def test_rk_pipeline():
     from rktoolkit.visualizers.circular import CircularVisualizer, CircularVisualizerSpec
 
     ax = None
+    fig = None
     spec = CircularVisualizerSpec(add_node_labels=True)
 
     for r in [ rkmodel2, rkmodel]:
-        visualizer = CircularVisualizer(spec=spec, ax=ax)
+        visualizer = CircularVisualizer(spec=spec, ax=ax, fig=fig)
         if ax is None:
             ax = visualizer.ax
+        if fig is None:
+            fig = visualizer.fig
+
         visualizer.build([r])
 
     visualizer.ax.set_title("Test Render")
