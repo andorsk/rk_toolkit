@@ -14,7 +14,7 @@ class StaticFilter():
         if val is None:
             return True
         if self._min is not None and val < self._min:
-            return False
+            return True
         if self._max is not None and val > self._max:
-            return False
-        return True
+            return True
+        return False

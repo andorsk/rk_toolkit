@@ -28,7 +28,7 @@ class RKPipeline(BaseModel):
 
         # Step 1: run through preprocess nodes
         for node in self.preprocess_nodes:
-            X = node.predict(X)
+            X = node.transform(X)
 
         # Step 2: localize data
         loc = self.localization_algorithm.localize(X)
@@ -45,14 +45,12 @@ class RKPipeline(BaseModel):
                 raise ValueError("You've mapped a filter function \
                 to a non-existant correspondence. Make sure to link \
                 the filter function to an id fomr the hfe")
-
             ns = f.filter(n1.value)
             if ns:
                 gm.mask_node(n1)
 
         # Step 5: Build links
         links = self.linkage_function.link(hgraph)
-
         return RKModel(
             mask = gm,
             hgraph = hgraph,

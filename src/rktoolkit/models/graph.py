@@ -3,7 +3,7 @@ from pydantic import BaseModel, PrivateAttr
 from enum import Enum
 from typing import List, Optional, Callable
 import uuid
-from copy import deepcopy
+from copy import deepcopy, copy
 
 # Edge types for edges
 class EdgeType(Enum):
@@ -61,14 +61,14 @@ class TreeNode(Node):
 
 class TreeTransformNode(TreeNode):
 
-    predictf: Optional[Callable] = lambda x: x
+    transformf: Optional[Callable] = lambda x: x
     fitf: Optional[Callable] = lambda X,y: None
 
     def __init__(self, **data):
         super().__init__(**data)
 
-    def predict(self, X):
-        return self.predictf(X)
+    def transform(self, X):
+        return self.transformf(X)
 
     def fit(self, X, y):
         self.fit(X,y)
@@ -90,7 +90,6 @@ class GraphModel(BaseModel):
     '''
     nodes: Optional[Node] = []
     edges: Optional[Edge] = []
-    _secret_value: str = PrivateAttr()
     _nids: dict = PrivateAttr()
 
     def __init__(self, **data):
@@ -173,20 +172,16 @@ class HierarchicalTransformGraph(HierarchicalGraph):
     def __init__(self, **data):
         super().__init__(**data)
 
-    def _transform(self, parent, X, hgraph):
+    def _transform(self, parent, X):
         for n in parent.children:
-            n1 = deepcopy(n)
-            if hasattr(n, 'transform'):
+            if isinstance(n, TreeTransformNode):
                 v = n.transform(X)
-                n1.value = v
-            hgraph.add_node(n1)
-            self._transform(n, X, hgraph)
+                n.value = v
+            self._transform(n, X)
 
     def transform(self, X):
-        r = deepcopy(self.get_root())
-        _hh = HierarchicalGraph(root=r)
-        self._transform(self.get_root(), X, _hh)
-        return _hh
+        self._transform(self.get_root(), X)
+        return self
 
 class GraphMask(BaseModel):
     '''
@@ -236,6 +231,7 @@ class RKModel(BaseModel):
     hgraph: HierarchicalGraph = None
     links: List[Edge] = None
     location: List[float] = None
+    name: Optional[str]
 
     def complete(self) -> bool:
         if self.mask is None or self.h is None \

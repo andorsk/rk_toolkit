@@ -4,6 +4,7 @@ import numpy as np
 from typing import List
 from ..models.graph import Node, RKModel, GraphMask
 import copy
+import logging
 
 '''
 Cicular Visualizer Makes an almost "Mandlebot" like visualization
@@ -34,12 +35,14 @@ class CircularVisualizerSpec():
                  center_size=300,
                  distance_from_center=10,
                  cluster_size=10,
+                 add_node_labels = False,
                  alpha=.5):
         self.center_color = center_color
         self.center_size = center_size
         self.distance_from_center = distance_from_center
         self.alpha = alpha
         self.cluster_size = cluster_size
+        self.add_node_labels = add_node_labels
 
 class CircularVisualizer(RKModelVisualizer):
     '''
@@ -61,15 +64,16 @@ class CircularVisualizer(RKModelVisualizer):
         self.spec = spec
         self.positions = {}
 
-    def build(self, models: List[RKModel]):
-        for model in models:
-            try:
-                self._plot_cluster_centroid(model) # plot the centroid
-                placed_nodes = self._plot_clusters(model) # plot the clusters
-                links = self._plot_links(model, model.mask) # plot the links
-                return RKDiagram(rkmodel=model, placed_nodes=placed_nodes, links=links)
-            except Exception as e:
-                raise e
+    def _build(self, model: List[RKModel]):
+        try:
+            self._plot_cluster_centroid(model) # plot the centroid
+            placed_nodes = self._plot_clusters(model) # plot the clusters
+            links = self._plot_links(model, model.mask) # plot the links
+            return RKDiagram(rkmodel=model, placed_nodes=placed_nodes,
+                                links=links)
+        except Exception as e:
+            print("Failed to create model")
+            raise e
 
     def _register_node(self, node, pos):
         self.positions[node.id] = pos
@@ -111,6 +115,8 @@ class CircularVisualizer(RKModelVisualizer):
             self.ax.plot([pos[0]], [pos[1]], [pos[2]],
                          marker='o', markersize=node.attributes.get('size', 10),
                          color=node.attributes.get("color", "blue"))
+            if self.spec.add_node_labels:
+                self.ax.text(pos[0], pos[1], z=pos[2], s= node.id)
             self._register_node(node, pos)
             self._plot_children(node, mask, level+1)
 
@@ -122,10 +128,21 @@ class CircularVisualizer(RKModelVisualizer):
             raise ValueError("No links provided")
 
         links = model.links
+
         for l in links:
 
             if mask is not None and mask.edge_is_masked(l.id):
                 # skipped masked edges
+                continue
+
+            if l.from_id not in self.positions:
+                logging.warning("Warning. {} not in registered positions.\
+                Skipping".format(l.from_id))
+                continue
+
+            if l.to_id not in self.positions:
+                logging.warning("Warning. {} not in registered positions.\
+                Skipping".format(l.from_id))
                 continue
 
             fr = self.positions[l.from_id]
@@ -148,3 +165,6 @@ class CircularVisualizer(RKModelVisualizer):
                      markersize=10,
                      color='black',
                      alpha = self.spec.alpha)
+
+        if self.spec.add_node_labels:
+                self.ax.text(pos[0], pos[1], z=pos[2], s=model.name)

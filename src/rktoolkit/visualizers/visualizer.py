@@ -5,6 +5,7 @@ from matplotlib.patches import FancyArrowPatch
 from mpl_toolkits.mplot3d import proj3d
 from mpl_toolkits.mplot3d import Axes3D
 import uuid
+from copy import copy, deepcopy
 
 class RKModelVisualizer():
     '''
@@ -27,12 +28,11 @@ class RKModelVisualizer():
         self.id = str(uuid.uuid4())
         self.method = "unspecified"
 
-    def build(self, model: RKModel):
-        raise ValueError("Not implemented!")
+    def build(self, models: RKModel):
+        self._build(models[0])
 
     def render(self):
-        self.fig.show()
-        plt.show()
+        plt.show(block=True)
 
 
 class Arrow3D(FancyArrowPatch):

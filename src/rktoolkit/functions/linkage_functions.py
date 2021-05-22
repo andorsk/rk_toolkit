@@ -15,7 +15,7 @@ class SimpleLinkageFunction(LinkageFunction):
         # make links between children
         # simple method: O(n^2)
         # better waays to do this and reduct to O(n(log(n)))
-        if len(parent.children) > 0:
+        if len(parent.children) > 1:
             for p in itertools.permutations(parent.children):
                 p1, p2 = p[0], p[1]
                 if p1.value is None or p2.value is None:
@@ -30,7 +30,6 @@ class SimpleLinkageFunction(LinkageFunction):
 
         # Make links between children -> parent
         for c in parent.children:
-
             if parent.is_root:
                  links.append(Edge(from_id=c.id, to_id=parent.id,
                              weight=1, attributes={}))
