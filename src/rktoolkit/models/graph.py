@@ -44,6 +44,20 @@ class Node(BaseModel):
         if self.id is None:
             self.id = str(uuid.uuid4())
 
+class TreeNode(Node):
+    parent: Optional[Node] = None
+    children: Optional[List[Node]] = []
+    is_root: Optional[bool] = False
+
+    def get_level(self):
+        level = 0
+        p = self.parent
+        while p:
+            level += 1
+            p = p.parent
+        return level
+
+
 class PipelineNode(TreeNode):
     '''
     defines a pipeline node
@@ -53,18 +67,6 @@ class PipelineNode(TreeNode):
 
     def fit(self, X, y):
         pass
-
-class TreeNode(Node):
-    parent: Optional[Node] = None
-    children: Optional[List[Node]] = []
-
-    def get_level(self):
-        level = 0
-        p = self.parent
-        while p:
-            level += 1
-            p = p.parent
-        return level
 
 class GraphModel(BaseModel):
     '''
@@ -94,11 +96,11 @@ class HierarchicalGraph(GraphModel):
     _level_ref: Optional[dict] = PrivateAttr()
     _node_ref: Optional[dict] = PrivateAttr()
 
-
     def __init__(self, **data):
         super().__init__(**data)
         self._level_ref = None
         self._node_ref = None
+        self.root.is_root = True
 
     def add_edge(self, edge:Edge):
         if edge.edge_type != EdgeType.DIRECTED:
