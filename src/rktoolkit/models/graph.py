@@ -44,6 +44,15 @@ class Node(BaseModel):
         if self.id is None:
             self.id = str(uuid.uuid4())
 
+class PipelineNode(TreeNode):
+    '''
+    defines a pipeline node
+    '''
+    def predict(self, X):
+        pass
+
+    def fit(self, X, y):
+        pass
 
 class TreeNode(Node):
     parent: Optional[Node] = None

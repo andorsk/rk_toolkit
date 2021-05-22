@@ -1,6 +1,7 @@
 import abc
 from collections.abc import Sequence
 from typing import List
+from ..models.graph import RKModel
 
 class RKModelWriter(metaclass=abc.ABCMeta):
     '''

@@ -3,8 +3,11 @@ from rktoolkit.models.graph import RKModel, HierarchicalGraph, TreeNode, Edge, G
 
 def test_rkmodel_visualizer_circular(): # Tests an rkmodel visaulizer: Circular pattern
 
+    '''
+    Example Visualization Test
+    Using the Circular Method
+    '''
     measures = TreeNode(parent=None)
-
     hgraph = HierarchicalGraph(root=measures)
     mass = TreeNode(name="mass_measures", parent=measures, attributes={'size': 5})
     m1 = TreeNode(name="mass1", parent=mass, attributes={'color':'green'})

@@ -127,8 +127,8 @@ An example of building a pipeline is below
 
 #+BEGIN_SRC python
    example_pipeline = RKPipeline(preprocess_nodes=[MinMaxNormalizerNode()],
-                                  localization_algorithm=MaxLocalizer(),
-                                  hierarchical_embedding_nodes= [
+                                 localization_algorithm=MaxLocalizer(),
+                                 hierarchical_embedding_nodes= [
                                       {
                                           "HFeatureExtractor1": HierarchicalFeatureExtractor1()
                                       }
