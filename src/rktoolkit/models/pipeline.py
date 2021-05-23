@@ -20,6 +20,9 @@ class RKPipeline(BaseModel):
     filter_functions: dict
     linkage_function: Optional[LinkageFunction] = SimpleLinkageFunction(threshold=-1)
 
+    class Config:
+        arbitrary_types_allowed = True
+
     def fit(self, X, y):
         for n in self.preprocess_nodes:
             n.fit(X,y)

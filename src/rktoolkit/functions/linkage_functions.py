@@ -9,7 +9,9 @@ class SimpleLinkageFunction(LinkageFunction):
     '''
     A greedy linkage function
     '''
-    threshold: Optional[float] = -1
+    def __init__(self, threshold=-1, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.threshold = threshold
 
     def _recursive_link(self, parent, links = []):
         # make links between children

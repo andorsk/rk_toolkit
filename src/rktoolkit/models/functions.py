@@ -1,11 +1,10 @@
 from .graph import HierarchicalGraph, Edge, Node
 from typing import List
-from pydantic import BaseModel
 
 '''
 Function abstractions
 '''
-class LocalizationFunction(BaseModel):
+class LocalizationFunction():
 
     @classmethod
     def __subclasshook__(cls, subclass):
@@ -24,10 +23,7 @@ class LocalizationFunction(BaseModel):
         '''
         pass
 
-class LinkageSpec():
-    pass
-
-class LinkageFunction(BaseModel):
+class LinkageFunction():
     '''
     A linkage function takes in a list of nodes
     and returns a list of edges
@@ -47,7 +43,7 @@ class LinkageFunction(BaseModel):
     def predict(self, nodes: List[Node]) -> List[Edge]: # given a graph the edges
         return []
 
-class FilterFunction(BaseModel):
+class FilterFunction():
 
     @classmethod
     def __subclasshook__(cls, subclass):
