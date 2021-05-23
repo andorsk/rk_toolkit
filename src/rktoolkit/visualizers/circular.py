@@ -113,7 +113,7 @@ class CircularVisualizer(RKModelVisualizer):
             offset = [0, np.cos(dangle) * dist, np.sin(dangle) * dist]
             pos = [pos[0] + offset[0], pos[1] + offset[1], pos[2] + offset[2]]
             self.ax.plot([pos[0]], [pos[1]], [pos[2]],
-                         marker='o', markersize=node.attributes.get('size', 10),
+                         marker='o', markersize=node.attributes.get('size', 10) / level,
                          color=node.attributes.get("color", "blue"))
             if self.spec.add_node_labels:
                 self.ax.text(pos[0], pos[1], z=pos[2], s= node.id)
