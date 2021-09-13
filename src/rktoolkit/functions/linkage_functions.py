@@ -21,8 +21,8 @@ class SimpleLinkageFunction(LinkageFunction):
             for p in itertools.permutations(parent.children):
                 p1, p2 = p[0], p[1]
                 if p1.value is None or p2.value is None:
-                    logging.warning("No value set. Skipping node for linkage")
                     continue
+
                 d = np.linalg.norm(p1.value - p2.value)
                 if (self.threshold < 0 or d < self.threshold) and p2.value <= p1.value:
                     links.append(Edge(from_id=p2.id, to_id=p1.id,
@@ -38,7 +38,6 @@ class SimpleLinkageFunction(LinkageFunction):
                  self._recursive_link(c, links)
 
             if parent.value is None:
-                logging.warning("No value set. Skipping node for linkage function")
                 continue
 
             d = np.linalg.norm(parent.value - c.value)
