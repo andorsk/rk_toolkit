@@ -6,19 +6,28 @@ from .graph import (
     RKModel
 )
 from .functions import *
-from typing import List, Optional, Callable
+from typing import List, Optional, Callable, TypedDict
 from ..functions.localization_functions import IterableLocalizationFunction
 from ..functions.linkage_functions import SimpleLinkageFunction
 
 class RKPipeline(BaseModel):
     '''
     RK Pipeline Builder
+
+    The RK Pipeline builder builds a RK pipeline. It is a framework. Required
+    to build that framework is the following:
+
+    Required
+    HFE: A Hierarchical Transform Graph. It returns a Hierarchy Graph
+    Filter Function: A map of filter functions to parent nodes. Specify 'all' as the
+    key for a override to all parent nodes
+    Linkage: the linkage func
     '''
     preprocess_nodes: Optional[List[TreeTransformNode]] = []
     localization_algorithm: Optional[LocalizationFunction] = IterableLocalizationFunction()
-    hfe:HierarchicalTransformGraph
-    filter_functions: dict
-    linkage_function: Optional[LinkageFunction] = SimpleLinkageFunction(threshold=-1)
+    hfe:HierarchicalTransformGraph = CorrelationHTGGenerator(),
+    filter_functions: TypedDict[str, FilterFunction] = {'all': StaticFilter()}
+    linkage_function: TypedDict[str, LinkageFunction] = {'all': SimpleLinkageFunction(threshold=-1)}
 
     class Config:
         arbitrary_types_allowed = True
@@ -36,7 +45,7 @@ class RKPipeline(BaseModel):
         # Step 2: localize data
         loc = self.localization_algorithm.localize(X)
 
-        # Step 3: Run through heirarhcial transform graph
+        # Step 3: Run through hierarchical transform graph
         hgraph = self.hfe.transform(X)
 
         # Step 4: Run through Filter Functions
