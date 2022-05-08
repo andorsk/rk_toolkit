@@ -10,6 +10,11 @@ class StaticFilter():
         self._min = min
         self._max = max
 
+    def get_knobs(self):
+        return {
+            "min": self._min,
+            "max": self._max
+        }
     def filter(self, val):
         if val is None:
             return True
