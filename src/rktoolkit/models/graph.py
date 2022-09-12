@@ -1,13 +1,9 @@
 # Maintainer: andor@henosisknot.com
 # Main graph class
-
 from networkx.classes.digraph import DiGraph
 import networkx as nx
-
-def jaccard(s1, s2): # two sets
-    intersect = s1 & s2
-    jin = len(intersect)  / (len(s1) + len(s2) - len(intersect))
-    return 1-jin
+import copy
+import numbers
 
 class GraphMask():
 
@@ -22,10 +18,13 @@ class GraphMask():
         return self._emask
 
     def fit(self, G):
-        sgraph = self._nmask ^ set(list(g.nodes.keys()))
+        sgraph = self._nmask ^ set(list(G.nodes.keys()))
         mG = G.__class__()
         mG.add_nodes_from((n, G.nodes[n]) for n in sgraph)
-        mG.add_edges_from(G.edges)
+        for e in list(G.edges):
+            if e[0] in sgraph and e[1] in sgraph:
+                mG.add_edges_from([e])
+
         edges = dict(mG.edges.items())
         for e in self._emask:
             if e in edges:
@@ -34,8 +33,9 @@ class GraphMask():
 
 class Graph(DiGraph):
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, id=None, *args, **kwargs):
         super().__init__(self, *args, **kwargs)
+        self.id = id
 
     def add_vertex(self, n):
         if isinstance(n, Vertex):
@@ -49,8 +49,11 @@ class Graph(DiGraph):
         else:
             raise ValueError("Expected a Edge Type")
 
-    def get_children(self, node_id):
-        return nx.descendants(g, node_id)
+    def get_children(self, node_id, recursive=False):
+        if recursive:
+            return nx.descendants(self, node_id)
+        else:
+            return list(self.successors(node_id))
 
     def validate(self):
         try:
@@ -68,8 +71,8 @@ class Graph(DiGraph):
 
     def edge_distance(self, G, method="jaccard"):
         if method == "jaccard":
-            s1 = set(list(self.nodes.keys()))
-            s2 = set(list(G.nodes.keys()))
+            s1 = set(list(self.edges.keys()))
+            s2 = set(list(G.edges.keys()))
             return jaccard(s1, s2)
         raise ValueError("Unknown method to compute distances")
 
@@ -88,9 +91,13 @@ class Graph(DiGraph):
     def weighted_distance(self, G, topological_method="jaccard", value_method="cossine", key="value", weights=[.5, .5]):
         td = self.topological_distance(G, method=topological_method, weights=[.5, .5])
         vd = self.value_distance(G, method=value_method, key="value")
-        return (vd + td) / 2
+        logger.info("Got value distance {} and toplogical distance {}".format(td, vd))
+        return ((vd + td) / 2)[0]
 
-    def value_distance(self, G, method="cossine", key="value"):
+    def similarity(self, *args, **kwargs): #returns the inverse of the normalized distance.
+        return 1- self.weighted_distance(*args, **kwargs)
+
+    def value_distance(self, G, method="cossine", key="value", fillValue=0):
         a1 = self.get_value_dict(key=key)
         a2 = G.get_value_dict(key=key)
         isect = a1.keys() & a2.keys()
@@ -102,6 +109,10 @@ class Graph(DiGraph):
             arr2.append(a2[i])
         arr1 = np.array(arr1).reshape(1, -1)
         arr2 = np.array(arr2).reshape(1, -1)
+        arr1 = arr1.astype(float)
+        arr1[np.isnan(arr1)] = fillValue
+        arr2 = arr2.astype(float)
+        arr2[np.isnan(arr2)] = fillValue
         return 1 - cosine_similarity(arr1, arr2)
 
     def is_dag(self):
@@ -134,12 +145,14 @@ class Edge():
 
 class Vertex():
 
-    def __init__(self, id: str, value=None):
+    def __init__(self, id: str, value=None, attributes={}):
         self.value = value
         self.id = id
+        self.attributes = attributes
 
     def to_dict(self):
         return {
             "id": self.id,
-            "value": self.value
+            "value": self.value,
+            **self.attributes
         }
