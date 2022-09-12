@@ -3,15 +3,15 @@ from .graph import (
     HierarchicalTransformGraph,
     TreeTransformNode,
     GraphMask,
-    RKModel
 )
 
+from .rkmodel import RKModel
 from .functions import *
 from typing import List, Optional, Callable, TypedDict
-from ..functions.localization_functions import IterableLocalizationFunction
-from ..functions.linkage_functions import SimpleLinkageFunction
+from ..functions.localizers import IterableLocalizationFunction
+from ..functions.linkers import SimpleLinkageFunction
 from ..functions.htg_transformers import CorrelationHTGGenerator
-from ..functions.filters import StaticFilter
+from ..functions.filters import RangeFilter
 
 class RKPipeline():
 

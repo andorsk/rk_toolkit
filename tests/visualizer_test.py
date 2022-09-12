@@ -1,5 +1,6 @@
 from rktoolkit.visualizers.circular import CircularVisualizer, CircularVisualizerSpec
-from rktoolkit.models.graph import RKModel, HierarchicalGraph, TreeNode, Edge, GraphMask
+from rktoolkit.models.graph import HierarchicalGraph, TreeNode, Edge, GraphMask
+from rktoolkit.models.rkmodel import RKModel
 
 def test_rkmodel_visualizer_circular(): # Tests an rkmodel visaulizer: Circular pattern
 
