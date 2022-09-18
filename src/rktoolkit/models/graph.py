@@ -7,11 +7,22 @@ import numbers
 from ..functions.distance import jaccard, mahalanobis
 from pydantic import BaseModel, PrivateAttr
 from enum import Enum
-from typing import List, Optional, Callable
+from typing import List, Optional, Callable, Any
 import uuid
 from copy import deepcopy, copy
 
 class GraphMask():
+    '''
+    Graph Mask
+    A graph mask is a mask over an existing
+    structural graph. It essentially provides an
+    overlay representation, which can be used to
+    filter out particular nodes and edges.
+
+    Typcially, a mask over a node, should also
+    mask children associated it, but it is an
+    implementation detail.
+    '''
 
     def __init__(self, nmasks=[], emasks=[]):
         self._nmask = set(nmasks)
@@ -39,6 +50,32 @@ class GraphMask():
 
 class Graph(DiGraph):
 
+    '''
+    Excerpt from initial paper:
+    https://arxiv.org/pdf/2201.06923.pdf
+
+    It is important to note, that in the field of Graph Theory,
+    the term "graph" does not refer to data charts, such as
+    the likes of line graphs or bar graphs pertaining to the
+    graphical visualization of data. Instead, it refers to a set
+    of Vertices (V) (i.e., points or nodes) and Edges (E) (or
+    lines) that connect the vertices. When any two vertices
+    are joined by more than one edge, then such a graph is
+    called a "Multi-graph". [11][86] A graph without any
+    loops and with a maximum of one edge between any
+    two vertices is called a simple graph. When each and
+    every vertex of a graph is connected by an edge to every other vertex, then such a graph is called a complete
+    graph. Moreover, it is important to note in the context
+    of this paper, a direction is assigned to each edge of a
+    graph to produce what is known as a Directed Graph
+    or Digraph.[50] We shall be dealing with such Directed
+    Graphs for the remaining part of this paper.
+
+    NOT threadsafe
+
+    TODO: Add more documentation around usage
+    TODO: More tests coverage
+    '''
     def __init__(self, id=None, *args, **kwargs):
         super().__init__(self, *args, **kwargs)
         self.id = id
@@ -95,15 +132,33 @@ class Graph(DiGraph):
         return sum([ed * weights[0], nd * weights[1]]) / 2
 
     def weighted_distance(self, G, topological_method="jaccard", value_method="cossine", key="value", weights=[.5, .5]):
+        '''
+        Computes a hybrid distance between a value and topological distance.
+        Useful for comparing not only the actual value distance, but also
+        the actual shape distance of two graphs.
+        '''
         td = self.topological_distance(G, method=topological_method, weights=[.5, .5])
         vd = self.value_distance(G, method=value_method, key="value")
         logger.info("Got value distance {} and toplogical distance {}".format(td, vd))
         return ((vd + td) / 2)[0]
 
-    def similarity(self, *args, **kwargs): #returns the inverse of the normalized distance.
+    def similarity(self, *args, **kwargs):
+        #returns the inverse of the normalized distance.
         return 1- self.weighted_distance(*args, **kwargs)
 
     def value_distance(self, G, method="cossine", key="value", fillValue=0):
+        '''
+        Value distance compares the distance value of the
+        nodes across the graph, using the method specified.
+
+        For example, cossine distance will unravvel the nodes
+        values into an array, and then use the cossine distance
+        to give the final distance
+
+        TODO: More methods
+        TODO: Better explanatations of methods
+        TODO: More tests on this
+        '''
         a1 = self.get_value_dict(key=key)
         a2 = G.get_value_dict(key=key)
         isect = a1.keys() & a2.keys()
@@ -140,6 +195,16 @@ class Graph(DiGraph):
         raise Exception("Cycle Detected! Invalid Graph.")
 
 class Edge():
+    '''
+    For an undirected graph, an unordered pair of nodes that specify a line
+    joining these two nodes are said to form an edge. For a directed graph, the
+    edge is an ordered pair of nodes. The terms "arc," "branch," "line," "link,"
+    and "1-simplex" are sometimes used instead of edge
+
+    https://mathworld.wolfram.com/GraphEdge.html#:~:text=For%20an%20undirected%20graph%2C%20an,e.g.%2C%20Skiena%201990%2C%20p.
+
+    TODO: Consider moving this to pydantic.
+    '''
 
     def __init__(self, u, v, w=1, type=None, attributes={}):
         self.u = u
@@ -149,16 +214,63 @@ class Edge():
         self.attributes = attributes
 
     def to_dict(self):
+        ''' returns a tuple of the
+
+        TODO: Fix. this should actually be called to_tuple and then
+        TODO: Should also return promoted values
+
+        to_dict should send back dictionary in the form of:
+        {
+         'u': a,
+         'v': b,
+         'attributes': c
+        }
+        '''
         return (self.u, self.v, self.attributes)
 
 class Vertex():
+    '''
+    "Vertex" is a synonym for a node of a graph, i.e., one of the points on
+    which the graph is defined and which may be connected by graph edges.
+    The terms "point," "junction," and 0-simplex are also used
 
+    See
+    https://mathworld.wolfram.com/GraphVertex.html#:~:text=%22Vertex%22%20is%20a%20synonym%20for,80).
+    for more information
+
+    NOT threadsafe implementation
+
+    TODO: Consider moving this to pydantic.
+    '''
     def __init__(self, id: str, value=None, attributes={}):
         self.value = value
         self.id = id
         self.attributes = attributes
+        self._disallowed_keys = set('id', 'value')
+
+    def add_attribute(k: str, v: Any, unsafe=True):
+        '''
+        adds an attributes
+
+        toggle unsafe to allow keys to be overridden
+        that already exist
+        '''
+
+        if k in self._disallowed_keys:
+            raise ValueError("key {} is not allowed".format(k))
+
+        if not unsafe:
+            if k in self.attributes:
+                raise ValueError("Key {} already exists in attributes. Can't add".format(k))
+
+        self.attributes[k] = v
 
     def to_dict(self):
+        '''
+        converts to dictionary
+        merging attributes to promoted
+        field and sending back
+        '''
         return {
             "id": self.id,
             "value": self.value,
