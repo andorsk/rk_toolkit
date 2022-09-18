@@ -37,8 +37,9 @@ def draw_graph(G, ax=None, with_labels=True, minsize=100,
     nx.draw_networkx_nodes(G, pos=pos, nodelist = ['root'],
                            node_color = 'green', ax=ax, node_size = sizes.max()*emult)
 
-def draw_rk_diagram(rkmodel, ax=None, with_labels=True, minsize=100, center_color='green',
-                    alpha=300, emult=2, make_axis=False, width=2*math.pi, xoff=0, yoff=0):
+#TODO: Refactor this. Should be one function
+def draw_rk_diagram(rkmodel, spread=1, ax=None, with_labels=True, minsize=100, center_color='green',
+                    alpha=300, emult=2, make_axis=False, width=2*math.pi, xoff=0, yoff=0, color_override=None):
     if make_axis:
         fig, ax = plt.subplots(figsize=(10,10))
 
@@ -47,7 +48,7 @@ def draw_rk_diagram(rkmodel, ax=None, with_labels=True, minsize=100, center_colo
 
     # structural pos
     structural_pos = hierarchy_pos(rkmodel.G, 'root', width = width, xcenter=0)
-    structural_pos = {u:(r*math.cos(theta),r*math.sin(theta)) for u, (theta, r) in structural_pos.items()}
+    structural_pos = {u:(r*math.cos(theta) * spread,r*math.sin(theta)*spread) for u, (theta, r) in structural_pos.items()}
     structural_colors = [ n[1].get('color', 'black') for n in list(rkmodel.G.nodes.items())]
 
     # filter nodes
@@ -79,7 +80,13 @@ def draw_rk_diagram(rkmodel, ax=None, with_labels=True, minsize=100, center_colo
     sizes *= alpha
     sizes += minsize
     sizes = np.where(np.isnan(sizes), minsize, sizes)
+    if color_override is not None:
+        if isinstance(color_override, str):
+            filtered_colors = [color_override] * len(filtered_colors)
+
+
     nx.draw(rkgraph, pos=filtered_pos, with_labels=with_labels,
             font_size=10, node_size=sizes, ax=ax, node_color = filtered_colors, edgecolors = 'black')
+
     nx.draw_networkx_nodes(rkgraph, pos=filtered_pos, nodelist = ['root'],
                            node_color = center_color, ax=ax, node_size = sizes.max()*emult)
