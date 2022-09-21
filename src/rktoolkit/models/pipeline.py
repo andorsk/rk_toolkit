@@ -16,8 +16,19 @@ import copy
 import numbers
 
 class RKPipeline():
+    '''
+    Class implementing the RK-Pipeline explained above
+    '''
 
     def check_valid_node(self, node) -> bool:
+        '''
+        Check if the node is valid or not
+
+        :param node: Node to be checked
+        :type node: Any
+        :return: Return True if node has value, else False
+        :rtype: bool
+        '''
         if "value" not in node:
             return False
         if not isinstance(node["value"], numbers.Number):
@@ -30,6 +41,16 @@ class RKPipeline():
         self.structural_graph = structural_graph
 
     def transform(self, G, is_base=True):
+        '''
+        Transforms the given Graph into a RKModel
+
+        :param G: Input Graph
+        :type G: Graph
+        :param is_base: If its base graph or not, defaults to True
+        :type is_base: bool, optional
+        :return: RKModel of the graph.
+        :rtype: RKModel
+        '''
         if is_base:
             self.structural_graph = G
         gC = copy.deepcopy(G)
@@ -46,6 +67,16 @@ class RKPipeline():
         return RKModel(self.structural_graph, list(masks), gC.edges)
 
     def remap(self, vmap, cols):
+        '''
+        Method to Remap the pipeline for the RKModel
+
+        :param vmap: Vertices Mapping 
+        :type vmap: Any
+        :param cols: Columns for the mapping
+        :type cols: Any
+        :return: Returns a remapped RK-Pipeline Class
+        :rtype: RKPipeline
+        '''
         pcopy = copy.deepcopy(self)
         for i, v in enumerate(vmap):
             col = cols[i]
@@ -58,6 +89,12 @@ class RKPipeline():
         return pcopy
 
     def get_w(self):
+        '''
+        Method to get the vertices and columns for mapping.
+
+        :return: Returns both the vertex mapping and columns.
+        :rtype: tuple[list,list]
+        '''
         vmap, cols = [], []
         for k,v in self.filter_map.items():
             knbs = v.get_knobs()

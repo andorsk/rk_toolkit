@@ -10,23 +10,44 @@ import numbers
 class SimpleChildLinker():
     '''
     Simple child linker.
-    Takes leafs and links them together based upon
-    criteria
+    Takes leafs and links them together based upon criteria.
     '''
 
     def __init__(self, theta=1):
         self.theta = theta
 
     def get_knobs(self):
+        '''
+        Get the knobs to link.
+
+        :return: Knob
+        :rtype: dict
+        '''
         return {"theta": self.theta}
 
     def set_knob(self, knb, v):
+        '''_summary_
+
+        :param knb: Knob value
+        :type knb: str
+        :param v: Value for theta
+        :type v: int
+        :raises ValueError: If knob isn't theta raises Valu  error
+        '''
         if knb == "theta":
             self.theta = v
         else:
             raise ValueError("No knob {}".format(knb))
 
     def check_valid_node(self, node) -> bool:
+        '''
+        Checks if node contains value or not 
+
+        :param node: Node to be checked for validity
+        :type node: Any
+        :return: Returns  true if Node is valid, else false
+        :rtype: bool
+        '''
         if "value" not in node:
             return False
         if not isinstance(node["value"], numbers.Number):
@@ -34,6 +55,14 @@ class SimpleChildLinker():
         return True
 
     def link(self, G):
+        '''
+        Links the nodes of the given Graph by creating a copy of the graph  and adding nodes to it based on criteria
+
+        :param G: Graph to be linked.
+        :type G: Graph
+        :return: A linked graph with all child nodes linked.
+        :rtype: Graph
+        '''
         gC = copy.deepcopy(G)
         for n in G.nodes:
             for p in itertools.combinations(G.get_children(n), 2):
@@ -51,7 +80,7 @@ class SimpleChildLinker():
 
 class SimpleLinkageFunction(LinkageFunction):
     '''
-    A greedy linkage function
+    A greedy and quick linkage function implementing `LinkageFunction`. Takes O(n^2) time and can be improved.
     '''
     def __init__(self, threshold=-1, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -96,4 +125,12 @@ class SimpleLinkageFunction(LinkageFunction):
         return links
 
     def link(self, X: HierarchicalGraph):
+        '''
+        Simple recursive link method to add nodes to Graph.
+
+        :param X: Graph to be linked, needs to be Hierarchical to implement the linking without issues.
+        :type X: HierarchicalGraph
+        :return: Returns a linked Hierarchical Graph after recursion is finished
+        :rtype: HierarchicalGraph
+        '''
         return self._recursive_link(X.get_root(), [])

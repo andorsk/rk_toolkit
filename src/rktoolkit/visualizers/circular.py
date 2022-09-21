@@ -8,6 +8,7 @@ import copy
 import logging
 
 '''
+
 Cicular Visualizer Makes an almost "Mandlebot" like visualization
 of the RKModel.
 
@@ -28,7 +29,20 @@ class CircularVisualizerSpec():
     alpha, etc.
 
     You can compute these dynamically or
-    use static fields
+    use static fields. Initialization specs are::
+
+    :param center_color: Color for center in unicode, defaults to '#000000'
+    :type center_color: str 
+    :param center_size:  Size of the center node, defaults to 300
+    :type center_size: int
+    :param distance_from_center: Distance of nodes from center, defaults to 10.
+    :type distance_from_center: int
+    :param cluster_size: Size of the cluster, defaults to 10.
+    :type cluster_size: int
+    :param add_node_labels: To check if nodes need to be labelled or not,defaults to False.
+    :type add_node_labels: bool
+    :param alpha: Alpha index value, defaults to .5.
+    :type alpha: float   
     '''
 
     def __init__(self,
@@ -66,6 +80,15 @@ class CircularVisualizer(RKModelVisualizer):
         self.positions = {}
 
     def _build(self, model: List[RKModel]):
+        '''
+        Builds a Visualization of the RKModel.
+
+        :param model: RKModel(s) to be visualized.
+        :type model: List[RKModel]
+        :raises e: If RKModel is unable to be created, returns an exception.
+        :return: An RKDiagram visualization .
+        :rtype: RKDiagram
+        '''
         try:
             self._plot_cluster_centroid(model) # plot the centroid
             placed_nodes = self._plot_clusters(model) # plot the clusters
@@ -77,20 +100,44 @@ class CircularVisualizer(RKModelVisualizer):
             raise e
 
     def _register_node(self, node, pos):
+        '''
+        Register the nodes' positions for plotting.
+        '''
         self.positions[node.id] = pos
 
     def _get_node_position(self, node) -> []:
+        '''
+        Get the position of the node to be used for plotting
+
+        :param node: The node whose position is needed.
+        :type node: Any
+        :return: Position of the node
+        :rtype: List
+        '''
         return self.positions.get(node.id, None)
 
     def _plot_children(self, parent, mask=None, level=1):
-        '''
-        Plots a first level child of an rkmodel
+        '''Plots a first level child of an rkmodel
+
+        The first level child is positioned in a cicular
+        pattern, incrementing rads through the position in the list.
+
+        The entire RKModel must be built out so the spacing can be
+        determined between clusters.Plots a first level child of an rkmodel
 
         The first level child is positioned in a cicular
         pattern, incrementing rads through the position in the list.
 
         The entire RKModel must be built out so the spacing can be
         determined between clusters.
+
+        :param parent: Parent node (Starting node) from where the children should be plotted.
+        :type parent: Any
+        :param mask: Any child nodes to be masked, defaults to None
+        :type mask: GraphMask, optional
+        :param level: Child nodes level, defaults to 1
+        :type level: int, optional
+        :raises ValueError: Raises a ValueError if Parent node's position hasn't been placed i.e, not in positions list.
         '''
         children_unmasked = parent.children
         children_masked = []
@@ -123,7 +170,13 @@ class CircularVisualizer(RKModelVisualizer):
 
     def _plot_links(self, model: RKModel, mask: GraphMask = None):
         '''
-        plots the links between the nodes
+        Plots the links between the nodesplots the links between the nodes
+
+        :param model: The RKModel for which links need to be plotted for the nodes.
+        :type model: RKModel
+        :param mask: Nodes that are/need to be masked, defaults to None
+        :type mask: GraphMask, optional
+        :raises ValueError: Raises ValueError if no links are provided in the RKModel.
         '''
         if model.links is None:
             raise ValueError("No links provided")
@@ -154,9 +207,22 @@ class CircularVisualizer(RKModelVisualizer):
             self.ax.plot(x, y, z, c='black', alpha=0.5)
 
     def _plot_clusters(self, model):
+        '''
+        Plot the clusters of the RKModel
+
+        :param model: The RKModel whose clusters need to be plotted.
+        :type model: RKModel
+        '''
         self._plot_children(model.hgraph.get_root(), model.mask)
 
     def _plot_cluster_centroid(self, model):
+        '''
+        Plot the centroid of the clusters of RKModel
+
+        :param model: The RKModel whose centroid needs to be plotted
+        :type model: RKModel
+        :raises ValueError: Raises ValueError if no model position is available for centroid.
+        '''
         pos = model.location
         if pos == None or len(pos) < 3:
             raise ValueError("No model position")

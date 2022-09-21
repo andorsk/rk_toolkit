@@ -9,13 +9,21 @@ from typing import Optional
 from pydantic import PrivateAttr
 
 class NDMaxLocalizationFunction(LocalizationFunction):
+    '''
+    Localization function that localizes a N x D matrix around the maximum of the matrix.
+    '''
 
     def __init__(self):
         super().__init__()
 
     def predict(self, X):
         '''
-        given a matrix NxD. Localizes around the max of the matrix
+        Predicts and localizes a given N x D matrix around the maximum of the matrix.
+
+        :param X: Matrix to be localized. Should be in N x D dimensions.
+        :type X: ndarray
+        :return: Localized values for the matrix X
+        :rtype: tuple[int], int
         '''
         pos = np.argmax(X[2])
         i1=int(X[2].argmax()/len(X[2])),
@@ -23,6 +31,10 @@ class NDMaxLocalizationFunction(LocalizationFunction):
         return X[0][i1], X[1][i2]
 
 class IterableLocalizationFunction(LocalizationFunction):
+    '''_
+    An Iterable localization function that localizes a N x D matrix around the max. The class can be initialized with parameters to determine which dimensions 
+    should be iterated around.
+    '''
 
     _iterateX: bool = PrivateAttr()
     _iterateY: bool = PrivateAttr()
@@ -43,7 +55,12 @@ class IterableLocalizationFunction(LocalizationFunction):
 
     def localize(self, X):
         '''
-        given a matrix NxD. Localizes around the max of the matrix
+        Localizes  the matrix X around the max iteratively. 
+
+        :param X: Matrix X to be localized.
+        :type X: ndarray
+        :return: Localized X,Y and Z values
+        :rtype: int,int,int
         '''
         if self._iterateX:
             self._xcount += 1

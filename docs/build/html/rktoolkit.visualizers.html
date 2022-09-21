@@ -1,71 +1,34 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
   <title>rktoolkit.visualizers package &mdash; rktoolkit 0.0.1 documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-
-    
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="rktoolkit.preprocess package" href="rktoolkit.preprocess.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="index.html" class="icon icon-home"> rktoolkit
-          
-
-          
           </a>
-
-          
-            
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -73,105 +36,58 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <!-- Local TOC -->
-              <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">rktoolkit.visualizers package</a><ul>
-<li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#module-rktoolkit.visualizers.circular">rktoolkit.visualizers.circular module</a></li>
-<li><a class="reference internal" href="#module-rktoolkit.visualizers.visualizer">rktoolkit.visualizers.visualizer module</a></li>
-<li><a class="reference internal" href="#module-rktoolkit.visualizers">Module contents</a></li>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="rktoolkit.html">Package Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="rktoolkit.functions.html">rktoolkit.functions package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rktoolkit.io.html">rktoolkit.io package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rktoolkit.models.html">rktoolkit.models package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rktoolkit.preprocess.html">rktoolkit.preprocess package</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">rktoolkit.visualizers package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-rktoolkit.visualizers.circular">Circular Visualizer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-rktoolkit.visualizers.visualizer">Base Visualizers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-rktoolkit.visualizers.util">Utilities Module for Visualizers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-contents">Module contents</a></li>
 </ul>
 </li>
 </ul>
-</div>
-            
-          
+</li>
+</ul>
+
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">rktoolkit</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-        
+          <li><a href="rktoolkit.html">Package Modules</a> &raquo;</li>
       <li>rktoolkit.visualizers package</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-          
             <a href="_sources/rktoolkit.visualizers.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="rktoolkit-visualizers-package">
-<h1>rktoolkit.visualizers package<a class="headerlink" href="#rktoolkit-visualizers-package" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="module-rktoolkit.visualizers.circular">
-<span id="rktoolkit-visualizers-circular-module"></span><h2>rktoolkit.visualizers.circular module<a class="headerlink" href="#module-rktoolkit.visualizers.circular" title="Permalink to this headline">¶</a></h2>
+             
+  <section id="rktoolkit-visualizers-package">
+<span id="rktoolkit-visualizers"></span><h1>rktoolkit.visualizers package<a class="headerlink" href="#rktoolkit-visualizers-package" title="Permalink to this heading"></a></h1>
+<p>Visualizers package contains classes for visualising the RK model into a RK-Diagram.</p>
+<section id="module-rktoolkit.visualizers.circular">
+<span id="circular-visualizer"></span><span id="rktoolkit-visualizers-circular"></span><h2>Circular Visualizer<a class="headerlink" href="#module-rktoolkit.visualizers.circular" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="rktoolkit.visualizers.circular.CircularVisualizer">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">rktoolkit.visualizers.circular.</span></span><span class="sig-name descname"><span class="pre">CircularVisualizer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spec</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#rktoolkit.visualizers.circular.CircularVisualizerSpec" title="rktoolkit.visualizers.circular.CircularVisualizerSpec"><span class="pre">rktoolkit.visualizers.circular.CircularVisualizerSpec</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.visualizers.circular.CircularVisualizer" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#rktoolkit.visualizers.visualizer.RKModelVisualizer" title="rktoolkit.visualizers.visualizer.RKModelVisualizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">rktoolkit.visualizers.visualizer.RKModelVisualizer</span></code></a></p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rktoolkit.visualizers.circular.</span></span><span class="sig-name descname"><span class="pre">CircularVisualizer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spec</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#rktoolkit.visualizers.circular.CircularVisualizerSpec" title="rktoolkit.visualizers.circular.CircularVisualizerSpec"><span class="pre">CircularVisualizerSpec</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.visualizers.circular.CircularVisualizer" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rktoolkit.visualizers.visualizer.RKModelVisualizer" title="rktoolkit.visualizers.visualizer.RKModelVisualizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">RKModelVisualizer</span></code></a></p>
 <p>Cicular Visualizer  visualizes an RKModel
 by plotting clusters and measures in a circular
 pattern in 3D space</p>
@@ -179,126 +95,339 @@ pattern in 3D space</p>
 TODO: Visualizer only gives locations and specs.
 RK-Diagram Renderer renders the specs</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="rktoolkit.visualizers.circular.CircularVisualizer.build">
-<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.graph.RKModel" title="rktoolkit.models.graph.RKModel"><span class="pre">rktoolkit.models.graph.RKModel</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.visualizers.circular.CircularVisualizer.build" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="rktoolkit.visualizers.circular.CircularVisualizer._build">
+<span class="sig-name descname"><span class="pre">_build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.rkmodel.RKModel" title="rktoolkit.models.rkmodel.RKModel"><span class="pre">RKModel</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.visualizers.circular.CircularVisualizer._build" title="Permalink to this definition"></a></dt>
+<dd><p>Builds a Visualization of the RKModel.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>model</strong> (<em>List</em><em>[</em><a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.rkmodel.RKModel" title="rktoolkit.models.rkmodel.RKModel"><em>RKModel</em></a><em>]</em>) – RKModel(s) to be visualized.</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>e</strong> – If RKModel is unable to be created, returns an exception.</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>An RKDiagram visualization .</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#rktoolkit.visualizers.visualizer.RKDiagram" title="rktoolkit.visualizers.visualizer.RKDiagram">RKDiagram</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rktoolkit.visualizers.circular.CircularVisualizer._get_node_position">
+<span class="sig-name descname"><span class="pre">_get_node_position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#rktoolkit.visualizers.circular.CircularVisualizer._get_node_position" title="Permalink to this definition"></a></dt>
+<dd><p>Get the position of the node to be used for plotting</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>node</strong> (<em>Any</em>) – The node whose position is needed.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Position of the node</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>List</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rktoolkit.visualizers.circular.CircularVisualizer._plot_children">
+<span class="sig-name descname"><span class="pre">_plot_children</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.visualizers.circular.CircularVisualizer._plot_children" title="Permalink to this definition"></a></dt>
+<dd><p>Plots a first level child of an rkmodel</p>
+<p>The first level child is positioned in a cicular
+pattern, incrementing rads through the position in the list.</p>
+<p>The entire RKModel must be built out so the spacing can be
+determined between clusters.Plots a first level child of an rkmodel</p>
+<p>The first level child is positioned in a cicular
+pattern, incrementing rads through the position in the list.</p>
+<p>The entire RKModel must be built out so the spacing can be
+determined between clusters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>parent</strong> (<em>Any</em>) – Parent node (Starting node) from where the children should be plotted.</p></li>
+<li><p><strong>mask</strong> (<a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.graph.GraphMask" title="rktoolkit.models.graph.GraphMask"><em>GraphMask</em></a><em>, </em><em>optional</em>) – Any child nodes to be masked, defaults to None</p></li>
+<li><p><strong>level</strong> (<em>int</em><em>, </em><em>optional</em>) – Child nodes level, defaults to 1</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – Raises a ValueError if Parent node’s position hasn’t been placed i.e, not in positions list.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rktoolkit.visualizers.circular.CircularVisualizer._plot_cluster_centroid">
+<span class="sig-name descname"><span class="pre">_plot_cluster_centroid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.visualizers.circular.CircularVisualizer._plot_cluster_centroid" title="Permalink to this definition"></a></dt>
+<dd><p>Plot the centroid of the clusters of RKModel</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>model</strong> (<a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.rkmodel.RKModel" title="rktoolkit.models.rkmodel.RKModel"><em>RKModel</em></a>) – The RKModel whose centroid needs to be plotted</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – Raises ValueError if no model position is available for centroid.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rktoolkit.visualizers.circular.CircularVisualizer._plot_clusters">
+<span class="sig-name descname"><span class="pre">_plot_clusters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.visualizers.circular.CircularVisualizer._plot_clusters" title="Permalink to this definition"></a></dt>
+<dd><p>Plot the clusters of the RKModel</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>model</strong> (<a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.rkmodel.RKModel" title="rktoolkit.models.rkmodel.RKModel"><em>RKModel</em></a>) – The RKModel whose clusters need to be plotted.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rktoolkit.visualizers.circular.CircularVisualizer._plot_links">
+<span class="sig-name descname"><span class="pre">_plot_links</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.rkmodel.RKModel" title="rktoolkit.models.rkmodel.RKModel"><span class="pre">RKModel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.graph.GraphMask" title="rktoolkit.models.graph.GraphMask"><span class="pre">GraphMask</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.visualizers.circular.CircularVisualizer._plot_links" title="Permalink to this definition"></a></dt>
+<dd><p>Plots the links between the nodesplots the links between the nodes</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> (<a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.rkmodel.RKModel" title="rktoolkit.models.rkmodel.RKModel"><em>RKModel</em></a>) – The RKModel for which links need to be plotted for the nodes.</p></li>
+<li><p><strong>mask</strong> (<a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.graph.GraphMask" title="rktoolkit.models.graph.GraphMask"><em>GraphMask</em></a><em>, </em><em>optional</em>) – Nodes that are/need to be masked, defaults to None</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – Raises ValueError if no links are provided in the RKModel.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rktoolkit.visualizers.circular.CircularVisualizer._register_node">
+<span class="sig-name descname"><span class="pre">_register_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.visualizers.circular.CircularVisualizer._register_node" title="Permalink to this definition"></a></dt>
+<dd><p>Register the nodes’ positions for plotting.</p>
+</dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="rktoolkit.visualizers.circular.CircularVisualizerSpec">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">rktoolkit.visualizers.circular.</span></span><span class="sig-name descname"><span class="pre">CircularVisualizerSpec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">center_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'#000000'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">300</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance_from_center</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.visualizers.circular.CircularVisualizerSpec" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rktoolkit.visualizers.circular.</span></span><span class="sig-name descname"><span class="pre">CircularVisualizerSpec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">center_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'#000000'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">300</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance_from_center</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_node_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.visualizers.circular.CircularVisualizerSpec" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>These are specs for the circular visualiation
 They define how close the clsuters are to the
 centroid, the size of the centroid bubble,
 alpha, etc.</p>
 <p>You can compute these dynamically or
-use static fields</p>
+use static fields. Initialization specs are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="n">param</span> <span class="n">center_color</span><span class="p">:</span> <span class="n">Color</span> <span class="k">for</span> <span class="n">center</span> <span class="ow">in</span> <span class="n">unicode</span><span class="p">,</span> <span class="n">defaults</span> <span class="n">to</span> <span class="s1">&#39;#000000&#39;</span>
+<span class="p">:</span><span class="nb">type</span> <span class="n">center_color</span><span class="p">:</span> <span class="nb">str</span> 
+<span class="p">:</span><span class="n">param</span> <span class="n">center_size</span><span class="p">:</span>  <span class="n">Size</span> <span class="n">of</span> <span class="n">the</span> <span class="n">center</span> <span class="n">node</span><span class="p">,</span> <span class="n">defaults</span> <span class="n">to</span> <span class="mi">300</span>
+<span class="p">:</span><span class="nb">type</span> <span class="n">center_size</span><span class="p">:</span> <span class="nb">int</span>
+<span class="p">:</span><span class="n">param</span> <span class="n">distance_from_center</span><span class="p">:</span> <span class="n">Distance</span> <span class="n">of</span> <span class="n">nodes</span> <span class="kn">from</span> <span class="nn">center</span><span class="p">,</span> <span class="n">defaults</span> <span class="n">to</span> <span class="mf">10.</span>
+<span class="p">:</span><span class="nb">type</span> <span class="n">distance_from_center</span><span class="p">:</span> <span class="nb">int</span>
+<span class="p">:</span><span class="n">param</span> <span class="n">cluster_size</span><span class="p">:</span> <span class="n">Size</span> <span class="n">of</span> <span class="n">the</span> <span class="n">cluster</span><span class="p">,</span> <span class="n">defaults</span> <span class="n">to</span> <span class="mf">10.</span>
+<span class="p">:</span><span class="nb">type</span> <span class="n">cluster_size</span><span class="p">:</span> <span class="nb">int</span>
+<span class="p">:</span><span class="n">param</span> <span class="n">add_node_labels</span><span class="p">:</span> <span class="n">To</span> <span class="n">check</span> <span class="k">if</span> <span class="n">nodes</span> <span class="n">need</span> <span class="n">to</span> <span class="n">be</span> <span class="n">labelled</span> <span class="ow">or</span> <span class="ow">not</span><span class="p">,</span><span class="n">defaults</span> <span class="n">to</span> <span class="kc">False</span><span class="o">.</span>
+<span class="p">:</span><span class="nb">type</span> <span class="n">add_node_labels</span><span class="p">:</span> <span class="nb">bool</span>
+<span class="p">:</span><span class="n">param</span> <span class="n">alpha</span><span class="p">:</span> <span class="n">Alpha</span> <span class="n">index</span> <span class="n">value</span><span class="p">,</span> <span class="n">defaults</span> <span class="n">to</span> <span class="mf">.5</span><span class="o">.</span>
+<span class="p">:</span><span class="nb">type</span> <span class="n">alpha</span><span class="p">:</span> <span class="nb">float</span>   
+</pre></div>
+</div>
 </dd></dl>
 
-</div>
-<div class="section" id="module-rktoolkit.visualizers.visualizer">
-<span id="rktoolkit-visualizers-visualizer-module"></span><h2>rktoolkit.visualizers.visualizer module<a class="headerlink" href="#module-rktoolkit.visualizers.visualizer" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="module-rktoolkit.visualizers.visualizer">
+<span id="base-visualizers"></span><span id="rktoolkit-visualizers-visualizer"></span><h2>Base Visualizers<a class="headerlink" href="#module-rktoolkit.visualizers.visualizer" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="rktoolkit.visualizers.visualizer.Arrow3D">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">rktoolkit.visualizers.visualizer.</span></span><span class="sig-name descname"><span class="pre">Arrow3D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ys</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zs</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.visualizers.visualizer.Arrow3D" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.patches.FancyArrowPatch</span></code></p>
-<p>Builds arrows in 3d</p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rktoolkit.visualizers.visualizer.</span></span><span class="sig-name descname"><span class="pre">Arrow3D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ys</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zs</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.visualizers.visualizer.Arrow3D" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">FancyArrowPatch</span></code></p>
+<p>Builds arrows in 3D. Uses matplotlib’s <code class="code docutils literal notranslate"><span class="pre">FancyArrowPatch</span></code> class to draw the 3D arrows.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="rktoolkit.visualizers.visualizer.Arrow3D.draw">
-<span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">renderer</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.visualizers.visualizer.Arrow3D.draw" title="Permalink to this definition">¶</a></dt>
-<dd><p>Draw the Artist (and its children) using the given renderer.</p>
-<p>This has no effect if the artist is not visible (<cite>.Artist.get_visible</cite>
-returns False).</p>
-<p>renderer : <cite>.RendererBase</cite> subclass.</p>
-<p>This method is overridden in the Artist subclasses.</p>
+<span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">renderer</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.visualizers.visualizer.Arrow3D.draw" title="Permalink to this definition"></a></dt>
+<dd><p>Implements the <code class="code docutils literal notranslate"><span class="pre">FancyArrowPatch</span></code>’s draw method to draw the arrows.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>renderer</strong> (<em>RendererBase</em>) – Renderer used for the arrows used by FancyArrowPatch to plot.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rktoolkit.visualizers.visualizer.Arrow3D.set">
+<span class="sig-name descname"><span class="pre">set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">agg_filter=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">animated=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">antialiased=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arrowstyle=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">capstyle=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clip_box=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clip_on=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clip_path=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connectionstyle=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edgecolor=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">facecolor=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fill=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gid=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hatch=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">in_layout=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">joinstyle=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linestyle=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linewidth=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mouseover=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mutation_aspect=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mutation_scale=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">patchA=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">patchB=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_effects=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">picker=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">positions=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rasterized=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sketch_params=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">snap=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">visible=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zorder=&lt;UNSET&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.visualizers.visualizer.Arrow3D.set" title="Permalink to this definition"></a></dt>
+<dd><p>Set multiple properties at once.</p>
+<p>Supported properties are</p>
+<dl class="simple">
+<dt>Properties:</dt><dd><p>agg_filter: a filter function, which takes a (m, n, 3) float array and a dpi value, and returns a (m, n, 3) array and two offsets from the bottom left corner of the image
+alpha: scalar or None
+animated: bool
+antialiased or aa: bool or None
+arrowstyle: str or <cite>matplotlib.patches.ArrowStyle</cite>
+capstyle: <cite>.CapStyle</cite> or {‘butt’, ‘projecting’, ‘round’}
+clip_box: <cite>.Bbox</cite>
+clip_on: bool
+clip_path: Patch or (Path, Transform) or None
+color: color
+connectionstyle: [ ‘arc3’ | ‘angle3’ | ‘angle’ | ‘arc’ | ‘bar’ ]
+edgecolor or ec: color or None
+facecolor or fc: color or None
+figure: <cite>.Figure</cite>
+fill: bool
+gid: str
+hatch: {‘/’, ‘\’, ‘|’, ‘-’, ‘+’, ‘x’, ‘o’, ‘O’, ‘.’, ‘*’}
+in_layout: bool
+joinstyle: <cite>.JoinStyle</cite> or {‘miter’, ‘round’, ‘bevel’}
+label: object
+linestyle or ls: {‘-’, ‘–’, ‘-.’, ‘:’, ‘’, (offset, on-off-seq), …}
+linewidth or lw: float or None
+mouseover: bool
+mutation_aspect: float
+mutation_scale: float
+patchA: <cite>.patches.Patch</cite>
+patchB: <cite>.patches.Patch</cite>
+path_effects: <cite>.AbstractPathEffect</cite>
+picker: None or bool or float or callable
+positions: unknown
+rasterized: bool
+sketch_params: (scale: float, length: float, randomness: float)
+snap: bool or None
+transform: <cite>.Transform</cite>
+url: str
+visible: bool
+zorder: float</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="rktoolkit.visualizers.visualizer.RKDiagram">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">rktoolkit.visualizers.visualizer.</span></span><span class="sig-name descname"><span class="pre">RKDiagram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rkmodel</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.graph.RKModel" title="rktoolkit.models.graph.RKModel"><span class="pre">rktoolkit.models.graph.RKModel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">placed_nodes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">links</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.visualizers.visualizer.RKDiagram" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rktoolkit.visualizers.visualizer.</span></span><span class="sig-name descname"><span class="pre">RKDiagram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rkmodel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.rkmodel.RKModel" title="rktoolkit.models.rkmodel.RKModel"><span class="pre">RKModel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">placed_nodes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">links</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.visualizers.visualizer.RKDiagram" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>An RKDiagram is the manifestation of an RK-Model</p>
 <p>It contains the positions of each node, information about how
 to represent such nodes, as well as edge visualizations.</p>
 <p>It is purely a visualization diagram. To work effectively, the visualized
 space must be in nD &lt; 4</p>
+<p>Uses <code class="code docutils literal notranslate"><span class="pre">pyplot</span></code> to create the visualization diagram.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="rktoolkit.visualizers.visualizer.RKDiagram.render">
-<span class="sig-name descname"><span class="pre">render</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.visualizers.visualizer.RKDiagram.render" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">render</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.visualizers.visualizer.RKDiagram.render" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="rktoolkit.visualizers.visualizer.RKModelVisualizer">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">rktoolkit.visualizers.visualizer.</span></span><span class="sig-name descname"><span class="pre">RKModelVisualizer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.visualizers.visualizer.RKModelVisualizer" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rktoolkit.visualizers.visualizer.</span></span><span class="sig-name descname"><span class="pre">RKModelVisualizer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.visualizers.visualizer.RKModelVisualizer" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Base classe for RK models
-Visualizes a model as an RK-Diagram</p>
+<p>Base class for RK models
+Visualizes a model as an RK-Diagram.
+Uses pyplot for the visualization.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="rktoolkit.visualizers.visualizer.RKModelVisualizer.build">
-<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.graph.RKModel" title="rktoolkit.models.graph.RKModel"><span class="pre">rktoolkit.models.graph.RKModel</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.visualizers.visualizer.RKModelVisualizer.build" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">models</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.rkmodel.RKModel" title="rktoolkit.models.rkmodel.RKModel"><span class="pre">RKModel</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.visualizers.visualizer.RKModelVisualizer.build" title="Permalink to this definition"></a></dt>
+<dd><p>Method to build the visualization for the RKModel.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>models</strong> (<a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.rkmodel.RKModel" title="rktoolkit.models.rkmodel.RKModel"><em>RKModel</em></a>) – RKModel whose RK-Diagram needs to built.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="rktoolkit.visualizers.visualizer.RKModelVisualizer.render">
-<span class="sig-name descname"><span class="pre">render</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.visualizers.visualizer.RKModelVisualizer.render" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">render</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.visualizers.visualizer.RKModelVisualizer.render" title="Permalink to this definition"></a></dt>
+<dd><p>Method to render a RKDiagram. Utilizes the <code class="code docutils literal notranslate"><span class="pre">pyplot.show()</span></code> method.</p>
+</dd></dl>
 
 </dd></dl>
 
-</div>
-<div class="section" id="module-rktoolkit.visualizers">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-rktoolkit.visualizers" title="Permalink to this headline">¶</a></h2>
-</div>
-</div>
+</section>
+<section id="module-rktoolkit.visualizers.util">
+<span id="utilities-module-for-visualizers"></span><span id="rktoolkit-visualizers-util"></span><h2>Utilities Module for Visualizers<a class="headerlink" href="#module-rktoolkit.visualizers.util" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="rktoolkit.visualizers.util.draw_graph">
+<span class="sig-prename descclassname"><span class="pre">rktoolkit.visualizers.util.</span></span><span class="sig-name descname"><span class="pre">draw_graph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">300</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">emult</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">make_axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">6.283185307179586</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.visualizers.util.draw_graph" title="Permalink to this definition"></a></dt>
+<dd><p>Method to draw a general graph of an ontology that is transformed using BaseOntologyTransform.
+Refer to <a class="reference internal" href="rktoolkit.functions.html#rktoolkit-functions-htg-transformers"><span class="std std-ref">HTG transformers</span></a> for information on Base Ontology Transform.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>G</strong> (<a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.graph.Graph" title="rktoolkit.models.graph.Graph"><em>Graph</em></a>) – Transformed Graph to be drawn</p></li>
+<li><p><strong>ax</strong> (<em>Axes</em><em>, </em><em>optional</em>) – Axes to be used for the graph, defaults to None</p></li>
+<li><p><strong>with_labels</strong> (<em>bool</em><em>, </em><em>optional</em>) – Parameter to choose if labels need to be shown or not, defaults to True</p></li>
+<li><p><strong>minsize</strong> (<em>int</em><em>, </em><em>optional</em>) – Minimum size of the graph nodes, defaults to 100</p></li>
+<li><p><strong>alpha</strong> (<em>int</em><em>, </em><em>optional</em>) – Alpha index for the graph, defaults to 300</p></li>
+<li><p><strong>emult</strong> (<em>int</em><em>, </em><em>optional</em>) – No. of emulations, defaults to 2</p></li>
+<li><p><strong>make_axis</strong> (<em>bool</em><em>, </em><em>optional</em>) – Should axes be made in graph or not, defaults to False</p></li>
+<li><p><strong>width</strong> (<em>float</em><em>, </em><em>optional</em>) – Width of the nodes in graph, defaults to 2*math.pi</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="rktoolkit.visualizers.util.draw_rk_diagram">
+<span class="sig-prename descclassname"><span class="pre">rktoolkit.visualizers.util.</span></span><span class="sig-name descname"><span class="pre">draw_rk_diagram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rkmodel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spread</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'green'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">300</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">emult</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">make_axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">6.283185307179586</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xoff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yoff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_override</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.visualizers.util.draw_rk_diagram" title="Permalink to this definition"></a></dt>
+<dd><p>Method to draw an RK diagram for a given RK Model.
+Refer to <cite>RK-Model&lt;rktoolkit.models.rkmodel&gt;</cite> for more information.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rkmodel</strong> (<a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.rkmodel.RKModel" title="rktoolkit.models.rkmodel.RKModel"><em>RKModel</em></a>) – RK model to be drawn a RK Diagram for.</p></li>
+<li><p><strong>spread</strong> (<em>int</em><em>, </em><em>optional</em>) – Spread amount for the model, defaults to 1</p></li>
+<li><p><strong>ax</strong> (<em>Axes</em><em>, </em><em>optional</em>) – Axes to be used, defaults to None</p></li>
+<li><p><strong>with_labels</strong> (<em>bool</em><em>, </em><em>optional</em>) – Parameter to choose if labels need to be shown or not, defaults to True</p></li>
+<li><p><strong>minsize</strong> (<em>int</em><em>, </em><em>optional</em>) – Minimum size of the nodes, defaults to 100</p></li>
+<li><p><strong>center_color</strong> (<em>str</em><em>, </em><em>optional</em>) – Color of the center node, defaults to ‘green’</p></li>
+<li><p><strong>alpha</strong> (<em>int</em><em>, </em><em>optional</em>) – Alpha index of the graph, defaults to 300</p></li>
+<li><p><strong>emult</strong> (<em>int</em><em>, </em><em>optional</em>) – No of emulations, defaults to 2</p></li>
+<li><p><strong>make_axis</strong> (<em>bool</em><em>, </em><em>optional</em>) – Parameter to choose if axes should be made in the model or not, defaults to False</p></li>
+<li><p><strong>width</strong> (<em>float</em><em>, </em><em>optional</em>) – Width of the nodes, defaults to 2*math.pi</p></li>
+<li><p><strong>xoff</strong> (<em>int</em><em>, </em><em>optional</em>) – Offset of X-axis, defaults to 0</p></li>
+<li><p><strong>yoff</strong> (<em>int</em><em>, </em><em>optional</em>) – Offset of Y-axis, defaults to 0</p></li>
+<li><p><strong>color_override</strong> (<em>str</em><em>, </em><em>optional</em>) – Colors which needs to be overriden, defaults to None</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-contents">
+<h2>Module contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="rktoolkit.preprocess.html" class="btn btn-neutral float-left" title="rktoolkit.preprocess package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2021, Andor Kesselman.
-
-    </p>
+    <p>&#169; Copyright 2021, Andor Kesselman.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

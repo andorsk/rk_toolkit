@@ -13,7 +13,11 @@ class LocalizationFunction():
     def localize(self, X) -> [float]:
         '''
         Predicts the localized position
-        Returns a list of float
+
+        :param X: Matrix X to be localized
+        :type X: Any
+        :return: Returns a list of float
+        :rtype: [float]
         '''
         return
 
@@ -52,7 +56,11 @@ class FilterFunction():
     def filter(self, X) -> bool:
         '''
         Predicts the localized position
-        Returns a list of float
+
+        :param X: Matrix X to be localized
+        :type X: Any
+        :return: Returns a bool
+        :rtype: bool
         '''
         return
 

@@ -3,13 +3,30 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
+
+.. _index:
+
 RK-Toolkit Documentation
 =====================================
 
-.. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+RK-Toolkit is the toolkit used for transforming an NxM Tensor into a RK-Model that is visualized as an RK-Diagram. The benefits of an RK-Model over
+traditional models are numerous, including the fact that an RK-Model is a compact representation that perserves topology and encodes structure in high
+dimensional data. This documentation will focus on the RK Toolkit library and go through the various transformation steps from an NxM Tensor into a
+visualized RK-Diagram. This novel approach toward topological data analysis is extendable through the SDK hosted `Here <github.com/andorsk/rk_toolkit>`_. Examples
+of how to use the toolkit are also hosted there.
+  
 
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+   
+   
+   rktoolkit.rst
+
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
 
 Indices and tables
 ==================

@@ -1,33 +1,15 @@
-rktoolkit package
+.. _packages:
+
+Package Modules
 =================
 
-Subpackages
------------
-
 .. toctree::
-   :maxdepth: 4
+   :maxdepth: 3
 
-   rktoolkit.functions
-   rktoolkit.io
-   rktoolkit.models
-   rktoolkit.preprocess
-   rktoolkit.visualizers
+   rktoolkit.functions.rst
+   rktoolkit.io.rst
+   rktoolkit.models.rst
+   rktoolkit.preprocess.rst
+   rktoolkit.visualizers.rst
 
-Submodules
-----------
 
-rktoolkit.example module
-------------------------
-
-.. automodule:: rktoolkit.example
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: rktoolkit
-   :members:
-   :undoc-members:
-   :show-inheritance:

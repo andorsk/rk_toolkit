@@ -7,13 +7,33 @@ import networkx as nx
 
 def draw_graph(G, ax=None, with_labels=True, minsize=100,
                     alpha=300, emult=2, make_axis=False, width=2*math.pi):
+    '''Method to draw a general graph of an ontology that is transformed using BaseOntologyTransform.
+    Refer to :ref:`HTG transformers<rktoolkit.functions.htg_transformers>` for information on Base Ontology Transform.
 
+    :param G: Transformed Graph to be drawn
+    :type G: Graph
+    :param ax: Axes to be used for the graph, defaults to None
+    :type ax: Axes, optional
+    :param with_labels: Parameter to choose if labels need to be shown or not, defaults to True
+    :type with_labels: bool, optional
+    :param minsize: Minimum size of the graph nodes, defaults to 100
+    :type minsize: int, optional
+    :param alpha: Alpha index for the graph, defaults to 300
+    :type alpha: int, optional
+    :param emult: No. of emulations, defaults to 2
+    :type emult: int, optional
+    :param make_axis: Should axes be made in graph or not, defaults to False
+    :type make_axis: bool, optional
+    :param width: Width of the nodes in graph, defaults to 2*math.pi
+    :type width: float, optional
+    '''
     if make_axis:
         fig, ax = plt.subplots(figsize=(10,10))
 
     if ax is None:
         ax = plt.gca()
 
+    #Get the hierachial positions for the graph
     pos = hierarchy_pos(G, 'root', width = width, xcenter=0)
     pos = {u:(r*math.cos(theta),r*math.sin(theta)) for u, (theta, r) in pos.items()}
     colors = [ n[1].get('color', 'black') for n in list(G.nodes.items())]
@@ -46,6 +66,37 @@ def draw_graph(G, ax=None, with_labels=True, minsize=100,
 # and merged with some of the work here.
 def draw_rk_diagram(rkmodel, spread=1, ax=None, with_labels=True, minsize=100, center_color='green',
                     alpha=300, emult=2, make_axis=False, width=2*math.pi, xoff=0, yoff=0, color_override=None):
+    '''Method to draw an RK diagram for a given RK Model.
+    Refer to `RK-Model<rktoolkit.models.rkmodel>` for more information. 
+
+    :param rkmodel: RK model to be drawn a RK Diagram for.
+    :type rkmodel: RKModel
+    :param spread: Spread amount for the model, defaults to 1
+    :type spread: int, optional
+    :param ax: Axes to be used, defaults to None
+    :type ax: Axes, optional
+    :param with_labels: Parameter to choose if labels need to be shown or not, defaults to True
+    :type with_labels: bool, optional
+    :param minsize: Minimum size of the nodes, defaults to 100
+    :type minsize: int, optional
+    :param center_color: Color of the center node, defaults to 'green'
+    :type center_color: str, optional
+    :param alpha: Alpha index of the graph, defaults to 300
+    :type alpha: int, optional
+    :param emult: No of emulations, defaults to 2
+    :type emult: int, optional
+    :param make_axis: Parameter to choose if axes should be made in the model or not, defaults to False
+    :type make_axis: bool, optional
+    :param width: Width of the nodes, defaults to 2*math.pi
+    :type width: float, optional
+    :param xoff: Offset of X-axis, defaults to 0
+    :type xoff: int, optional
+    :param yoff: Offset of Y-axis, defaults to 0
+    :type yoff: int, optional
+    :param color_override: Colors which needs to be overriden, defaults to None
+    :type color_override: str, optional
+    
+    '''
     if make_axis:
         fig, ax = plt.subplots(figsize=(10,10))
 

@@ -1,3 +1,5 @@
+.. _rktookit.preprocess:
+
 rktoolkit.preprocess package
 ============================
 

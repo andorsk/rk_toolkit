@@ -15,6 +15,12 @@ class RKModel():
         self.edges = edges
 
     def get(self):
+        '''
+        Get the Graph for RKModel
+
+        :return: Returns the graphmask for the RKModel
+        :rtype: GraphMask
+        '''
         gC = copy.deepcopy(self.G)
         for k,v in self.edges.items():
             gC.add_edge(Edge(*k, attributes=v))

@@ -9,8 +9,9 @@ from copy import copy, deepcopy
 
 class RKModelVisualizer():
     '''
-    Base classe for RK models
-    Visualizes a model as an RK-Diagram
+    Base class for RK models
+    Visualizes a model as an RK-Diagram.
+    Uses pyplot for the visualization.
     '''
     def __init__(self, ax=None, fig=None):
 
@@ -29,21 +30,36 @@ class RKModelVisualizer():
         self.method = "unspecified"
 
     def build(self, models: RKModel):
+        '''
+        Method to build the visualization for the RKModel.
+
+        :param models: RKModel whose RK-Diagram needs to built.
+        :type models: RKModel
+        '''
         self._build(models[0])
 
     def render(self):
+        '''
+        Method to render a RKDiagram. Utilizes the :code:`pyplot.show()` method.
+        '''
         plt.show(block=True)
 
 
 class Arrow3D(FancyArrowPatch):
     '''
-    Builds arrows in 3d
+    Builds arrows in 3D. Uses matplotlib's :code:`FancyArrowPatch` class to draw the 3D arrows. 
     '''
     def __init__(self, xs, ys, zs, *args, **kwargs):
         FancyArrowPatch.__init__(self, (0,0), (0,0), *args, **kwargs)
         self._verts3d = xs, ys, zs
 
     def draw(self, renderer):
+        '''
+        Implements the :code:`FancyArrowPatch`'s draw method to draw the arrows. 
+
+        :param renderer: Renderer used for the arrows used by FancyArrowPatch to plot.
+        :type renderer: RendererBase
+        '''
         xs3d, ys3d, zs3d = self._verts3d
         xs, ys, zs = proj3d.proj_transform(xs3d, ys3d, zs3d, renderer.M)
         self.set_positions((xs[0],ys[0]),(xs[1],ys[1]))
@@ -58,6 +74,8 @@ class RKDiagram():
 
     It is purely a visualization diagram. To work effectively, the visualized
     space must be in nD < 4
+
+    Uses :code:`pyplot` to create the visualization diagram.
     '''
     def __init__(self, rkmodel: RKModel, placed_nodes, links):
         self.rkmodel = rkmodel
