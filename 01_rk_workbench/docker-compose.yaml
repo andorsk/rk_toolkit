@@ -1,0 +1,16 @@
+version: '3'
+services:
+
+  rkworkbench:
+    image: "cloud.canister.io:5000/andorsk/rkworkbench:0.0.1"
+    container_name: "rkworkbench"
+    environment:
+      AUTHENTICATE_VIA_JUPYTER: "mytoken"
+    volumes:
+      - "../:/workspace/"
+    command:
+      - '--shm-size 512m'
+    restart: unless-stopped
+    ports:
+     - "8881:8080"
+

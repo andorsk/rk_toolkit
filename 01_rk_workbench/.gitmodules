@@ -1,0 +1,3 @@
+[submodule "examples/store_sales"]
+	path = examples/store_sales
+	url = git@github.com:andorsk/store_sales.git
