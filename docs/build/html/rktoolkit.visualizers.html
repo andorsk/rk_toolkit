@@ -111,11 +111,11 @@ TODO: Visualizer only gives locations and specs.
 RK-Diagram Renderer renders the specs</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="rktoolkit.visualizers.circular.CircularVisualizer._build">
-<span class="sig-name descname"><span class="pre">_build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.rkmodel.RKModel" title="rktoolkit.models.rkmodel.RKModel"><span class="pre">RKModel</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.visualizers.circular.CircularVisualizer._build" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">_build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="rktoolkit-modeldiagram.html#rktoolkit.models.rkmodel.RKModel" title="rktoolkit.models.rkmodel.RKModel"><span class="pre">RKModel</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.visualizers.circular.CircularVisualizer._build" title="Permalink to this definition"></a></dt>
 <dd><p>Builds a Visualization of the RKModel.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>model</strong> (<em>List</em><em>[</em><a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.rkmodel.RKModel" title="rktoolkit.models.rkmodel.RKModel"><em>RKModel</em></a><em>]</em>) – RKModel(s) to be visualized.</p>
+<dd class="field-odd"><p><strong>model</strong> (<em>List</em><em>[</em><a class="reference internal" href="rktoolkit-modeldiagram.html#rktoolkit.models.rkmodel.RKModel" title="rktoolkit.models.rkmodel.RKModel"><em>RKModel</em></a><em>]</em>) – RKModel(s) to be visualized.</p>
 </dd>
 <dt class="field-even">Raises</dt>
 <dd class="field-even"><p><strong>e</strong> – If RKModel is unable to be created, returns an exception.</p>
@@ -178,7 +178,7 @@ determined between clusters.</p>
 <dd><p>Plot the centroid of the clusters of RKModel</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>model</strong> (<a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.rkmodel.RKModel" title="rktoolkit.models.rkmodel.RKModel"><em>RKModel</em></a>) – The RKModel whose centroid needs to be plotted</p>
+<dd class="field-odd"><p><strong>model</strong> (<a class="reference internal" href="rktoolkit-modeldiagram.html#rktoolkit.models.rkmodel.RKModel" title="rktoolkit.models.rkmodel.RKModel"><em>RKModel</em></a>) – The RKModel whose centroid needs to be plotted</p>
 </dd>
 <dt class="field-even">Raises</dt>
 <dd class="field-even"><p><strong>ValueError</strong> – Raises ValueError if no model position is available for centroid.</p>
@@ -192,19 +192,19 @@ determined between clusters.</p>
 <dd><p>Plot the clusters of the RKModel</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>model</strong> (<a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.rkmodel.RKModel" title="rktoolkit.models.rkmodel.RKModel"><em>RKModel</em></a>) – The RKModel whose clusters need to be plotted.</p>
+<dd class="field-odd"><p><strong>model</strong> (<a class="reference internal" href="rktoolkit-modeldiagram.html#rktoolkit.models.rkmodel.RKModel" title="rktoolkit.models.rkmodel.RKModel"><em>RKModel</em></a>) – The RKModel whose clusters need to be plotted.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="rktoolkit.visualizers.circular.CircularVisualizer._plot_links">
-<span class="sig-name descname"><span class="pre">_plot_links</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.rkmodel.RKModel" title="rktoolkit.models.rkmodel.RKModel"><span class="pre">RKModel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.graph.NodeMask" title="rktoolkit.models.graph.NodeMask"><span class="pre">NodeMask</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.visualizers.circular.CircularVisualizer._plot_links" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">_plot_links</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="rktoolkit-modeldiagram.html#rktoolkit.models.rkmodel.RKModel" title="rktoolkit.models.rkmodel.RKModel"><span class="pre">RKModel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="rktoolkit-modeldiagram.html#rktoolkit.models.graph.NodeMask" title="rktoolkit.models.graph.NodeMask"><span class="pre">NodeMask</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.visualizers.circular.CircularVisualizer._plot_links" title="Permalink to this definition"></a></dt>
 <dd><p>Plots the links between the nodesplots the links between the nodes</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>model</strong> (<a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.rkmodel.RKModel" title="rktoolkit.models.rkmodel.RKModel"><em>RKModel</em></a>) – The RKModel for which links need to be plotted for the nodes.</p></li>
+<li><p><strong>model</strong> (<a class="reference internal" href="rktoolkit-modeldiagram.html#rktoolkit.models.rkmodel.RKModel" title="rktoolkit.models.rkmodel.RKModel"><em>RKModel</em></a>) – The RKModel for which links need to be plotted for the nodes.</p></li>
 <li><p><strong>mask</strong> (<em>GraphMask</em><em>, </em><em>optional</em>) – Nodes that are/need to be masked, defaults to None</p></li>
 </ul>
 </dd>
@@ -316,7 +316,7 @@ zorder: float</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="rktoolkit.visualizers.visualizer.RKDiagram">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rktoolkit.visualizers.visualizer.</span></span><span class="sig-name descname"><span class="pre">RKDiagram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rkmodel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.rkmodel.RKModel" title="rktoolkit.models.rkmodel.RKModel"><span class="pre">RKModel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">placed_nodes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">links</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.visualizers.visualizer.RKDiagram" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rktoolkit.visualizers.visualizer.</span></span><span class="sig-name descname"><span class="pre">RKDiagram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rkmodel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="rktoolkit-modeldiagram.html#rktoolkit.models.rkmodel.RKModel" title="rktoolkit.models.rkmodel.RKModel"><span class="pre">RKModel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">placed_nodes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">links</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.visualizers.visualizer.RKDiagram" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="rktoolkit.visualizers.visualizer.RKDiagram.render">
@@ -332,11 +332,11 @@ zorder: float</p>
 <p>A user-interface built on top of a particular R-K Pipeline to render each output of the pipeline in sequence along with manual customization options to toggle the lens, range-filters, linkage functions and other boundary conditions necessary to render specific R-K Diagrams from their corresponding R-K Models.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="rktoolkit.visualizers.visualizer.RKModelVisualizer.build">
-<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">models</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.rkmodel.RKModel" title="rktoolkit.models.rkmodel.RKModel"><span class="pre">RKModel</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.visualizers.visualizer.RKModelVisualizer.build" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">models</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="rktoolkit-modeldiagram.html#rktoolkit.models.rkmodel.RKModel" title="rktoolkit.models.rkmodel.RKModel"><span class="pre">RKModel</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.visualizers.visualizer.RKModelVisualizer.build" title="Permalink to this definition"></a></dt>
 <dd><p>Method to build the visualization for the R-K Model.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>models</strong> (<a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.rkmodel.RKModel" title="rktoolkit.models.rkmodel.RKModel"><em>RKModel</em></a>) – R-K Model whose R-K Diagram needs to built.</p>
+<dd class="field-odd"><p><strong>models</strong> (<a class="reference internal" href="rktoolkit-modeldiagram.html#rktoolkit.models.rkmodel.RKModel" title="rktoolkit.models.rkmodel.RKModel"><em>RKModel</em></a>) – R-K Model whose R-K Diagram needs to built.</p>
 </dd>
 </dl>
 </dd></dl>

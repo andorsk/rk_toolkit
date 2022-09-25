@@ -84,7 +84,7 @@ The diagrams below show the effect of the lens on the structural graph. To the l
 
 .. image:: ../../imgs/ChoiceOfLens.jpg
 
-The Choice of lens is determined using the hierarchy file, and can be changed according to our needs. An example for this is present in the repository `Here <https://github.com/animikhroy/rk_toolkit_pipeline_diagrams/blob/main/02_notebooks/rk_gw_mma/data/gwtc_heirarchy_pretty.json>`_
+The Choice of lens is determined using the hierarchy file, and can be changed according to our needs. An example for this is present in the repository `Here <https://github.com/animikhroy/rk_toolkit_pipeline_diagrams/tree/main/02_notebooks/rk_general_applications>`_
 
 **R-K Model Visualizer**
 ++++++++++++++++++++++++
