@@ -4,7 +4,7 @@ from networkx.classes.digraph import DiGraph
 import networkx as nx
 import copy
 import numbers
-from ..functions.distance import topological_distance_function, magnitudinal_dist_function
+from ..functions.distance import jaccard, mahalanobis
 from pydantic import BaseModel, PrivateAttr
 from enum import Enum
 from typing import List, Optional, Callable, Any
@@ -158,7 +158,7 @@ class Graph(DiGraph):
         if method == "jaccard":
             s1 = set(list(self.edges.keys()))
             s2 = set(list(G.edges.keys()))
-            return topological_distance_function(s1, s2)
+            return jaccard(s1, s2)
         raise ValueError("Unknown method to compute distances")
 
     def node_distance(self, G, method="jaccard"):
@@ -176,7 +176,7 @@ class Graph(DiGraph):
         if method == "jaccard":
             s1 = set(list(self.nodes.keys()))
             s2 = set(list(G.nodes.keys()))
-            return topological_distance_function(s1, s2)
+            return jaccard(s1, s2)
         raise ValueError("Unknown method to compute distances")
 
     def topological_distance(self, G, method="jaccard", weights=[.5,.5]):
@@ -263,6 +263,21 @@ class Graph(DiGraph):
         except Exception as e:
             raise e
         raise Exception("Cycle Detected! Invalid Graph.")
+
+    def get_signature(f) -> str:
+        '''
+        Determine which distance functions to be used
+
+        :param f: Distance function to be used.
+        :type f: Any
+        :return: Signature of the distance function to be used
+        :rtype: str
+        '''
+        match f.__name__:
+            case "mahalonobis":
+                return "mag"
+            case "jaccard":
+                return "top"
 
 class Edge():
     '''
@@ -479,9 +494,8 @@ class HierarchicalTransformGraph(HierarchicalGraph):
 
 class HierarchicalGraph(GraphModel):
     '''
-    A Hierarchical Graph
-    is a subset of the general graph in which
-    all elements are directed.
+    A Hierarchical Graph is a subset of the general graph in which all elements are directed and have a dependence relationship such as parent and child which is defined by a particular domain Ontology.
+
     '''
     root: TreeNode
     _level_ref: Optional[dict] = PrivateAttr()

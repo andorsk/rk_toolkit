@@ -2,7 +2,7 @@ import scipy as sp
 import numpy as np
 
 
-def topological_distance_function(s1, s2): # two sets
+def jaccard(s1, s2): # two sets
     '''
     
     Topological Distance Function
@@ -18,7 +18,7 @@ def topological_distance_function(s1, s2): # two sets
     jin = len(intersect)  / (len(s1) + len(s2) - len(intersect))
     return 1-jin
 
-def magnitudinal_dist_function(x=None, data=None, cov=None):
+def mahalanobis(x=None, data=None, cov=None):
     '''
     Value Distance Funtion
     

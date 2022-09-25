@@ -1,3 +1,3 @@
 [submodule "examples/store_sales"]
 	path = examples/store_sales
-	url = git@github.com:andorsk/store_sales.git
+	url = git@github.com:animikhroy/rk_toolkit_pipeline_diagrams/tree/main/02_notebooks/rk_general_applications

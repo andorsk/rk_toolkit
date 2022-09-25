@@ -144,9 +144,7 @@ The structural graph however does not represent that maximal number of edges. Th
 <dl class="py class">
 <dt class="sig sig-object py" id="rktoolkit.models.graph.HierarchicalGraph">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rktoolkit.models.graph.</span></span><span class="sig-name descname"><span class="pre">HierarchicalGraph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.graph.Node" title="rktoolkit.models.graph.Node"><span class="pre">Node</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.graph.TreeNode" title="rktoolkit.models.graph.TreeNode"><span class="pre">TreeNode</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.models.graph.HierarchicalGraph" title="Permalink to this definition"></a></dt>
-<dd><p>A Hierarchical Graph
-is a subset of the general graph in which
-all elements are directed.</p>
+<dd><p>A Hierarchical Graph is a subset of the general graph in which all elements are directed and have a dependence relationship such as parent and child which is defined by a particular domain Ontology.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="rktoolkit.models.graph.HierarchicalGraph.add_edge">
 <span class="sig-name descname"><span class="pre">add_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">edge</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.graph.Edge" title="rktoolkit.models.graph.Edge"><span class="pre">Edge</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.models.graph.HierarchicalGraph.add_edge" title="Permalink to this definition"></a></dt>
@@ -268,6 +266,23 @@ TODO: More tests coverage</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>set(recursive) OR list(non-recursive)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rktoolkit.models.graph.Graph.get_signature">
+<span class="sig-name descname"><span class="pre">get_signature</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#rktoolkit.models.graph.Graph.get_signature" title="Permalink to this definition"></a></dt>
+<dd><p>Determine which distance functions to be used</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>f</strong> (<em>Any</em>) – Distance function to be used.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Signature of the distance function to be used</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
 </dd>
 </dl>
 </dd></dl>
@@ -537,7 +552,7 @@ to the subgraph). The width of G is defined to be the minimum, over all linear o
 <p>The choice of lens is critical for the basis of ontology and the R-K Model. It is the lens according to which an “event” is determined from, such that “Lens” defines a central-event node called the root node such that all branching nodes and the hierarchy are birthed from the choice of lens. As an example, in the store sales data, there may exist many lenses, such as a Customer lens, or a Transaction lens. Each lens would provide unique events associated with such events, with different structural graphs as the foundation for each R-K Diagram.</p>
 <p>The diagrams below show the effect of the lens on the structural graph. To the left, a lens is chosen from a specific “Customer” event. To the right, a lens is chosen from a “transactions” perspective. The values and metrics associated with each lens are related to the respective lens.</p>
 <img alt="_images/ChoiceOfLens.jpg" src="_images/ChoiceOfLens.jpg" />
-<p>TODO: Add info about it from notebook</p>
+<p>The Choice of lens is determined using the hierarchy file, and can be changed according to our needs. An example for this is present in the repository <a class="reference external" href="https://github.com/animikhroy/rk_toolkit_pipeline_diagrams/blob/main/02_notebooks/rk_gw_mma/data/gwtc_heirarchy_pretty.json">Here</a></p>
 </section>
 </section>
 <section id="r-k-model-visualizer">
@@ -570,7 +585,7 @@ to the subgraph). The width of G is defined to be the minimum, over all linear o
 <h2><strong>R-K Diagram</strong><a class="headerlink" href="#r-k-diagram" title="Permalink to this heading"></a></h2>
 <p>An R-K Diagram is the manifestation of an R-K Model upon the application of appropriate “leaf-linker” functions and “range-filter” functions to these models based on specific domain knowledge according to the user’s discretion. It contains the positions of each node, information about how to represent such nodes, as well as edge visualizations. Given any R-K Model, an R-K Diagram serves as a render of the R-K Model in 2D or 3D space. As an R-K Model is a multi-dimensional representation of data, an R-K diagram can display many dimensions in 2D, without data loss that a typical projection model would have. To work effectively and render efficiently with optimal compute power, the visualized space is always kept at nD &lt; 4.</p>
 <p>We tend to use a radial layout for our demonstrations, but any graph layout can be used, with a preference toward deterministic layouts. We prefer deterministic layouts, because it allows easier qualitative comparisons of R-K Diagrams to analyze their similarity and  differences.The R-K Pipeline uses code package: <code class="code docutils literal notranslate"><span class="pre">pyplot</span></code> to render these final visualizations in 2D using mathematical projection and isometric-compression techniques.</p>
-<p>Refer to :ref: <cite>Visualizer package &lt;rktoolkit.visualizers&gt;</cite> for more visualizer modules and to the <a class="reference external" href="https://github.com/animikhroy/rk_toolkit_pipeline_diagrams/tree/main/02_notebooks/rk_general_applications">General Applications</a> and <a class="reference external" href="https://github.com/animikhroy/rk_toolkit_pipeline_diagrams/tree/main/02_notebooks/rk_gw_mma">Examples</a> for usage.</p>
+<p>Refer to :ref: <cite>Visualizer package &lt;rktoolkit.visualizers&gt;</cite> for more visualizer modules and to the <a class="reference external" href="https://github.com/animikhroy/rk_toolkit_pipeline_diagrams/tree/main/02_notebooks/rk_general_applications">General Applications</a> and <a class="reference external" href="https://github.com/animikhroy/rk_toolkit_pipeline_diagrams/tree/main/02_notebooks/rk_gw_mma">LIGO_GW_Examples</a> for usage.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="rktoolkit.visualizers.visualizer.RKDiagram">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rktoolkit.visualizers.visualizer.</span></span><span class="sig-name descname"><span class="pre">RKDiagram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rkmodel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.rkmodel.RKModel" title="rktoolkit.models.rkmodel.RKModel"><span class="pre">RKModel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">placed_nodes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">links</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.visualizers.visualizer.RKDiagram" title="Permalink to this definition"></a></dt>

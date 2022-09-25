@@ -41,7 +41,7 @@ Where in the extension of our formulation A and B are defined as a tuple that re
 
 For the quantitative comparison of R-K Diagrams, it is critical to evaluate the Jaccard distances against the directed edges, such that the distance measure is sensitive to topological differences due to direction. If a Jaccard distance is applied only at the vertex level, key information about the directed edges and the linked vertices would be lost. This would be ineffective for the quantitative comparison of geometric and topological properties across R-K Diagrams. Hence we have modified the original formulation and used edges for Jaccard measurements, such that critical features in the distance measurement are preserved.
 
-.. autoclass:: rktoolkit.functions.distance.topological_distance_function
+.. autoclass:: rktoolkit.functions.distance.jaccard
    
 
 **B. The Value/Magnitudinal Distance** 
@@ -52,7 +52,7 @@ The Value/Magnitudinal Distance is intended to amplify the effects of the distan
 .. image:: ../../imgs/Distance/ValueDistance.jpg 
    :align: center
 
-.. autoclass:: rktoolkit.functions.distance.magnitudinal_dist_function
+.. autoclass:: rktoolkit.functions.distance.mahalanobis 
 
 **C. Composite Distance Function**
 ++++++++++++++++++++++++++++++++++
@@ -86,4 +86,4 @@ and value / magnitudinal similarities across R-K Diagrams using a weighted dista
 
 Because topological distance functions do not exhibit continuous gradients we employed a gradient free optimization Based on Nevergrad / NGOpts. NGOpts is an optimizer built by Facebook and the default suggested optimizer for non-gradient combinatorial machine learning involving graphs with discrete nodes and edges.
 
-TODO: Add code from store sales notebook
+An implementation of the Non-Gradient Combinatorial ML Optimiser is `Here <https://github.com/animikhroy/rk_toolkit_pipeline_diagrams/blob/main/02_notebooks/rk_gw_mma/common.py#L63>`_.

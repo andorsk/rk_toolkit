@@ -84,7 +84,7 @@ The diagrams below show the effect of the lens on the structural graph. To the l
 
 .. image:: ../../imgs/ChoiceOfLens.jpg
 
-TODO: Add info about it from notebook
+The Choice of lens is determined using the hierarchy file, and can be changed according to our needs. An example for this is present in the repository `Here <https://github.com/animikhroy/rk_toolkit_pipeline_diagrams/blob/main/02_notebooks/rk_gw_mma/data/gwtc_heirarchy_pretty.json>`_
 
 **R-K Model Visualizer**
 ++++++++++++++++++++++++
@@ -100,7 +100,7 @@ An R-K Diagram is the manifestation of an R-K Model upon the application of appr
 
 We tend to use a radial layout for our demonstrations, but any graph layout can be used, with a preference toward deterministic layouts. We prefer deterministic layouts, because it allows easier qualitative comparisons of R-K Diagrams to analyze their similarity and  differences.The R-K Pipeline uses code package: :code:`pyplot` to render these final visualizations in 2D using mathematical projection and isometric-compression techniques.
 
-Refer to :ref: `Visualizer package <rktoolkit.visualizers>` for more visualizer modules and to the `General Applications <https://github.com/animikhroy/rk_toolkit_pipeline_diagrams/tree/main/02_notebooks/rk_general_applications>`_ and `Examples <https://github.com/animikhroy/rk_toolkit_pipeline_diagrams/tree/main/02_notebooks/rk_gw_mma>`_ for usage.
+Refer to :ref: `Visualizer package <rktoolkit.visualizers>` for more visualizer modules and to the `General Applications <https://github.com/animikhroy/rk_toolkit_pipeline_diagrams/tree/main/02_notebooks/rk_general_applications>`_ and `LIGO_GW_Examples <https://github.com/animikhroy/rk_toolkit_pipeline_diagrams/tree/main/02_notebooks/rk_gw_mma>`_ for usage.
 
 .. autoclass:: rktoolkit.visualizers.visualizer.RKDiagram
     :members:
