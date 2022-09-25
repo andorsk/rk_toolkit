@@ -180,6 +180,18 @@ class Graph(DiGraph):
         raise ValueError("Unknown method to compute distances")
 
     def topological_distance(self, G, method="jaccard", weights=[.5,.5]):
+        '''
+        Calculate the topological distance using the edge and node distances generated for the given graph
+
+        :param G: Graph whose topological distance should be found
+        :type G: Graph
+        :param method: Distance method used to find the edge and node distances, defaults to "jaccard"
+        :type method: str, optional
+        :param weights: Weights for the edges and nodes, defaults to [.5,.5]
+        :type weights: list, optional
+        :return: Topological distance for the graph
+        :rtype: float
+        '''
         ed = self.edge_distance(G, method)
         nd = self.node_distance(G, method)
         return sum([ed * weights[0], nd * weights[1]]) / 2
@@ -194,6 +206,12 @@ class Graph(DiGraph):
         return ((vd + td) / 2)[0]
 
     def similarity(self, *args, **kwargs):
+        '''
+        Returns the similarity coefficient.
+
+        :return: Similarity coefficient 
+        :rtype: float
+        '''
         #returns the inverse of the normalized distance.
         return 1- self.weighted_distance(*args, **kwargs)
 
@@ -228,6 +246,7 @@ class Graph(DiGraph):
         return 1 - cosine_similarity(arr1, arr2)
 
     def is_dag(self):
+
         return nx.is_directed_acyclic_graph(self)
 
     def sort(self, *args, **kwargs):

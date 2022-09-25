@@ -13,7 +13,7 @@ All R-K Models must contain the following 3 components:
 1. Structural Graph
 +++++++++++++++++++
 
-The structural graph (S) is the base graph derived through the Hierarchical Embedding Function, also known as the structural graph. The structural graph provides the baseline ontological structure that forms the basis for all other transformations in the pipeline. Because node masks are reductive operations, the number of nodes in the structural graph represents the maximal number of nodes in the R-K Diagram such that :math: `|nodes| ∈ S >= |nodes| ∈ R − K Diagram`. 
+The structural graph (S) is the base graph derived through the Hierarchical Embedding Function, also known as the structural graph. The structural graph provides the baseline ontological structure that forms the basis for all other transformations in the pipeline. Because node masks are reductive operations, the number of nodes in the structural graph represents the maximal number of nodes in the R-K Diagram such that *|nodes| ∈ S >= |nodes| ∈ R − K Diagram*. 
 The structural graph however does not represent that maximal number of edges. The number of possible edges in the R-K Diagram is bounded by the number of combinations of nodes in the structural graph.
 
 .. automodule:: rktoolkit.models.rkmodel
@@ -93,8 +93,8 @@ TODO: Add info about it from notebook
     :members:
     :undoc-members:
     
-R-K Diagram
-===========
+**R-K Diagram**
++++++++++++++++
 
 An R-K Diagram is the manifestation of an R-K Model upon the application of appropriate “leaf-linker” functions and “range-filter” functions to these models based on specific domain knowledge according to the user's discretion. It contains the positions of each node, information about how to represent such nodes, as well as edge visualizations. Given any R-K Model, an R-K Diagram serves as a render of the R-K Model in 2D or 3D space. As an R-K Model is a multi-dimensional representation of data, an R-K diagram can display many dimensions in 2D, without data loss that a typical projection model would have. To work effectively and render efficiently with optimal compute power, the visualized space is always kept at nD < 4.
 

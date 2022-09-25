@@ -47,10 +47,19 @@
 <li class="toctree-l2"><a class="reference internal" href="rktoolkit-pipeline.html">R-K Pipeline</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rktoolkit-modeldiagram.html">R-K Model</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Distance Module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#a-topological-distance-function"><strong>A. Topological Distance Function</strong></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#b-the-value-magnitudinal-distance"><strong>B. The Value/Magnitudinal Distance</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#a-topological-distance-function"><strong>A. Topological Distance Function</strong></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rktoolkit.functions.distance.topological_distance_function"><code class="docutils literal notranslate"><span class="pre">topological_distance_function</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#b-the-value-magnitudinal-distance"><strong>B. The Value/Magnitudinal Distance</strong></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rktoolkit.functions.distance.magnitudinal_dist_function"><code class="docutils literal notranslate"><span class="pre">magnitudinal_dist_function</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#c-composite-distance-function"><strong>C. Composite Distance Function</strong></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#d-objective-function"><strong>D. Objective Function:</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#d-objective-function"><strong>D. Objective Function:</strong></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rktoolkit.ml.objective_functions.SampleObjectiveFunction"><code class="docutils literal notranslate"><span class="pre">SampleObjectiveFunction</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#e-non-gradient-combinatorial-ml-optimiser"><strong>E. Non-Gradient Combinatorial ML Optimiser</strong></a></li>
 </ul>
 </li>
@@ -89,25 +98,66 @@
   <section id="distance-module">
 <h1>Distance Module<a class="headerlink" href="#distance-module" title="Permalink to this heading"></a></h1>
 <p>R-K Distance is a composite distance function that measures the distance and similarity between any two R-K Diagrams in a metric built to measure homeomorphism using a combination of Topological Distance as an extension of Jaccard Distance &amp; Value/Magnitudinal Distance based on an extension of Mahalanobis Distance. R-K Distance is critical to the tuning and understanding of R-K Diagrams for its ability to quantitatively measure divergence (and its dual, i.e. similarity) across all R-K Diagrams rendered from a particular R-K Model.</p>
-<p>In our implementation, we used a weighted distance function <img alt="dG1G2" src="../../imgs/Distance/Dist1.jpg" /> by applying composite
+<p>In our implementation, we used a weighted distance function <img alt="dG1G2" src="_images/Dist1.jpg" /> by applying composite
 distance function based on geometric and value distance, where the geometric distance was implemented over an extension of Jaccard distance based upon nodes and edges, and the value distance was computed using covariance measures inspired by the Mahalanobis distance
 Formulation, such that our final R-K Distance equation can be represented as:</p>
-<img alt="../../imgs/Distance/Dist2.jpg" class="align-center" src="../../imgs/Distance/Dist2.jpg" />
-<p>where <img alt="fTV" src="../../imgs/Distance/Dist3.jpg" /> is a composite function based on topological distance T and value/magnitudinal distance V weighted by vector w.</p>
+<img alt="_images/Dist2.jpg" class="align-center" src="_images/Dist2.jpg" />
+<p>where <img alt="fTV" src="_images/Dist3.jpg" /> is a composite function based on topological distance T and value/magnitudinal distance V weighted by vector w.</p>
 <p>This also allows for the quantitative comparison of  overall homeomorphic similarities between R-K Diagrams defining similarity as a dual of R-K Distance as:</p>
-<img alt="../../imgs/Distance/Dist4.jpg" class="align-center" src="../../imgs/Distance/Dist4.jpg" />
+<img alt="_images/Dist4.jpg" class="align-center" src="_images/Dist4.jpg" />
 <p>With all results normalized between 0 and 1. Such measures of homeomorphic similarities between R-K Diagrams can be optimized in our metric-space via combinatorial machine learning techniques such as <a class="reference external" href="https://facebookresearch.github.io/nevergrad/">Nevergrad</a> which maximize or minimize the R-K Distance for the purpose of ML Classifications.</p>
 <section id="a-topological-distance-function">
 <h2><strong>A. Topological Distance Function</strong><a class="headerlink" href="#a-topological-distance-function" title="Permalink to this heading"></a></h2>
 <p>The Topological Distance Function allows us to compare topological similarities and differences between various clusters and simplexes of any two R-K Diagrams. It allows for the quantitative comparison of  large-scale geometric and topological differences between R-K Diagrams. In our initial implementation, we have extended the Jaccard distance formulation to provide a comparison of  geometric distance across R-K Diagrams. The Jaccard distance is one of many possible distance functions that can be applied toward graph distances. It is simple but effective in many machine learning algorithms and is a widely applied algorithm across many domains.</p>
-<img alt="../../imgs/Distance/Topo1.jpg" class="align-center" src="../../imgs/Distance/Topo1.jpg" />
-<p>Where in the extension of our formulation A and B are defined as a tuple that represents an edge  <img alt="Vij" src="../../imgs/Distance/Topo2.jpg" /> such that <img alt="Vi" src="../../imgs/Distance/Topo3.jpg" /> is the source node and <img alt="Vj" src="../../imgs/Distance/Topo4.jpg" /> is the sink.</p>
+<img alt="_images/Topo1.jpg" class="align-center" src="_images/Topo1.jpg" />
+<p>Where in the extension of our formulation A and B are defined as a tuple that represents an edge  <img alt="Vij" src="_images/Topo2.jpg" /> such that <img alt="Vi" src="_images/Topo3.jpg" /> is the source node and <img alt="Vj" src="_images/Topo4.jpg" /> is the sink.</p>
 <p>For the quantitative comparison of R-K Diagrams, it is critical to evaluate the Jaccard distances against the directed edges, such that the distance measure is sensitive to topological differences due to direction. If a Jaccard distance is applied only at the vertex level, key information about the directed edges and the linked vertices would be lost. This would be ineffective for the quantitative comparison of geometric and topological properties across R-K Diagrams. Hence we have modified the original formulation and used edges for Jaccard measurements, such that critical features in the distance measurement are preserved.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="rktoolkit.functions.distance.topological_distance_function">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rktoolkit.functions.distance.</span></span><span class="sig-name descname"><span class="pre">topological_distance_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.functions.distance.topological_distance_function" title="Permalink to this definition"></a></dt>
+<dd><p>Topological Distance Function</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>s1</strong> (<em>set</em>) – Data Set 1</p></li>
+<li><p><strong>s2</strong> (<em>set</em>) – Data Set 2</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Topological Distance</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 <section id="b-the-value-magnitudinal-distance">
 <h2><strong>B. The Value/Magnitudinal Distance</strong><a class="headerlink" href="#b-the-value-magnitudinal-distance" title="Permalink to this heading"></a></h2>
 <p>The Value/Magnitudinal Distance is intended to amplify the effects of the distance measure when topology isn’t sufficient to demonstrate differences. For example, in the case of store sales, a purchase could be very similar topologically, but very different in terms of magnitude as the actual sales value differs radically across R-K Diagrams. By comparing the magnitude of the nodes as well as the topology, it provides a clear distinction across R-K Diagrams when topological differences are not sufficient. We extended  the Mahalanobis distance to provide this value/magnitudinal distance measure, which can be computed across the entire dataset and then normalize the values to between 0 and 1 such that we are bound between [0, 1] pre-weighting.</p>
 <img alt="_images/ValueDistance.jpg" class="align-center" src="_images/ValueDistance.jpg" />
+<dl class="py class">
+<dt class="sig sig-object py" id="rktoolkit.functions.distance.magnitudinal_dist_function">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rktoolkit.functions.distance.</span></span><span class="sig-name descname"><span class="pre">magnitudinal_dist_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cov</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.functions.distance.magnitudinal_dist_function" title="Permalink to this definition"></a></dt>
+<dd><p>Value Distance Funtion</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>ndarray</em><em>, </em><em>optional</em>) – vector or matrix of data with, say, p columns, defaults to None</p></li>
+<li><p><strong>data</strong> (<em>ndarray</em><em>, </em><em>optional</em>) – ndarray of the distribution from which Value distance of each observation of x is to be computed, defaults to None</p></li>
+<li><p><strong>cov</strong> (<em>ndarray</em><em>, </em><em>optional</em>) – covariance matrix (p x p) of the distribution. If None, will be computed from data.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Value/Magnitudinal distance.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 <section id="c-composite-distance-function">
 <h2><strong>C. Composite Distance Function</strong><a class="headerlink" href="#c-composite-distance-function" title="Permalink to this heading"></a></h2>
@@ -122,7 +172,29 @@ Formulation, such that our final R-K Distance equation can be represented as:</p
 <img alt="_images/ObjectiveFunction.jpg" src="_images/ObjectiveFunction.jpg" />
 <p>The goal of the objective function, as defined above, is to maximize divergence across R-K Diagrams by minimizing the similarity across diagrams. This is determined through a distance function defined in the Measuring R-K Distance subsection, which takes into account topological
 and value / magnitudinal similarities across R-K Diagrams using a weighted distance function. We chose an even distribution of [0.5, 0.5] for w as a prior, as there is no reason to bias the weights apriori. Over iteration of θ, we will attempt to minimize the overall loss. Assuming an infinite number of iterations, we would hope that we maximize divergence across R-K Diagrams such that no R-K Diagram is exactly the same except for the same data, which would deterministically produce the same R-K Diagram.</p>
-<span class="target" id="module-rktoolkit.ml.objective_functions"></span></section>
+<span class="target" id="module-rktoolkit.ml.objective_functions"></span><dl class="py class">
+<dt class="sig sig-object py" id="rktoolkit.ml.objective_functions.SampleObjectiveFunction">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rktoolkit.ml.objective_functions.</span></span><span class="sig-name descname"><span class="pre">SampleObjectiveFunction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pipeline</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hft</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mdist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance_function</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.ml.objective_functions.SampleObjectiveFunction" title="Permalink to this definition"></a></dt>
+<dd><p>Sample objective function reduces distance</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="rktoolkit.ml.objective_functions.SampleObjectiveFunction.evaluate">
+<span class="sig-name descname"><span class="pre">evaluate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">w</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.ml.objective_functions.SampleObjectiveFunction.evaluate" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>w</strong> (<em>tuple</em>) – Weights to be used for evaluation in the objective function</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The R-K distance evaluated from the objective function</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
 <section id="e-non-gradient-combinatorial-ml-optimiser">
 <h2><strong>E. Non-Gradient Combinatorial ML Optimiser</strong><a class="headerlink" href="#e-non-gradient-combinatorial-ml-optimiser" title="Permalink to this heading"></a></h2>
 <p>Because topological distance functions do not exhibit continuous gradients we employed a gradient free optimization Based on Nevergrad / NGOpts. NGOpts is an optimizer built by Facebook and the default suggested optimizer for non-gradient combinatorial machine learning involving graphs with discrete nodes and edges.</p>

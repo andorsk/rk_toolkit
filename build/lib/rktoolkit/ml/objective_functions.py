@@ -2,8 +2,7 @@ import numpy as np
 
 class SampleObjectiveFunction():
     '''
-    sample objective function
-    reduces distance
+    Sample objective function reduces distance
     '''
     def __init__(self, pipeline, sample_size, w0, df, hft, mdist, distance_function):
         self.pipeline = pipeline
@@ -15,6 +14,13 @@ class SampleObjectiveFunction():
         self.dfunc = distance_function
 
     def evaluate(self, w):
+        '''
+
+        :param w: Weights to be used for evaluation in the objective function
+        :type w: tuple
+        :return: The R-K distance evaluated from the objective function
+        :rtype: float
+        '''
         pupdate = self.pipeline.remap(w, self.w0[1])
         models = []
         sample = self.df.sample(n=self.sample_size)

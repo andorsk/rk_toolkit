@@ -6,16 +6,16 @@ Installation
 ------------
 
 The R-K Toolkit depends on a few scientific libraries, which come preinstalled with environments like Anaconda. 
-The R-K Toolkit also depends on :code: `nevergrad` library which can be installed via :code: `pip` as below.
+The R-K Toolkit also depends on :code:`nevergrad` library which can be installed via :code:`pip` as below.
 
 .. code-block:: python
 
     pip install nevergrad
 
-More information about :code: `nevergrad` can be found at their official `Git Repository <https://facebookresearch.github.io/nevergrad/>`_ .
+More information about :code:`nevergrad` can be found at their official `Git Repository <https://facebookresearch.github.io/nevergrad/>`_ .
 
 
-The R-K Toolkit can be installed using :code: `pip` from the toolkit folder as given below.
+The R-K Toolkit can be installed using :code:`pip` from the toolkit folder as given below.
 
 .. code-block::python
  

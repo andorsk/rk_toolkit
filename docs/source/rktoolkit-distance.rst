@@ -41,7 +41,7 @@ Where in the extension of our formulation A and B are defined as a tuple that re
 
 For the quantitative comparison of R-K Diagrams, it is critical to evaluate the Jaccard distances against the directed edges, such that the distance measure is sensitive to topological differences due to direction. If a Jaccard distance is applied only at the vertex level, key information about the directed edges and the linked vertices would be lost. This would be ineffective for the quantitative comparison of geometric and topological properties across R-K Diagrams. Hence we have modified the original formulation and used edges for Jaccard measurements, such that critical features in the distance measurement are preserved.
 
-.. automethod:: rktoolkit.functions.distance.topological_distance_function
+.. autoclass:: rktoolkit.functions.distance.topological_distance_function
    
 
 **B. The Value/Magnitudinal Distance** 
@@ -51,6 +51,8 @@ The Value/Magnitudinal Distance is intended to amplify the effects of the distan
 
 .. image:: ../../imgs/Distance/ValueDistance.jpg 
    :align: center
+
+.. autoclass:: rktoolkit.functions.distance.magnitudinal_dist_function
 
 **C. Composite Distance Function**
 ++++++++++++++++++++++++++++++++++
@@ -76,6 +78,8 @@ The goal of the objective function, as defined above, is to maximize divergence 
 and value / magnitudinal similarities across R-K Diagrams using a weighted distance function. We chose an even distribution of [0.5, 0.5] for w as a prior, as there is no reason to bias the weights apriori. Over iteration of θ, we will attempt to minimize the overall loss. Assuming an infinite number of iterations, we would hope that we maximize divergence across R-K Diagrams such that no R-K Diagram is exactly the same except for the same data, which would deterministically produce the same R-K Diagram.
 
 .. automodule:: rktoolkit.ml.objective_functions
+   :members:
+   :undoc-members:
 
 **E. Non-Gradient Combinatorial ML Optimiser**
 ++++++++++++++++++++++++++++++++++++++++++++++

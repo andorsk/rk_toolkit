@@ -66,6 +66,9 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#r-k-model-visualizer"><strong>R-K Model Visualizer</strong></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#rktoolkit.visualizers.visualizer.RKModelVisualizer"><code class="docutils literal notranslate"><span class="pre">RKModelVisualizer</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#r-k-diagram"><strong>R-K Diagram</strong></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#rktoolkit.visualizers.visualizer.RKDiagram"><code class="docutils literal notranslate"><span class="pre">RKDiagram</span></code></a></li>
 </ul>
 </li>
@@ -115,7 +118,7 @@
 </ol>
 <section id="structural-graph">
 <h2>1. Structural Graph<a class="headerlink" href="#structural-graph" title="Permalink to this heading"></a></h2>
-<p>The structural graph (S) is the base graph derived through the Hierarchical Embedding Function, also known as the structural graph. The structural graph provides the baseline ontological structure that forms the basis for all other transformations in the pipeline. Because node masks are reductive operations, the number of nodes in the structural graph represents the maximal number of nodes in the R-K Diagram such that :math: <cite>|nodes| ∈ S &gt;= |nodes| ∈ R − K Diagram</cite>.
+<p>The structural graph (S) is the base graph derived through the Hierarchical Embedding Function, also known as the structural graph. The structural graph provides the baseline ontological structure that forms the basis for all other transformations in the pipeline. Because node masks are reductive operations, the number of nodes in the structural graph represents the maximal number of nodes in the R-K Diagram such that <em>|nodes| ∈ S &gt;= |nodes| ∈ R − K Diagram</em>.
 The structural graph however does not represent that maximal number of edges. The number of possible edges in the R-K Diagram is bounded by the number of combinations of nodes in the structural graph.</p>
 <span class="target" id="module-rktoolkit.models.rkmodel"></span><dl class="py class">
 <dt class="sig sig-object py" id="rktoolkit.models.rkmodel.RKModel">
@@ -319,7 +322,16 @@ TODO: More tests coverage</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="rktoolkit.models.graph.Graph.similarity">
 <span class="sig-name descname"><span class="pre">similarity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.models.graph.Graph.similarity" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Returns the similarity coefficient.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Similarity coefficient</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="rktoolkit.models.graph.Graph.sort">
@@ -329,7 +341,23 @@ TODO: More tests coverage</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="rktoolkit.models.graph.Graph.topological_distance">
 <span class="sig-name descname"><span class="pre">topological_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'jaccard'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weights</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0.5,</span> <span class="pre">0.5]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.models.graph.Graph.topological_distance" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Calculate the topological distance using the edge and node distances generated for the given graph</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>G</strong> (<a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.graph.Graph" title="rktoolkit.models.graph.Graph"><em>Graph</em></a>) – Graph whose topological distance should be found</p></li>
+<li><p><strong>method</strong> (<em>str</em><em>, </em><em>optional</em>) – Distance method used to find the edge and node distances, defaults to “jaccard”</p></li>
+<li><p><strong>weights</strong> (<em>list</em><em>, </em><em>optional</em>) – Weights for the edges and nodes, defaults to [.5,.5]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Topological distance for the graph</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="rktoolkit.models.graph.Graph.validate">
@@ -537,6 +565,9 @@ to the subgraph). The width of G is defined to be the minimum, over all linear o
 
 </dd></dl>
 
+</section>
+<section id="r-k-diagram">
+<h2><strong>R-K Diagram</strong><a class="headerlink" href="#r-k-diagram" title="Permalink to this heading"></a></h2>
 <p>An R-K Diagram is the manifestation of an R-K Model upon the application of appropriate “leaf-linker” functions and “range-filter” functions to these models based on specific domain knowledge according to the user’s discretion. It contains the positions of each node, information about how to represent such nodes, as well as edge visualizations. Given any R-K Model, an R-K Diagram serves as a render of the R-K Model in 2D or 3D space. As an R-K Model is a multi-dimensional representation of data, an R-K diagram can display many dimensions in 2D, without data loss that a typical projection model would have. To work effectively and render efficiently with optimal compute power, the visualized space is always kept at nD &lt; 4.</p>
 <p>We tend to use a radial layout for our demonstrations, but any graph layout can be used, with a preference toward deterministic layouts. We prefer deterministic layouts, because it allows easier qualitative comparisons of R-K Diagrams to analyze their similarity and  differences.The R-K Pipeline uses code package: <code class="code docutils literal notranslate"><span class="pre">pyplot</span></code> to render these final visualizations in 2D using mathematical projection and isometric-compression techniques.</p>
 <p>Refer to :ref: <cite>Visualizer package &lt;rktoolkit.visualizers&gt;</cite> for more visualizer modules and to the <a class="reference external" href="https://github.com/animikhroy/rk_toolkit_pipeline_diagrams/tree/main/02_notebooks/rk_general_applications">General Applications</a> and <a class="reference external" href="https://github.com/animikhroy/rk_toolkit_pipeline_diagrams/tree/main/02_notebooks/rk_gw_mma">Examples</a> for usage.</p>
