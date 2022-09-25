@@ -4,9 +4,10 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Package Modules &mdash; rktoolkit 0.0.1 documentation</title>
+  <title>R-K Modules &mdash; rktoolkit 0.0.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -16,11 +17,13 @@
         <script src="_static/underscore.js"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/design-tabs.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="rktoolkit.functions package" href="rktoolkit.functions.html" />
-    <link rel="prev" title="RK-Toolkit Documentation" href="index.html" /> 
+    <link rel="next" title="R-K Pipeline" href="rktoolkit-pipeline.html" />
+    <link rel="prev" title="Installing the R-K Toolkit and Usage" href="install.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -39,14 +42,16 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Package Modules</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="rktoolkit.functions.html">rktoolkit.functions package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rktoolkit.io.html">rktoolkit.io package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rktoolkit.models.html">rktoolkit.models package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rktoolkit.preprocess.html">rktoolkit.preprocess package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rktoolkit.visualizers.html">rktoolkit.visualizers package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installing the R-K Toolkit and Usage</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">R-K Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rktoolkit-pipeline.html">R-K Pipeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rktoolkit-modeldiagram.html">R-K Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rktoolkit-distance.html">Distance Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rktoolkit-functions.html">R-K Utility Functions</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">All Package Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
 </ul>
 
         </div>
@@ -63,7 +68,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Package Modules</li>
+      <li>R-K Modules</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/rktoolkit.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -73,43 +78,72 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="package-modules">
-<span id="packages"></span><h1>Package Modules<a class="headerlink" href="#package-modules" title="Permalink to this heading"></a></h1>
+  <section id="r-k-modules">
+<h1>R-K Modules<a class="headerlink" href="#r-k-modules" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="rktoolkit.functions.html">rktoolkit.functions package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="rktoolkit.functions.html#module-rktoolkit.functions">Module contents</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rktoolkit.functions.html#distance-module">Distance Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rktoolkit.functions.html#filters-module">Filters Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rktoolkit.functions.html#hierarchical-transform-graph-s-transformer-classes">Hierarchical Transform Graph’s Transformer Classes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rktoolkit.functions.html#graph-linkers">Graph Linkers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rktoolkit.functions.html#localization-methods">Localization methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rktoolkit-pipeline.html">R-K Pipeline</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rktoolkit-pipeline.html#rktoolkit.models.pipeline.RKPipeline"><code class="docutils literal notranslate"><span class="pre">RKPipeline</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="rktoolkit-pipeline.html#rktoolkit.models.pipeline.RKPipeline.check_valid_node"><code class="docutils literal notranslate"><span class="pre">RKPipeline.check_valid_node()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rktoolkit-pipeline.html#rktoolkit.models.pipeline.RKPipeline.get_w"><code class="docutils literal notranslate"><span class="pre">RKPipeline.get_w()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rktoolkit-pipeline.html#rktoolkit.models.pipeline.RKPipeline.remap"><code class="docutils literal notranslate"><span class="pre">RKPipeline.remap()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rktoolkit-pipeline.html#rktoolkit.models.pipeline.RKPipeline.transform"><code class="docutils literal notranslate"><span class="pre">RKPipeline.transform()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="rktoolkit.io.html">rktoolkit.io package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="rktoolkit.io.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rktoolkit.io.html#module-rktoolkit.io.io">Read and Writer Interfaces</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rktoolkit.io.html#module-rktoolkit.io">Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rktoolkit-pipeline.html#base-ontology-and-hierarchical-transform-graphs">Base Ontology and Hierarchical Transform Graphs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="rktoolkit-pipeline.html#rktoolkit.functions.htg_transformers.BaseOntologyTransform"><code class="docutils literal notranslate"><span class="pre">BaseOntologyTransform</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rktoolkit-pipeline.html#rktoolkit.functions.htg_transformers.CorrelationHTGGenerator"><code class="docutils literal notranslate"><span class="pre">CorrelationHTGGenerator</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="rktoolkit.models.html">rktoolkit.models package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="rktoolkit.models.html#module-rktoolkit.models.graph">Graph Modules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rktoolkit.models.html#module-rktoolkit.models.linkage">Linkage functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rktoolkit.models.html#module-rktoolkit.models.functions">Functions for Manipulating Models</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rktoolkit.models.html#module-rktoolkit.models.rkmodel">RKModel Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rktoolkit.models.html#rk-pipeline-module">RK-Pipeline Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rktoolkit.models.html#module-rktoolkit.models">Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rktoolkit-pipeline.html#hierarchical-embedding-function">Hierarchical Embedding Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rktoolkit-pipeline.html#isometric-compressions">Isometric Compressions</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="rktoolkit.preprocess.html">rktoolkit.preprocess package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="rktoolkit.preprocess.html#module-rktoolkit.preprocess">Module contents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rktoolkit-modeldiagram.html">R-K Model</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rktoolkit-modeldiagram.html#structural-graph">1. Structural Graph</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="rktoolkit-modeldiagram.html#rktoolkit.models.rkmodel.RKModel"><code class="docutils literal notranslate"><span class="pre">RKModel</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rktoolkit-modeldiagram.html#hierarchical-graph"><strong>Hierarchical Graph</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rktoolkit-modeldiagram.html#graph"><strong>Graph</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rktoolkit-modeldiagram.html#edge"><strong>Edge</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rktoolkit-modeldiagram.html#vertex"><strong>Vertex</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rktoolkit-modeldiagram.html#node"><strong>Node</strong></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="rktoolkit.visualizers.html">rktoolkit.visualizers package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="rktoolkit.visualizers.html#module-rktoolkit.visualizers.circular">Circular Visualizer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rktoolkit.visualizers.html#module-rktoolkit.visualizers.visualizer">Base Visualizers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rktoolkit.visualizers.html#module-rktoolkit.visualizers.util">Utilities Module for Visualizers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rktoolkit.visualizers.html#module-contents">Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rktoolkit-modeldiagram.html#node-masks">2. Node Masks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="rktoolkit-modeldiagram.html#rktoolkit.models.graph.NodeMask"><code class="docutils literal notranslate"><span class="pre">NodeMask</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="rktoolkit-modeldiagram.html#derived-links">3. Derived Links</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="rktoolkit-modeldiagram.html#linkage-function"><strong>Linkage Function</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rktoolkit-modeldiagram.html#choiceoflens"><strong>ChoiceOfLens</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="rktoolkit-modeldiagram.html#r-k-model-visualizer"><strong>R-K Model Visualizer</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="rktoolkit-modeldiagram.html#rktoolkit.visualizers.visualizer.RKModelVisualizer"><code class="docutils literal notranslate"><span class="pre">RKModelVisualizer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rktoolkit-modeldiagram.html#rktoolkit.visualizers.visualizer.RKDiagram"><code class="docutils literal notranslate"><span class="pre">RKDiagram</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rktoolkit-distance.html">Distance Module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rktoolkit-distance.html#a-topological-distance-function"><strong>A. Topological Distance Function</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="rktoolkit-distance.html#b-the-value-magnitudinal-distance"><strong>B. The Value/Magnitudinal Distance</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="rktoolkit-distance.html#c-composite-distance-function"><strong>C. Composite Distance Function</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="rktoolkit-distance.html#d-objective-function"><strong>D. Objective Function:</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="rktoolkit-distance.html#e-non-gradient-combinatorial-ml-optimiser"><strong>E. Non-Gradient Combinatorial ML Optimiser</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rktoolkit-functions.html">R-K Utility Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rktoolkit-functions.html#range-filter"><strong>Range Filter</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="rktoolkit-functions.html#rktoolkit.functions.filters.RangeFilter"><code class="docutils literal notranslate"><span class="pre">RangeFilter</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="rktoolkit-functions.html#leaf-linker"><strong>Leaf Linker</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="rktoolkit-functions.html#rktoolkit.functions.linkers.SimpleChildLinker"><code class="docutils literal notranslate"><span class="pre">SimpleChildLinker</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="rktoolkit-functions.html#module-rktoolkit.functions.localizers"><strong>Localization Functions</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="rktoolkit-functions.html#circular-visualizer"><strong>Circular Visualizer</strong></a></li>
 </ul>
 </li>
 </ul>
@@ -120,8 +154,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="index.html" class="btn btn-neutral float-left" title="RK-Toolkit Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="rktoolkit.functions.html" class="btn btn-neutral float-right" title="rktoolkit.functions package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="install.html" class="btn btn-neutral float-left" title="Installing the R-K Toolkit and Usage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="rktoolkit-pipeline.html" class="btn btn-neutral float-right" title="R-K Pipeline" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

@@ -1,7 +1,13 @@
-Glossary
-==================
+.. _packages:
+
+All Package Modules
+===================
 
 .. toctree::
-   :maxdepth: 4
+   :maxdepth: 3
 
-   rktoolkit.rst
+   rktoolkit.functions.rst
+   rktoolkit.io.rst
+   rktoolkit.models.rst
+   rktoolkit.preprocess.rst
+   rktoolkit.visualizers.rst

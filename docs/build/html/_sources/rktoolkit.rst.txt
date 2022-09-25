@@ -1,15 +1,14 @@
-.. _packages:
 
-Package Modules
-=================
+R-K Modules
+===============
 
 .. toctree::
    :maxdepth: 3
 
-   rktoolkit.functions.rst
-   rktoolkit.io.rst
-   rktoolkit.models.rst
-   rktoolkit.preprocess.rst
-   rktoolkit.visualizers.rst
+   rktoolkit-pipeline.rst
+   rktoolkit-modeldiagram.rst
+   rktoolkit-distance.rst
+   rktoolkit-functions.rst
+   
 
 

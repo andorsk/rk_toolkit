@@ -4,9 +4,10 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>rktoolkit.models package &mdash; rktoolkit 0.0.1 documentation</title>
+  <title>Models package &mdash; rktoolkit 0.0.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -16,11 +17,13 @@
         <script src="_static/underscore.js"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/design-tabs.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="rktoolkit.preprocess package" href="rktoolkit.preprocess.html" />
-    <link rel="prev" title="rktoolkit.io package" href="rktoolkit.io.html" /> 
+    <link rel="next" title="Preprocessor package" href="rktoolkit.preprocess.html" />
+    <link rel="prev" title="IO package" href="rktoolkit.io.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -39,22 +42,54 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="rktoolkit.html">Package Modules</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="rktoolkit.functions.html">rktoolkit.functions package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rktoolkit.io.html">rktoolkit.io package</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">rktoolkit.models package</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#module-rktoolkit.models.graph">Graph Modules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-rktoolkit.models.linkage">Linkage functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-rktoolkit.models.functions">Functions for Manipulating Models</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-rktoolkit.models.rkmodel">RKModel Module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#rk-pipeline-module">RK-Pipeline Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installing the R-K Toolkit and Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rktoolkit.html">R-K Modules</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">All Package Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="rktoolkit.functions.html">Functions package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rktoolkit.io.html">IO package</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Models package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-rktoolkit.models.graph">Graph Modules</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rktoolkit.models.graph.Edge"><code class="docutils literal notranslate"><span class="pre">Edge</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rktoolkit.models.graph.EdgeType"><code class="docutils literal notranslate"><span class="pre">EdgeType</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rktoolkit.models.graph.Graph"><code class="docutils literal notranslate"><span class="pre">Graph</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rktoolkit.models.graph.GraphModel"><code class="docutils literal notranslate"><span class="pre">GraphModel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rktoolkit.models.graph.HierarchicalGraph"><code class="docutils literal notranslate"><span class="pre">HierarchicalGraph</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rktoolkit.models.graph.HierarchicalTransformGraph"><code class="docutils literal notranslate"><span class="pre">HierarchicalTransformGraph</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rktoolkit.models.graph.Node"><code class="docutils literal notranslate"><span class="pre">Node</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rktoolkit.models.graph.NodeMask"><code class="docutils literal notranslate"><span class="pre">NodeMask</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rktoolkit.models.graph.PipelineNode"><code class="docutils literal notranslate"><span class="pre">PipelineNode</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rktoolkit.models.graph.TreeNode"><code class="docutils literal notranslate"><span class="pre">TreeNode</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rktoolkit.models.graph.TreeTransformNode"><code class="docutils literal notranslate"><span class="pre">TreeTransformNode</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rktoolkit.models.graph.Vertex"><code class="docutils literal notranslate"><span class="pre">Vertex</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#linkage-functions">Linkage functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rktoolkit.models.linkage.LinkageFunction"><code class="docutils literal notranslate"><span class="pre">LinkageFunction</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rktoolkit.models.linkage.LinkageSpec"><code class="docutils literal notranslate"><span class="pre">LinkageSpec</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-rktoolkit.models.functions">Functions for Manipulating Models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rktoolkit.models.functions.FilterFunction"><code class="docutils literal notranslate"><span class="pre">FilterFunction</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rktoolkit.models.functions.LinkageFunction"><code class="docutils literal notranslate"><span class="pre">LinkageFunction</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rktoolkit.models.functions.LocalizationFunction"><code class="docutils literal notranslate"><span class="pre">LocalizationFunction</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#r-k-model-module">R-K Model Module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rktoolkit.models.rkmodel.RKModel"><code class="docutils literal notranslate"><span class="pre">RKModel</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#r-k-pipeline-module">R-K Pipeline Module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rktoolkit.models.pipeline.RKPipeline"><code class="docutils literal notranslate"><span class="pre">RKPipeline</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#module-rktoolkit.models">Module contents</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="rktoolkit.preprocess.html">rktoolkit.preprocess package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rktoolkit.visualizers.html">rktoolkit.visualizers package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rktoolkit.preprocess.html">Preprocessor package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rktoolkit.visualizers.html">Visualizers package</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
 </ul>
 
         </div>
@@ -71,8 +106,8 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="rktoolkit.html">Package Modules</a> &raquo;</li>
-      <li>rktoolkit.models package</li>
+          <li><a href="modules.html">All Package Modules</a> &raquo;</li>
+      <li>Models package</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/rktoolkit.models.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -82,17 +117,14 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="rktoolkit-models-package">
-<span id="rktoolkit-models"></span><h1>rktoolkit.models package<a class="headerlink" href="#rktoolkit-models-package" title="Permalink to this heading"></a></h1>
+  <section id="models-package">
+<span id="rktoolkit-models"></span><h1>Models package<a class="headerlink" href="#models-package" title="Permalink to this heading"></a></h1>
 <section id="module-rktoolkit.models.graph">
 <span id="graph-modules"></span><span id="rktoolkit-models-graph"></span><h2>Graph Modules<a class="headerlink" href="#module-rktoolkit.models.graph" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="rktoolkit.models.graph.Edge">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rktoolkit.models.graph.</span></span><span class="sig-name descname"><span class="pre">Edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attributes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.models.graph.Edge" title="Permalink to this definition"></a></dt>
-<dd><p>For an undirected graph, an unordered pair of nodes that specify a line
-joining these two nodes are said to form an edge. For a directed graph, the
-edge is an ordered pair of nodes. The terms “arc,” “branch,” “line,” “link,”
-and “1-simplex” are sometimes used instead of edge</p>
+<dd><p>For an undirected graph, an unordered pair of nodes that specify a line joining these two nodes are said to form an edge which represents a relationship or dependence between any two nodes. For a directed graph, the edge is an ordered pair of nodes. The terms “arc,” “branch,” “line,” “link,” and “1-simplex” are sometimes used to describe an Edge in Graph Theory.</p>
 <p><a class="reference external" href="https://mathworld.wolfram.com/GraphEdge.html#:~:text=For%20an%20undirected%20graph%2C%20an,e.g.%2C%20Skiena%201990%2C%20p">https://mathworld.wolfram.com/GraphEdge.html#:~:text=For%20an%20undirected%20graph%2C%20an,e.g.%2C%20Skiena%201990%2C%20p</a>.</p>
 <p>TODO: Consider moving this to pydantic.</p>
 <dl class="py method">
@@ -101,14 +133,14 @@ and “1-simplex” are sometimes used instead of edge</p>
 <dd><p>returns a tuple of the</p>
 <p>TODO: Fix. this should actually be called to_tuple and then
 TODO: Should also return promoted values</p>
-<p>to_dict should send back dictionary in the form of:
-{</p>
-<blockquote>
-<div><p>‘u’: a,
+<dl class="simple">
+<dt>to_dict should send back dictionary in the form of:</dt><dd><p>{
+‘u’: a,
 ‘v’: b,
-‘attributes’: c</p>
-</div></blockquote>
-<p>}</p>
+‘attributes’: c
+}</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -156,58 +188,73 @@ TODO: More tests coverage</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="rktoolkit.models.graph.Graph.add_edge">
 <span class="sig-name descname"><span class="pre">add_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">e</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.models.graph.Graph.add_edge" title="Permalink to this definition"></a></dt>
-<dd><p>Add an edge between u and v.</p>
-<p>The nodes u and v will be automatically added if they are
-not already in the graph.</p>
-<p>Edge attributes can be specified with keywords or by directly
-accessing the edge’s attribute dictionary. See examples below.</p>
-<dl class="simple">
-<dt>u_of_edge, v_of_edge<span class="classifier">nodes</span></dt><dd><p>Nodes can be, for example, strings or numbers.
-Nodes must be hashable (and not None) Python objects.</p>
+<dd><p>Adds an edge to the graph for the given node. Must be an Edge type to be added successfully.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>e</strong> (<a class="reference internal" href="#rktoolkit.models.graph.Edge" title="rktoolkit.models.graph.Edge"><em>Edge</em></a>) – Edge  node to be added to the graph.</p>
 </dd>
-<dt>attr<span class="classifier">keyword arguments, optional</span></dt><dd><p>Edge data (or labels or objects) can be assigned using
-keyword arguments.</p>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – Raises an error if the input is not of the Edge Type</p>
 </dd>
 </dl>
-<p>add_edges_from : add a collection of edges</p>
-<p>Adding an edge that already exists updates the edge data.</p>
-<p>Many NetworkX algorithms designed for weighted graphs use
-an edge attribute (by default <cite>weight</cite>) to hold a numerical value.</p>
-<p>The following all add the edge e=(1, 2) to graph G:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>  <span class="c1"># or DiGraph, MultiGraph, MultiDiGraph, etc</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">e</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># explicit two-node form</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="o">*</span><span class="n">e</span><span class="p">)</span>  <span class="c1"># single edge as tuple of two nodes</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)])</span>  <span class="c1"># add edges from iterable container</span>
-</pre></div>
-</div>
-<p>Associate data to edges using keywords:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">capacity</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mf">342.7</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>For non-string attribute keys, use subscript notation.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="mi">0</span><span class="p">:</span> <span class="mi">5</span><span class="p">})</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="mi">0</span><span class="p">:</span> <span class="mi">5</span><span class="p">})</span>
-</pre></div>
-</div>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="rktoolkit.models.graph.Graph.add_vertex">
 <span class="sig-name descname"><span class="pre">add_vertex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.models.graph.Graph.add_vertex" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Adds a vertex to the graph for the given node. Must be a vertex type to be added successfully.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>n</strong> (<a class="reference internal" href="#rktoolkit.models.graph.Vertex" title="rktoolkit.models.graph.Vertex"><em>Vertex</em></a>) – Node vertex to be added to the graph.</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – Raises an error if the input is not of the Vertex Type</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="rktoolkit.models.graph.Graph.edge_distance">
 <span class="sig-name descname"><span class="pre">edge_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'jaccard'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.models.graph.Graph.edge_distance" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Calculate the edge distances using Jaccard method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>G</strong> (<a class="reference internal" href="#rktoolkit.models.graph.Graph" title="rktoolkit.models.graph.Graph"><em>Graph</em></a>) – Graph G whose edge distances to self should be calculated.</p></li>
+<li><p><strong>method</strong> (<em>str</em><em>, </em><em>optional</em>) – Method to use for finding edge distance, defaults to “jaccard”</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – Raises ValueError when Unknown method is selected to compute distances</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Jaccard distance for the given graph to self graph.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="rktoolkit.models.graph.Graph.get_children">
 <span class="sig-name descname"><span class="pre">get_children</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recursive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.models.graph.Graph.get_children" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Get the children nodes of the given node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>node_id</strong> (<em>str</em>) – ID of the node whose children needs to be found</p></li>
+<li><p><strong>recursive</strong> (<em>bool</em><em>, </em><em>optional</em>) – Condition to choose if the child nodes be found recursively till leaf node, defaults to False</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns all nodes reachable from the given node ID.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>set(recursive) OR list(non-recursive)</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="rktoolkit.models.graph.Graph.get_value_dict">
@@ -217,7 +264,16 @@ an edge attribute (by default <cite>weight</cite>) to hold a numerical value.</p
 <dl class="py method">
 <dt class="sig sig-object py" id="rktoolkit.models.graph.Graph.is_connected">
 <span class="sig-name descname"><span class="pre">is_connected</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.models.graph.Graph.is_connected" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Check if Graph is connected</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Returns True if the graph is connected, False otherwise.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="rktoolkit.models.graph.Graph.is_dag">
@@ -227,7 +283,25 @@ an edge attribute (by default <cite>weight</cite>) to hold a numerical value.</p
 <dl class="py method">
 <dt class="sig sig-object py" id="rktoolkit.models.graph.Graph.node_distance">
 <span class="sig-name descname"><span class="pre">node_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'jaccard'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.models.graph.Graph.node_distance" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Calculate the node distances using Jaccard method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>G</strong> (<a class="reference internal" href="#rktoolkit.models.graph.Graph" title="rktoolkit.models.graph.Graph"><em>Graph</em></a>) – Graph G whose node distances to self should be calculated.</p></li>
+<li><p><strong>method</strong> (<em>str</em><em>, </em><em>optional</em>) – Method to use for finding node distance, defaults to “jaccard”</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – Raises ValueError when Unknown method is selected to compute distances</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Jaccard distance for the given graph to self graph.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="rktoolkit.models.graph.Graph.similarity">
@@ -247,7 +321,23 @@ an edge attribute (by default <cite>weight</cite>) to hold a numerical value.</p
 <dl class="py method">
 <dt class="sig sig-object py" id="rktoolkit.models.graph.Graph.validate">
 <span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.models.graph.Graph.validate" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Validate if the graph is fully connected, if Yes, find the cycles and return True. Else raise exceptions</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ValueError</strong> – Raises ValueError if graph is not connected</p></li>
+<li><p><strong>ValueError</strong> – Raises ValueError if it’s not a DAG</p></li>
+<li><p><strong>e</strong> – Raises exception ‘e’ if cycles can not be found.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns True if fully connected.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="rktoolkit.models.graph.Graph.value_distance">
@@ -265,38 +355,8 @@ TODO: More tests on this</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="rktoolkit.models.graph.Graph.weighted_distance">
 <span class="sig-name descname"><span class="pre">weighted_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">topological_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'jaccard'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cossine'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'value'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weights</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0.5,</span> <span class="pre">0.5]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.models.graph.Graph.weighted_distance" title="Permalink to this definition"></a></dt>
-<dd><p>Computes a hybrid distance between a value and topological distance.
-Useful for comparing not only the actual value distance, but also
-the actual shape distance of two graphs.</p>
+<dd><p>Computes a hybrid distance between a value and topological distance. Useful for comparing not only the actual value/ magnitudinal distance and similarity, but also the actual distinction in the topological shape of any two graphs.</p>
 </dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="rktoolkit.models.graph.GraphMask">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rktoolkit.models.graph.</span></span><span class="sig-name descname"><span class="pre">GraphMask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nmasks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">emasks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.models.graph.GraphMask" title="Permalink to this definition"></a></dt>
-<dd><p>Graph Mask
-A graph mask is a mask over an existing
-structural graph. It essentially provides an
-overlay representation, which can be used to
-filter out particular nodes and edges.</p>
-<p>Typcially, a mask over a node, should also
-mask children associated it, but it is an
-implementation detail.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="rktoolkit.models.graph.GraphMask.fit">
-<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.models.graph.GraphMask.fit" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="rktoolkit.models.graph.GraphMask.get_emasks">
-<span class="sig-name descname"><span class="pre">get_emasks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.models.graph.GraphMask.get_emasks" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="rktoolkit.models.graph.GraphMask.get_nmasks">
-<span class="sig-name descname"><span class="pre">get_nmasks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.models.graph.GraphMask.get_nmasks" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
 
 </dd></dl>
 
@@ -354,6 +414,11 @@ all elements are directed.</p>
 <dd></dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="rktoolkit.models.graph.HierarchicalGraph.nodes">
+<span class="sig-name descname"><span class="pre">nodes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#rktoolkit.models.graph.Node" title="rktoolkit.models.graph.Node"><span class="pre">Node</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#rktoolkit.models.graph.HierarchicalGraph.nodes" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="rktoolkit.models.graph.HierarchicalGraph.root">
 <span class="sig-name descname"><span class="pre">root</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rktoolkit.models.graph.TreeNode" title="rktoolkit.models.graph.TreeNode"><span class="pre">TreeNode</span></a></em><a class="headerlink" href="#rktoolkit.models.graph.HierarchicalGraph.root" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
@@ -375,15 +440,11 @@ transform functions</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="rktoolkit.models.graph.Node">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rktoolkit.models.graph.</span></span><span class="sig-name descname"><span class="pre">Node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">(None,)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attributes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.models.graph.Node" title="Permalink to this definition"></a></dt>
-<dd><dl class="py attribute">
+<dd><p>A node represents a distinct object in a graph that has magnitude but no direction and accounts for the quantitative value of a particular property of a variable. A special class  of nodes are used in the creation of DAGs (Directed Acyclic Graphs) which have a few unique features beyond that of a normal node, such as checking boundary conditions and an executing function for data transformation which are of interest in the case of building R-K Models.</p>
+<dl class="py attribute">
 <dt class="sig sig-object py" id="rktoolkit.models.graph.Node.attributes">
 <span class="sig-name descname"><span class="pre">attributes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#rktoolkit.models.graph.Node.attributes" title="Permalink to this definition"></a></dt>
-<dd><p>A node represents a distinct object in a graph
-A subclass of node that speiciflcally is used
-in DAG creation. It has a couple features a normal
-node doesn’t have, such as checking boundary conditions
-and an executing function for data transformation</p>
-</dd></dl>
+<dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="rktoolkit.models.graph.Node.id">
@@ -398,6 +459,27 @@ and an executing function for data transformation</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="rktoolkit.models.graph.Node.value">
 <span class="sig-name descname"><span class="pre">value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#rktoolkit.models.graph.Node.value" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="rktoolkit.models.graph.NodeMask">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rktoolkit.models.graph.</span></span><span class="sig-name descname"><span class="pre">NodeMask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nmasks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">emasks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.models.graph.NodeMask" title="Permalink to this definition"></a></dt>
+<dd><p>A graph mask is a mask over an existing structural graph. It essentially provides an overlay representation, which can be used to filter out particular nodes and edges.    Typically,a mask over a node, should also mask child-nodes associated with it. A node mask represents a masking structure that when applied to a structural graph S, reduces the number of nodes into a subgraph S. Node masks in the R-K Model are binary operators, which when set to true, filter a node and its direct children. To derive the node masks, we produce a set of filters Fn(G), which takes in a graph and returns a mask.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="rktoolkit.models.graph.NodeMask.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.models.graph.NodeMask.fit" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rktoolkit.models.graph.NodeMask.get_emasks">
+<span class="sig-name descname"><span class="pre">get_emasks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.models.graph.NodeMask.get_emasks" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rktoolkit.models.graph.NodeMask.get_nmasks">
+<span class="sig-name descname"><span class="pre">get_nmasks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.models.graph.NodeMask.get_nmasks" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -471,9 +553,7 @@ and an executing function for data transformation</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="rktoolkit.models.graph.Vertex">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rktoolkit.models.graph.</span></span><span class="sig-name descname"><span class="pre">Vertex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attributes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.models.graph.Vertex" title="Permalink to this definition"></a></dt>
-<dd><p>“Vertex” is a synonym for a node of a graph, i.e., one of the points on
-which the graph is defined and which may be connected by graph edges.
-The terms “point,” “junction,” and 0-simplex are also used</p>
+<dd><p>“Vertex” is a synonym for a node of a graph, i.e., one of the points on which the graph is defined and which may be connected by graph edges. The terms “point,” “junction,” and 0-simplex are also used to describe a Vertex in Graph Theory.</p>
 <p>See
 <a class="reference external" href="https://mathworld.wolfram.com/GraphVertex.html#:~:text=%22Vertex%22%20is%20a%20synonym%20for,80">https://mathworld.wolfram.com/GraphVertex.html#:~:text=%22Vertex%22%20is%20a%20synonym%20for,80</a>).
 for more information</p>
@@ -498,18 +578,18 @@ field and sending back</p>
 </dd></dl>
 
 </section>
-<section id="module-rktoolkit.models.linkage">
-<span id="linkage-functions"></span><span id="rktoolkit-models-linkage"></span><h2>Linkage functions<a class="headerlink" href="#module-rktoolkit.models.linkage" title="Permalink to this heading"></a></h2>
-<dl class="py class">
+<section id="linkage-functions">
+<span id="rktoolkit-models-linkage"></span><h2>Linkage functions<a class="headerlink" href="#linkage-functions" title="Permalink to this heading"></a></h2>
+<p>A linkage function takes in a list of nodes and returns a list of appropriate edges that defines the linkage between those nodes. The math behind the linkage function is defined as follows: If G = (V,E) is an undirected graph without multiple edges or loops. Let n = |V | and e = |E|. The linkage of G is defined to be the maximum min-degree of any of the subgraphs of G (the min-degree of a subgraph is the least degree of any of its vertices; the degree of a vertex is taken relative
+to the subgraph). The width of G is defined to be the minimum, over all linear orderings of the vertices of G, of the maximum, with respect to any vertex v, of the number of vertices connected with v and preceding it in the linear ordering. It has also been mathematically proven in Topology that the width of a graph is equal to its linkage.</p>
+<p>An example of a linker function is provided in the diagram below in the exact way it is applied in an R-K Model. The same linker functions are applied to two different graphs, providing directed edges across leafs.
+//image</p>
+<span class="target" id="module-rktoolkit.models.linkage"></span><dl class="py class">
 <dt class="sig sig-object py" id="rktoolkit.models.linkage.LinkageFunction">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rktoolkit.models.linkage.</span></span><span class="sig-name descname"><span class="pre">LinkageFunction</span></span><a class="headerlink" href="#rktoolkit.models.linkage.LinkageFunction" title="Permalink to this definition"></a></dt>
-<dd><p>A linkage function takes in a list of nodes
-and returns a list of edges</p>
-<p>There are mnay different types of linkage functions.</p>
-<p>For example, see <a class="reference external" href="https://pypi.org/project/fastcluster/">https://pypi.org/project/fastcluster/</a>
-as an example</p>
-<p>We have in the LIGO example, a linkage function with
-Euclidean distance defined.</p>
+<dd><p>A linkage function takes in a list of nodes and returns a list of appropriate edges that defines the linkage between those nodes. The math behind the linkage function is defined as follows: If G = (V,E) is an undirected graph without multiple edges or loops. Let n = <a href="#id1"><span class="problematic" id="id2">|V | and e = |E|</span></a>. The linkage of G is defined to be the maximum min-degree of any of the subgraphs of G (the min-degree of a subgraph is the least degree of any of its vertices; the degree of a vertex is taken relative
+to the subgraph). The width of G is defined to be the minimum, over all linear orderings of the vertices of G, of the maximum, with respect to any vertex v, of the number of vertices connected with v and preceding it in the linear ordering. It has also been mathematically proven in Topology that the width of a graph is equal to its linkage.</p>
+<p>An example of a linker function is provided in the diagram below in the exact way it is applied in an R-K Model. The same linker functions are applied to two different graphs, providing directed edges across leafs.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="rktoolkit.models.linkage.LinkageFunction.link">
 <span class="sig-name descname"><span class="pre">link</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nodes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#rktoolkit.models.graph.Node" title="rktoolkit.models.graph.Node"><span class="pre">Node</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#rktoolkit.models.graph.Edge" title="rktoolkit.models.graph.Edge"><span class="pre">Edge</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#rktoolkit.models.linkage.LinkageFunction.link" title="Permalink to this definition"></a></dt>
@@ -556,13 +636,13 @@ Euclidean distance defined.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="rktoolkit.models.functions.LinkageFunction">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rktoolkit.models.functions.</span></span><span class="sig-name descname"><span class="pre">LinkageFunction</span></span><a class="headerlink" href="#rktoolkit.models.functions.LinkageFunction" title="Permalink to this definition"></a></dt>
-<dd><p>A linkage function takes in a list of nodes
-and returns a list of edges</p>
-<p>There are mnay different types of linkage functions.</p>
-<p>For example, see <a class="reference external" href="https://pypi.org/project/fastcluster/">https://pypi.org/project/fastcluster/</a>
-as an example</p>
-<p>We have in the LIGO example, a linkage function with
-Euclidean distance defined.</p>
+<dd><blockquote>
+<div><p>A linkage function takes in a list of nodes and returns a list of appropriate edges that defines the linkage between those nodes. The math behind the linkage function is defined as follows: If G = (V,E) is an undirected graph without multiple edges or loops. Let n = <a href="#id3"><span class="problematic" id="id4">|V | and e = |E|</span></a>. The linkage of G is defined to be the maximum min-degree of any of the subgraphs of G (the min-degree of a subgraph is the least degree of any of its vertices; the degree of a vertex is taken relative</p>
+</div></blockquote>
+<p>to the subgraph). The width of G is defined to be the minimum, over all linear orderings of the vertices of G, of the maximum, with respect to any vertex v, of the number of vertices connected with v and preceding it in the linear ordering. It has also been mathematically proven in Topology that the width of a graph is equal to its linkage.</p>
+<blockquote>
+<div><p>An example of a linker function is provided in the diagram below in the exact way it is applied in an R-K Model. The same linker functions are applied to two different graphs, providing directed edges across leafs.</p>
+</div></blockquote>
 <dl class="py method">
 <dt class="sig sig-object py" id="rktoolkit.models.functions.LinkageFunction.predict">
 <span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nodes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#rktoolkit.models.graph.Node" title="rktoolkit.models.graph.Node"><span class="pre">Node</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#rktoolkit.models.graph.Edge" title="rktoolkit.models.graph.Edge"><span class="pre">Edge</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#rktoolkit.models.functions.LinkageFunction.predict" title="Permalink to this definition"></a></dt>
@@ -599,16 +679,22 @@ Euclidean distance defined.</p>
 </dd></dl>
 
 </section>
-<section id="module-rktoolkit.models.rkmodel">
-<span id="rkmodel-module"></span><span id="rktoolkit-models-rkmodel"></span><h2>RKModel Module<a class="headerlink" href="#module-rktoolkit.models.rkmodel" title="Permalink to this heading"></a></h2>
-<dl class="py class">
+<section id="r-k-model-module">
+<span id="rktoolkit-models-rkmodel"></span><h2>R-K Model Module<a class="headerlink" href="#r-k-model-module" title="Permalink to this heading"></a></h2>
+<p>An R-K Model is the fundamental building block of any R-K Diagram. It represents a composite object that can be used to render an R-K Diagram using appropriate filter and linker functions as defined according to the specific use-case. In other words, an R-K Diagram is the rendering of an R-K Model, and the R-K Model serves as the underlying data structure for that render.</p>
+<p>All R-K Models must contain the following 3 components:</p>
+<ol class="arabic simple">
+<li><p>Structural Graph</p></li>
+<li><p>Node Masks</p></li>
+<li><p>Derived Links</p></li>
+</ol>
+<p><strong>Structural Graph</strong></p>
+<p>The structural graph (S) is the base graph derived through the Hierarchical Embedding Function, also known as the structural graph. The structural graph provides the baseline ontological structure that forms the basis for all other transformations in the pipeline. Because node masks are reductive operations, the number of nodes in the structural graph represents the maximal number of nodes in the R-K Diagram such that :math: <cite>|nodes| ∈ S &gt;= |nodes| ∈ R − K Diagram</cite>.
+The structural graph however does not represent that maximal number of edges. The number of possible edges in the R-K Diagram is bounded by the number of combinations of nodes in the structural graph.</p>
+<span class="target" id="module-rktoolkit.models.rkmodel"></span><dl class="py class">
 <dt class="sig sig-object py" id="rktoolkit.models.rkmodel.RKModel">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rktoolkit.models.rkmodel.</span></span><span class="sig-name descname"><span class="pre">RKModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edges</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.models.rkmodel.RKModel" title="Permalink to this definition"></a></dt>
-<dd><p>RK model
-contains the structural graph
-the mask
-and the edges</p>
-<dl class="py method">
+<dd><dl class="py method">
 <dt class="sig sig-object py" id="rktoolkit.models.rkmodel.RKModel.get">
 <span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.models.rkmodel.RKModel.get" title="Permalink to this definition"></a></dt>
 <dd><p>Get the Graph for RKModel</p>
@@ -617,7 +703,7 @@ and the edges</p>
 <dd class="field-odd"><p>Returns the graphmask for the RKModel</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference internal" href="#rktoolkit.models.graph.GraphMask" title="rktoolkit.models.graph.GraphMask">GraphMask</a></p>
+<dd class="field-even"><p>GraphMask</p>
 </dd>
 </dl>
 </dd></dl>
@@ -625,23 +711,11 @@ and the edges</p>
 </dd></dl>
 
 </section>
-<section id="rk-pipeline-module">
-<span id="rktoolkit-models-pipeline"></span><h2>RK-Pipeline Module<a class="headerlink" href="#rk-pipeline-module" title="Permalink to this heading"></a></h2>
-<p>An RK-Pipeline, is the process of moving between an NxM Tensor into
-an RK-Model and visualized as an RK-Diagram. The benefits of an RK-Model over
-traditional models are numerous, including the fact that an RK-Model is a
-compact representation that perserves topology and encodes structure in high
-dimensional data. The following section will focus on the RK Toolkit library
-and go through the various transformation steps from an NxM Tensor into a
-visualized RK-Diagram. This novel approach toward topological data analysis
-is extendable through the SDK hosted on github.com/andorsk/rk_toolkit. Examples
-of how to use the toolkit are also hosted there.</p>
-<p>There are a few novel concepts and objects within the pipeline as well as
-the entire pipeline itself, by virtue of it’s components and ordering, that
-provide a new and novel approach toward topological data analysis.</p>
-<p>An RK-Pipeline is a unidirectonal pipeline that builds an RK-Model from a
-incoming dataset.</p>
-<p>Figure below shows a diagram with the RK-Pipeline specified</p>
+<section id="r-k-pipeline-module">
+<span id="rktoolkit-models-pipeline"></span><h2>R-K Pipeline Module<a class="headerlink" href="#r-k-pipeline-module" title="Permalink to this heading"></a></h2>
+<p>An R-K Pipeline is a unidirectional pipeline that builds an R-K Model from an incoming dataset or data stream as a precursor to generate domain specific R-K Diagrams with appropriate “range-filters” and “leaf-linkers’’. An R-K Pipeline, involves the process of transforming an NxM Tensor  with 3 or more independent physical/ontological variables into an R-K Model which can then be visualized as an R-K Diagram with the help of domain specific filter and linker functions.
+At a base level, the R-K Pipeline can be understood as a Directed Acyclic Graph (DAG), which provides transformational components that result in a composite model we call an R-K Model. Transforms in an R-K Pipeline can be chained against each other, as long as egress from one component complies with the ingress specifications from another component. We can mathematically represent this with the following representation: <img alt="CRK" src="../../imgs/Pipe/Pipe1.jpg" /> where <img alt="Ci" src="../../imgs/Pipe/Pipe2.jpg" /> represents a pipeline component and the egress of <img alt="Ci" src="../../imgs/Pipe/Pipe2.jpg" /> is compliant with a set of constraints imposed by <img alt="Ci1" src="../../imgs/Pipe/Pipe3.jpg" />‘s ingress. There are a few novel concepts and objects within the pipeline as well as the entire pipeline itself, by virtue of its components and ordering, that provide a novel approach toward topological graph theory and data analysis.</p>
+<p>The figure below demonstrates the various steps of an R-K Pipeline w.r.t. the data-flow as shown:</p>
 <a class="reference internal image-reference" href="_images/rk-flow.png"><img alt="_images/rk-flow.png" src="_images/rk-flow.png" style="width: 600px;" /></a>
 <p>Composed together are the following steps:</p>
 <ol class="arabic simple">
@@ -651,11 +725,11 @@ incoming dataset.</p>
 <li><p>Filter Functions</p></li>
 <li><p>Linkage Functions</p></li>
 </ol>
-<p>Composed together, these component synethesize an RK-Model.</p>
+<p>Composed together, these independent component modules of the R-K Pipeline can be triggered in sequence to synthesize an R-K Model as a precursor to generating R-K Diagrams.</p>
 <span class="target" id="module-rktoolkit.models.pipeline"></span><dl class="py class">
 <dt class="sig sig-object py" id="rktoolkit.models.pipeline.RKPipeline">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rktoolkit.models.pipeline.</span></span><span class="sig-name descname"><span class="pre">RKPipeline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filter_map</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linkage_map</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">structural_graph</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.models.pipeline.RKPipeline" title="Permalink to this definition"></a></dt>
-<dd><p>Class implementing the RK-Pipeline explained above</p>
+<dd><p>Class implementing the R-K Pipeline explained above</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="rktoolkit.models.pipeline.RKPipeline.check_valid_node">
 <span class="sig-name descname"><span class="pre">check_valid_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#rktoolkit.models.pipeline.RKPipeline.check_valid_node" title="Permalink to this definition"></a></dt>
@@ -699,7 +773,7 @@ incoming dataset.</p>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Returns a remapped RK-Pipeline Class</p>
+<dd class="field-even"><p>Returns a remapped R-K Pipeline Class</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><a class="reference internal" href="#rktoolkit.models.pipeline.RKPipeline" title="rktoolkit.models.pipeline.RKPipeline">RKPipeline</a></p>
@@ -710,7 +784,7 @@ incoming dataset.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="rktoolkit.models.pipeline.RKPipeline.transform">
 <span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_base</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.models.pipeline.RKPipeline.transform" title="Permalink to this definition"></a></dt>
-<dd><p>Transforms the given Graph into a RKModel</p>
+<dd><p>Transforms the given Graph into a R-K Model</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -719,7 +793,7 @@ incoming dataset.</p>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>RKModel of the graph.</p>
+<dd class="field-even"><p>R-K Model of the graph.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><a class="reference internal" href="#rktoolkit.models.rkmodel.RKModel" title="rktoolkit.models.rkmodel.RKModel">RKModel</a></p>
@@ -739,8 +813,8 @@ incoming dataset.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="rktoolkit.io.html" class="btn btn-neutral float-left" title="rktoolkit.io package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="rktoolkit.preprocess.html" class="btn btn-neutral float-right" title="rktoolkit.preprocess package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="rktoolkit.io.html" class="btn btn-neutral float-left" title="IO package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="rktoolkit.preprocess.html" class="btn btn-neutral float-right" title="Preprocessor package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

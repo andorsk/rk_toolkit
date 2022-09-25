@@ -1,6 +1,6 @@
 .. _rktoolkit.io:
 
-rktoolkit.io package
+IO package
 ====================
 
 Submodules

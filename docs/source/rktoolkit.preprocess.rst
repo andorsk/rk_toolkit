@@ -1,6 +1,6 @@
 .. _rktookit.preprocess:
 
-rktoolkit.preprocess package
+Preprocessor package
 ============================
 
 Module contents

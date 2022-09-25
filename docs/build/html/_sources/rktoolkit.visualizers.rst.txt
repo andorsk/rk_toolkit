@@ -1,6 +1,6 @@
 .. _rktoolkit.visualizers:
 
-rktoolkit.visualizers package
+Visualizers package
 =============================
 
 Visualizers package contains classes for visualising the RK model into a RK-Diagram.
@@ -45,5 +45,4 @@ Module contents
    :members:
    :undoc-members:
    :show-inheritance:
-   :maxdepth: 1
 
