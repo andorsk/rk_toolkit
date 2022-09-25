@@ -2,24 +2,57 @@
    sphinx-quickstart on Sun May 16 14:42:05 2021.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
+   * :ref:`genindex`
+   * :ref:`modindex`
 
-RK-Toolkit Documentation
+
+.. _index:
+
+R-K  Toolkit Documentation
 =====================================
 
+The “R-K Toolkit” is a generalized code package implemented to aid users in the process of building “R-K Diagrams” and “R-K Models” via the “R-K Pipeline”.  It provides a computational framework to build a functional component called the R-K Pipeline, which can be used to transform  any NxM Tensor with 3 or more independent physical/ontological variables, into a R-K Model. An “R-K Model '' is then processed with domain appropriate “Range-Filters” and “Leaf-Linkers” to render unique topological signatures and graph visualizations that are known as R-K Diagrams. All information regarding the R-K Toolkit has been made open source and can be found `Here <https://github.com/animikhroy/rk_toolkit_pipeline_diagrams/rk_toolkit>`_. 
+
+The R-K Toolkit was built in python, and converts the core mathematical concepts described in the `paper <https://arxiv.org/abs/2201.06923>`_ into computational representations that can be used on any number of real datasets and data streams with 3 or more independent physical/otological variables for the purpose of combinatorial analysis and deriving hidden insights. Similar to how other libraries such as Sci-Kit provide base components like the Pipeline object, to be extended later by a user or by native extensions, R-K Toolkit operates similarly by providing the base building blocks such as a R-K Pipeline and R-K Diagram, to be extended by the user or by native representations.To apply the toolkit to a dataset, one would import the relevant components into their code (similar to how you would Sci-Kit), define a R-K Pipeline, and then run the pipeline. It is entirely in the control of the user how they desire to build their pipeline as most pipelines will vary across domains and multi-dimensional datasets/streams.
+
+As an example, if one were to want to classify a Hodgkins vs. Non-Hodgkins disease along with their 4 stages of metastasis as distinct topological signatures that are divergent from healthy patients, one could construct their own R-K Pipeline out of the toolkit, to potentially generate unique topological structures and R-K Diagrams. 
+
+This documentation focuses on the R-K Toolkit library and goes through the various transformation steps from a high dimensional dataset represented as NxM Tensor (with 3 or more independent variables) into a visualized R-K Diagram. This novel approach toward topological data analysis is extendable through the SDK hosted on `this Github Repo <https://github.com/animikhroy/rk_toolkit_pipeline_diagrams>`_ . Examples of how to use the toolkit are also hosted on the link for the users reference. This Toolkit can be used to build functional R-K pipelines for scientific and business applications as demonstrated in the `notebooks <https://github.com/animikhroy/rk_toolkit_pipeline_diagrams/tree/main/02_notebooks>`_ using Tableau Store Sales data and LIGO Gravitational Wave Data.
+The R-K Toolkit's design was done explicitly with the intent to be extended later, with the expectations that new and more robust methods will be included into the framework over time.
+
+  
+
 .. toctree::
+   :hidden:
    :maxdepth: 2
-   :caption: Contents:
+   
+   install.rst
+   rktoolkit.rst
+   modules.rst
+   Index <genindex>
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
 
 
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
 
 Readme File
 ===========
+
+R-K Workflow & R-K Workbench
+============================
+
+**R-K Workflow**
+
+Any set of computation steps carried out using the R-K Toolkit leading to a set of actions to build and generate R-K Models and customize the filter and linker functions available in the toolkit to generate R-K Diagrams can be defined as the R-K Workflow.
+
+.. card:: R-K Workbench
+   :link: https://github.com/andorsk/rk-workbench
+
+
+   In order to help users get started quicker, we provide a docker image called `R-K Workbench <https://github.com/andorsk/rk-workbench>`_ which wraps the `ML-Workspace <https://github.com/ml-tooling/ml-workspace>`_ with packages relevant to building R-K Models and R-K Diagrams built into the core image. The README file contains details on how to use it for the purpose of independent use by researchers and programmers to customize and apply the R-K Pipeline to various scientific and business use-cases.
+
 
 Example Pipeline
 ======================

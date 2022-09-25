@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>R-K Utility Functions &mdash; rktoolkit 0.0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/design-tabs.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="All Package Modules" href="modules.html" />
+    <link rel="prev" title="Distance Module" href="rktoolkit-distance.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> rktoolkit
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installing the R-K Toolkit and Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="rktoolkit.html">R-K Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="rktoolkit-pipeline.html">R-K Pipeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rktoolkit-modeldiagram.html">R-K Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rktoolkit-distance.html">Distance Module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">R-K Utility Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#range-filter"><strong>Range Filter</strong></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rktoolkit.functions.filters.RangeFilter"><code class="docutils literal notranslate"><span class="pre">RangeFilter</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#leaf-linker"><strong>Leaf Linker</strong></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rktoolkit.functions.linkers.SimpleChildLinker"><code class="docutils literal notranslate"><span class="pre">SimpleChildLinker</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-rktoolkit.functions.localizers"><strong>Localization Functions</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#circular-visualizer"><strong>Circular Visualizer</strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">All Package Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">rktoolkit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="rktoolkit.html">R-K Modules</a> &raquo;</li>
+      <li>R-K Utility Functions</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/rktoolkit-functions.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="r-k-utility-functions">
+<h1>R-K Utility Functions<a class="headerlink" href="#r-k-utility-functions" title="Permalink to this heading"></a></h1>
+<section id="range-filter">
+<h2><strong>Range Filter</strong><a class="headerlink" href="#range-filter" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="rktoolkit.functions.filters.RangeFilter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rktoolkit.functions.filters.</span></span><span class="sig-name descname"><span class="pre">RangeFilter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">min</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.functions.filters.RangeFilter" title="Permalink to this definition"></a></dt>
+<dd><p><a href="#id1"><span class="problematic" id="id2">|</span></a>A range filter is one of the simplest filters that is provided in version 1 of the R-K Toolkit. We assign the filters to each level of the hierarchy that contains numeric data which operates as follows:
+|
+|    True : if v /∈ {m,M]
+|    False:  else
+|
+<a href="#id3"><span class="problematic" id="id4">|</span></a>where:
+|    • v is the value of the node.
+|    • m is the minimum boundary condition for the filter.
+|    • M is the maximum boundary condition for the filter.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="rktoolkit.functions.filters.RangeFilter.filter">
+<span class="sig-name descname"><span class="pre">filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.functions.filters.RangeFilter.filter" title="Permalink to this definition"></a></dt>
+<dd><p>Filter method to filter the node according to the range.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>node</strong> (<em>Any</em>) – Node to be filtered</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns true if filtered else false.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rktoolkit.functions.filters.RangeFilter.get_knobs">
+<span class="sig-name descname"><span class="pre">get_knobs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.functions.filters.RangeFilter.get_knobs" title="Permalink to this definition"></a></dt>
+<dd><p>Get knobs to be used for the filter range.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Min and max ranges.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rktoolkit.functions.filters.RangeFilter.set_knob">
+<span class="sig-name descname"><span class="pre">set_knob</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">knb</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.functions.filters.RangeFilter.set_knob" title="Permalink to this definition"></a></dt>
+<dd><p>Set Knobs to given values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>knb</strong> (<em>str</em>) – The knob to be adjusted, can be either min or max.</p></li>
+<li><p><strong>v</strong> (<em>int</em>) – Value of the knob to be adjusted to.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – Need the <cite>knob</cite> argument to be only min or max,else the error will be raised.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="leaf-linker">
+<h2><strong>Leaf Linker</strong><a class="headerlink" href="#leaf-linker" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="rktoolkit.functions.linkers.SimpleChildLinker">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rktoolkit.functions.linkers.</span></span><span class="sig-name descname"><span class="pre">SimpleChildLinker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">theta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.functions.linkers.SimpleChildLinker" title="Permalink to this definition"></a></dt>
+<dd><p>A simple leaf-linker function is provided in the R-K Toolkit which can be used to build a specific R-K model based on the choice of lens and application. The simple leaf linker compares only the leafs of a graph tree, and provides an edge E in the case the euclidean distance is less than the specified threshold. Thus a Leaf Linker function compares the distances between values with ϵ &lt; θ, and links the leafs of the final clusters based upon the set threshold.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="rktoolkit.functions.linkers.SimpleChildLinker.check_valid_node">
+<span class="sig-name descname"><span class="pre">check_valid_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#rktoolkit.functions.linkers.SimpleChildLinker.check_valid_node" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if node contains value or not</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>node</strong> (<em>Any</em>) – Node to be checked for validity</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns  true if Node is valid, else false</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rktoolkit.functions.linkers.SimpleChildLinker.get_knobs">
+<span class="sig-name descname"><span class="pre">get_knobs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.functions.linkers.SimpleChildLinker.get_knobs" title="Permalink to this definition"></a></dt>
+<dd><p>Get the knobs to link.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Knob</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rktoolkit.functions.linkers.SimpleChildLinker.link">
+<span class="sig-name descname"><span class="pre">link</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.functions.linkers.SimpleChildLinker.link" title="Permalink to this definition"></a></dt>
+<dd><p>Links the nodes of the given Graph by creating a copy of the graph  and adding nodes to it based on criteria</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>G</strong> (<a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.graph.Graph" title="rktoolkit.models.graph.Graph"><em>Graph</em></a>) – Graph to be linked.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A linked graph with all child nodes linked.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.graph.Graph" title="rktoolkit.models.graph.Graph">Graph</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rktoolkit.functions.linkers.SimpleChildLinker.set_knob">
+<span class="sig-name descname"><span class="pre">set_knob</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">knb</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.functions.linkers.SimpleChildLinker.set_knob" title="Permalink to this definition"></a></dt>
+<dd><p>_summary_</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>knb</strong> (<em>str</em>) – Knob value</p></li>
+<li><p><strong>v</strong> (<em>int</em>) – Value for theta</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If knob isn’t theta raises Valu  error</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-rktoolkit.functions.localizers">
+<span id="localization-functions"></span><h2><strong>Localization Functions</strong><a class="headerlink" href="#module-rktoolkit.functions.localizers" title="Permalink to this heading"></a></h2>
+</section>
+<section id="circular-visualizer">
+<h2><strong>Circular Visualizer</strong><a class="headerlink" href="#circular-visualizer" title="Permalink to this heading"></a></h2>
+<p>Cicular Visualizer Makes an almost “Mandlebot” like visualization
+of the RKModel.</p>
+<p><strong>How it works:</strong> based on the center, and relative number of children nodes,
+it expands outward using a circular pattern. As the expansion continues,
+children birth more children in circular patterns.</p>
+<p>The distance and sizes of of the node between each parent -&gt; child in the visualization
+decreases each iteration.</p>
+<p>You can override any particular value using the attributes of a node.</p>
+<span class="target" id="module-rktoolkit.visualizers.circular"></span></section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="rktoolkit-distance.html" class="btn btn-neutral float-left" title="Distance Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="modules.html" class="btn btn-neutral float-right" title="All Package Modules" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Andor Kesselman.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

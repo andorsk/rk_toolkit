@@ -1,71 +1,38 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <title>rktoolkit.functions package &mdash; rktoolkit 0.0.1 documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
+  <title>Functions package &mdash; rktoolkit 0.0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-
-    
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/design-tabs.js"></script>
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="IO package" href="rktoolkit.io.html" />
+    <link rel="prev" title="All Package Modules" href="modules.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="index.html" class="icon icon-home"> rktoolkit
-          
-
-          
           </a>
-
-          
-            
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -73,140 +40,475 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <!-- Local TOC -->
-              <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">rktoolkit.functions package</a><ul>
-<li><a class="reference internal" href="#module-rktoolkit.functions">Module contents</a></li>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installing the R-K Toolkit and Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rktoolkit.html">R-K Modules</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">All Package Modules</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Functions package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-rktoolkit.functions">Module contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#distance-module">Distance Module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rktoolkit.functions.distance.topological_distance_function"><code class="docutils literal notranslate"><span class="pre">distance.topological_distance_function()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#filters-module">Filters Module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rktoolkit.functions.filters.FilterAll"><code class="docutils literal notranslate"><span class="pre">FilterAll</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rktoolkit.functions.filters.FilterNone"><code class="docutils literal notranslate"><span class="pre">FilterNone</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rktoolkit.functions.filters.RangeFilter"><code class="docutils literal notranslate"><span class="pre">RangeFilter</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#base-ontology-and-hierarchical-transform-graphs">Base Ontology and Hierarchical Transform Graphs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rktoolkit.functions.htg_transformers.BaseOntologyTransform"><code class="docutils literal notranslate"><span class="pre">BaseOntologyTransform</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rktoolkit.functions.htg_transformers.CorrelationHTGGenerator"><code class="docutils literal notranslate"><span class="pre">CorrelationHTGGenerator</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#graph-linkers">Graph Linkers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rktoolkit.functions.linkers.SimpleChildLinker"><code class="docutils literal notranslate"><span class="pre">SimpleChildLinker</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rktoolkit.functions.linkers.SimpleLinkageFunction"><code class="docutils literal notranslate"><span class="pre">SimpleLinkageFunction</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#localization-methods">Localization methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rktoolkit.functions.localizers.IterableLocalizationFunction"><code class="docutils literal notranslate"><span class="pre">IterableLocalizationFunction</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rktoolkit.functions.localizers.NDMaxLocalizationFunction"><code class="docutils literal notranslate"><span class="pre">NDMaxLocalizationFunction</span></code></a></li>
 </ul>
 </li>
 </ul>
-</div>
-            
-          
+</li>
+<li class="toctree-l2"><a class="reference internal" href="rktoolkit.io.html">IO package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rktoolkit.models.html">Models package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rktoolkit.preprocess.html">Preprocessor package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rktoolkit.visualizers.html">Visualizers package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+</ul>
+
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">rktoolkit</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-        
-      <li>rktoolkit.functions package</li>
-    
-    
+          <li><a href="modules.html">All Package Modules</a> &raquo;</li>
+      <li>Functions package</li>
       <li class="wy-breadcrumbs-aside">
-        
-          
             <a href="_sources/rktoolkit.functions.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="rktoolkit-functions-package">
-<h1>rktoolkit.functions package<a class="headerlink" href="#rktoolkit-functions-package" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="module-rktoolkit.functions">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-rktoolkit.functions" title="Permalink to this headline">¶</a></h2>
-</div>
-</div>
+             
+  <section id="functions-package">
+<span id="rktoolkit-functions"></span><h1>Functions package<a class="headerlink" href="#functions-package" title="Permalink to this heading"></a></h1>
+<section id="module-rktoolkit.functions">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-rktoolkit.functions" title="Permalink to this heading"></a></h2>
+</section>
+<section id="distance-module">
+<span id="rktoolkit-functions-distance"></span><h2>Distance Module<a class="headerlink" href="#distance-module" title="Permalink to this heading"></a></h2>
+<p>R-K Distance is a composite distance function that measures the distance and similarity between any two R-K Diagrams in a metric built to measure homeomorphism using a combination of Topological Distance as an extension of Jaccard Distance &amp; Value/Magnitudinal Distance based on an extension of Mahalanobis Distance. R-K Distance is critical to the tuning and understanding of R-K Diagrams for its ability to quantitatively measure divergence (and its dual, i.e. similarity) across all R-K Diagrams rendered from a particular R-K Model.</p>
+<p>In our implementation, we used a weighted distance function <img alt="dG1G2" src="../../imgs/Distance/Dist1.jpg" /> by applying composite
+distance function based on geometric and value distance, where the geometric distance was implemented over an extension of Jaccard distance based upon nodes and edges, and the value distance was computed using covariance measures inspired by the Mahalanobis distance
+Formulation, such that our final R-K Distance equation can be represented as:</p>
+<img alt="../../imgs/Distance/Dist2.jpg" class="align-center" src="../../imgs/Distance/Dist2.jpg" />
+<p>where <img alt="fTV" src="../../imgs/Distance/Dist3.jpg" /> is a composite function based on topological distance T and value/magnitudinal distance V weighted by vector w.</p>
+<p>This also allows for the quantitative comparison of  overall homeomorphic similarities between R-K Diagrams defining similarity as a dual of R-K Distance as:</p>
+<img alt="../../imgs/Distance/Dist4.jpg" class="align-center" src="../../imgs/Distance/Dist4.jpg" />
+<p>With all results normalized between 0 and 1. Such measures of homeomorphic similarities between R-K Diagrams can be optimized in our metric-space via combinatorial machine learning techniques such as <a class="reference external" href="https://facebookresearch.github.io/nevergrad/">Nevergrad</a> which maximize or minimize the R-K Distance for the purpose of ML Classifications.</p>
+<p><strong>A. Topological Distance Function</strong></p>
+<p>The Topological Distance Function allows us to compare topological similarities and differences between various clusters and simplexes of any two R-K Diagrams. It allows for the quantitative comparison of  large-scale geometric and topological differences between R-K Diagrams. In our initial implementation, we have extended the Jaccard distance formulation to provide a comparison of  geometric distance across R-K Diagrams. The Jaccard distance is one of many possible distance functions that can be applied toward graph distances. It is simple but effective in many machine learning algorithms and is a widely applied algorithm across many domains.</p>
+<img alt="../../imgs/Distance/Topo1.jpg" class="align-center" src="../../imgs/Distance/Topo1.jpg" />
+<p>Where in the extension of our formulation A and B are defined as a tuple that represents an edge  <img alt="Vij" src="../../imgs/Distance/Topo2.jpg" /> such that <img alt="Vi" src="../../imgs/Distance/Topo3.jpg" /> is the source node and <img alt="Vj" src="../../imgs/Distance/Topo4.jpg" /> is the sink.</p>
+<p>For the quantitative comparison of R-K Diagrams, it is critical to evaluate the Jaccard distances against the directed edges, such that the distance measure is sensitive to topological differences due to direction. If a Jaccard distance is applied only at the vertex level, key information about the directed edges and the linked vertices would be lost. This would be ineffective for the quantitative comparison of geometric and topological properties across R-K Diagrams. Hence we have modified the original formulation and used edges for Jaccard measurements, such that critical features in the distance measurement are preserved.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="rktoolkit.functions.distance.topological_distance_function">
+<span class="sig-prename descclassname"><span class="pre">distance.</span></span><span class="sig-name descname"><span class="pre">topological_distance_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.functions.distance.topological_distance_function" title="Permalink to this definition"></a></dt>
+<dd><p>Topological Distance Function</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>s1</strong> (<em>set</em>) – Data Set 1</p></li>
+<li><p><strong>s2</strong> (<em>set</em>) – Data Set 2</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Jaccard distance</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p><strong>B. The Value/Magnitudinal Distance</strong></p>
+<p>The Value/Magnitudinal Distance is intended to amplify the effects of the distance measure when topology isn’t sufficient to demonstrate differences. For example, in the case of store sales, a purchase could be very similar topologically, but very different in terms of magnitude as the actual sales value differs radically across R-K Diagrams. By comparing the magnitude of the nodes as well as the topology, it provides a clear distinction across R-K Diagrams when topological differences are not sufficient. We extended  the Mahalanobis distance to provide this value/magnitudinal distance measure, which can be computed across the entire dataset and then normalize the values to between 0 and 1 such that we are bound between [0, 1] pre-weighting.</p>
+<img alt="_images/ValueDistance.jpg" class="align-center" src="_images/ValueDistance.jpg" />
+<p><strong>C. Composite Distance Function</strong></p>
+<p>These two distance functions are then combined in a unique way to give us the final measure of R-K distance and detailed below:</p>
+<img alt="_images/CompositeFormula.jpg" class="align-center" src="_images/CompositeFormula.jpg" />
+<p>R-K Distance thereby produces a composite distance function combing  both components of Topological and Value/Magnitudinal Distance in a unique way to allow for the homeomorphic comparison of both graph and topological properties of R-K Diagrams as demonstrated in the diagram below:</p>
+<img alt="_images/CompositeFunctionGraph.png" src="_images/CompositeFunctionGraph.png" />
+<p><strong>D. Objective Function:</strong>
+The R-K distance has an ML based Objective Function which is defined as follows:</p>
+<img alt="_images/ObjectiveFunction.jpg" src="_images/ObjectiveFunction.jpg" />
+<p>The goal of the objective function, as defined above, is to maximize divergence across R-K Diagrams by minimizing the similarity across diagrams. This is determined through a distance function defined in the Measuring R-K Distance subsection, which takes into account topological
+and value / magnitudinal similarities across R-K Diagrams using a weighted distance function. We chose an even distribution of [0.5, 0.5] for w as a prior, as there is no reason to bias the weights apriori. Over iteration of θ, we will attempt to minimize the overall loss. Assuming an infinite number of iterations, we would hope that we maximize divergence across R-K Diagrams such that no R-K Diagram is exactly the same except for the same data, which would deterministically produce the same R-K Diagram.</p>
+<span class="target" id="module-rktoolkit.ml.objective_functions"></span><p><strong>E. Non-Gradient Combinatorial ML Optimiser</strong></p>
+<p>Because topological distance functions do not exhibit continuous gradients we employed a gradient free optimization Based on Nevergrad / NGOpts. NGOpts is an optimizer built by Facebook and the default suggested optimizer for non-gradient combinatorial machine learning involving graphs with discrete nodes and edges.</p>
+<p>TODO: Add code from store sales notebook</p>
+</section>
+<section id="filters-module">
+<span id="rktoolkit-functions-filters"></span><h2>Filters Module<a class="headerlink" href="#filters-module" title="Permalink to this heading"></a></h2>
+<p>Built-in filters that comply with the Filter interface.</p>
+<span class="target" id="module-rktoolkit.functions.filters"></span><dl class="py class">
+<dt class="sig sig-object py" id="rktoolkit.functions.filters.FilterAll">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rktoolkit.functions.filters.</span></span><span class="sig-name descname"><span class="pre">FilterAll</span></span><a class="headerlink" href="#rktoolkit.functions.filters.FilterAll" title="Permalink to this definition"></a></dt>
+<dd><p>Filter for all knobs. To be used when all needs to be filtered.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="rktoolkit.functions.filters.FilterAll.filter">
+<span class="sig-name descname"><span class="pre">filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.functions.filters.FilterAll.filter" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rktoolkit.functions.filters.FilterAll.get_knobs">
+<span class="sig-name descname"><span class="pre">get_knobs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.functions.filters.FilterAll.get_knobs" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rktoolkit.functions.filters.FilterAll.set_knob">
+<span class="sig-name descname"><span class="pre">set_knob</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">knb</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.functions.filters.FilterAll.set_knob" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="rktoolkit.functions.filters.FilterNone">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rktoolkit.functions.filters.</span></span><span class="sig-name descname"><span class="pre">FilterNone</span></span><a class="headerlink" href="#rktoolkit.functions.filters.FilterNone" title="Permalink to this definition"></a></dt>
+<dd><p>Filter for No filters. To be used when nothing needs to be filtered.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="rktoolkit.functions.filters.FilterNone.filter">
+<span class="sig-name descname"><span class="pre">filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.functions.filters.FilterNone.filter" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rktoolkit.functions.filters.FilterNone.get_knobs">
+<span class="sig-name descname"><span class="pre">get_knobs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.functions.filters.FilterNone.get_knobs" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rktoolkit.functions.filters.FilterNone.set_knob">
+<span class="sig-name descname"><span class="pre">set_knob</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">knb</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.functions.filters.FilterNone.set_knob" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="rktoolkit.functions.filters.RangeFilter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rktoolkit.functions.filters.</span></span><span class="sig-name descname"><span class="pre">RangeFilter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">min</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.functions.filters.RangeFilter" title="Permalink to this definition"></a></dt>
+<dd><p><a href="#id1"><span class="problematic" id="id2">|</span></a>A range filter is one of the simplest filters that is provided in version 1 of the R-K Toolkit. We assign the filters to each level of the hierarchy that contains numeric data which operates as follows:
+|
+|    True : if v /∈ {m,M]
+|    False:  else
+|
+<a href="#id3"><span class="problematic" id="id4">|</span></a>where:
+|    • v is the value of the node.
+|    • m is the minimum boundary condition for the filter.
+|    • M is the maximum boundary condition for the filter.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="rktoolkit.functions.filters.RangeFilter.filter">
+<span class="sig-name descname"><span class="pre">filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.functions.filters.RangeFilter.filter" title="Permalink to this definition"></a></dt>
+<dd><p>Filter method to filter the node according to the range.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>node</strong> (<em>Any</em>) – Node to be filtered</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns true if filtered else false.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rktoolkit.functions.filters.RangeFilter.get_knobs">
+<span class="sig-name descname"><span class="pre">get_knobs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.functions.filters.RangeFilter.get_knobs" title="Permalink to this definition"></a></dt>
+<dd><p>Get knobs to be used for the filter range.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Min and max ranges.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rktoolkit.functions.filters.RangeFilter.set_knob">
+<span class="sig-name descname"><span class="pre">set_knob</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">knb</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.functions.filters.RangeFilter.set_knob" title="Permalink to this definition"></a></dt>
+<dd><p>Set Knobs to given values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>knb</strong> (<em>str</em>) – The knob to be adjusted, can be either min or max.</p></li>
+<li><p><strong>v</strong> (<em>int</em>) – Value of the knob to be adjusted to.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – Need the <cite>knob</cite> argument to be only min or max,else the error will be raised.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="base-ontology-and-hierarchical-transform-graphs">
+<span id="rktoolkit-functions-htg-transformers"></span><h2>Base Ontology and Hierarchical Transform Graphs<a class="headerlink" href="#base-ontology-and-hierarchical-transform-graphs" title="Permalink to this heading"></a></h2>
+<p>Classes used to create Hierarchical Transform Graphs(HTG) or transform normal graphs into a HTG.</p>
+<span class="target" id="module-rktoolkit.functions.htg_transformers"></span><dl class="py class">
+<dt class="sig sig-object py" id="rktoolkit.functions.htg_transformers.BaseOntologyTransform">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rktoolkit.functions.htg_transformers.</span></span><span class="sig-name descname"><span class="pre">BaseOntologyTransform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mapping</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lens</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'root'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_decay_rate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.functions.htg_transformers.BaseOntologyTransform" title="Permalink to this definition"></a></dt>
+<dd><p>This Class is used for cases in which an ontology is generated or provided for a particular application. It creates a transform for a given Ontology loaded from a JSON file with input given as a Python object. The JSON file contains hierarchical data. This class transforms the ontology into a Graph using the data from the dataframe of any particular data source or from results of the Hierarchical Transform Graph based on covariance parameters.  An empty graph is first created and the rest of vertices and edges are added using a private convert method.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="rktoolkit.functions.htg_transformers.BaseOntologyTransform.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.functions.htg_transformers.BaseOntologyTransform.transform" title="Permalink to this definition"></a></dt>
+<dd><p>Transforms the ontology into a Graph using the data from the dataframe of GWTC.
+An empty graph is created and the rest of vertices and edges are added using a private convert method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>X</strong> (<em>Any</em>) – Data to be transformed to graph</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Graph transform for the given data.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.graph.Graph" title="rktoolkit.models.graph.Graph">Graph</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="rktoolkit.functions.htg_transformers.CorrelationHTGGenerator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rktoolkit.functions.htg_transformers.</span></span><span class="sig-name descname"><span class="pre">CorrelationHTGGenerator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.7</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.functions.htg_transformers.CorrelationHTGGenerator" title="Permalink to this definition"></a></dt>
+<dd><p>This Class is used to create a Correlation and covariance based Hierarchical Transform Graph(HTG) using a given data frame for pre determining dependence and interrelationships between various column variables residing in the master-dataset which could consist of columns and dimensions from different data sources/streams representing the same event or entity. Transforms a given graph into a Correlated HTG with built-in covariance parameters which determine interdependence between dependent and independent variables. In this case an empty HTG is created first and then nodes are added to it based on the correlation factor between different dimensions of the master-dataset.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="rktoolkit.functions.htg_transformers.CorrelationHTGGenerator.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.functions.htg_transformers.CorrelationHTGGenerator.fit" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rktoolkit.functions.htg_transformers.CorrelationHTGGenerator.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.functions.htg_transformers.CorrelationHTGGenerator.transform" title="Permalink to this definition"></a></dt>
+<dd><p>Transforms a given graph into a Correlated HTG. Empty HTG is created and then nodes are added to it based on the correlation factor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>X</strong> (<em>Any</em>) – Input data to be used for creating the transform. Will be converted into a correlated dataframe.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A correlated Hierarchical Transform Graph.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.graph.HierarchicalTransformGraph" title="rktoolkit.models.graph.HierarchicalTransformGraph">HierarchicalTransformGraph</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="graph-linkers">
+<span id="rktoolkit-functions-linkers"></span><h2>Graph Linkers<a class="headerlink" href="#graph-linkers" title="Permalink to this heading"></a></h2>
+<p>Simple linker methods to link nodes to a graph.</p>
+<span class="target" id="module-rktoolkit.functions.linkers"></span><dl class="py class">
+<dt class="sig sig-object py" id="rktoolkit.functions.linkers.SimpleChildLinker">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rktoolkit.functions.linkers.</span></span><span class="sig-name descname"><span class="pre">SimpleChildLinker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">theta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.functions.linkers.SimpleChildLinker" title="Permalink to this definition"></a></dt>
+<dd><p>A simple leaf-linker function is provided in the R-K Toolkit which can be used to build a specific R-K model based on the choice of lens and application. The simple leaf linker compares only the leafs of a graph tree, and provides an edge E in the case the euclidean distance is less than the specified threshold. Thus a Leaf Linker function compares the distances between values with ϵ &lt; θ, and links the leafs of the final clusters based upon the set threshold.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="rktoolkit.functions.linkers.SimpleChildLinker.check_valid_node">
+<span class="sig-name descname"><span class="pre">check_valid_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#rktoolkit.functions.linkers.SimpleChildLinker.check_valid_node" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if node contains value or not</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>node</strong> (<em>Any</em>) – Node to be checked for validity</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns  true if Node is valid, else false</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rktoolkit.functions.linkers.SimpleChildLinker.get_knobs">
+<span class="sig-name descname"><span class="pre">get_knobs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.functions.linkers.SimpleChildLinker.get_knobs" title="Permalink to this definition"></a></dt>
+<dd><p>Get the knobs to link.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Knob</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rktoolkit.functions.linkers.SimpleChildLinker.link">
+<span class="sig-name descname"><span class="pre">link</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.functions.linkers.SimpleChildLinker.link" title="Permalink to this definition"></a></dt>
+<dd><p>Links the nodes of the given Graph by creating a copy of the graph  and adding nodes to it based on criteria</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>G</strong> (<a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.graph.Graph" title="rktoolkit.models.graph.Graph"><em>Graph</em></a>) – Graph to be linked.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A linked graph with all child nodes linked.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.graph.Graph" title="rktoolkit.models.graph.Graph">Graph</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rktoolkit.functions.linkers.SimpleChildLinker.set_knob">
+<span class="sig-name descname"><span class="pre">set_knob</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">knb</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.functions.linkers.SimpleChildLinker.set_knob" title="Permalink to this definition"></a></dt>
+<dd><p>_summary_</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>knb</strong> (<em>str</em>) – Knob value</p></li>
+<li><p><strong>v</strong> (<em>int</em>) – Value for theta</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If knob isn’t theta raises Valu  error</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="rktoolkit.functions.linkers.SimpleLinkageFunction">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rktoolkit.functions.linkers.</span></span><span class="sig-name descname"><span class="pre">SimpleLinkageFunction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.functions.linkers.SimpleLinkageFunction" title="Permalink to this definition"></a></dt>
+<dd><p>A greedy and quick linkage function implementing <cite>LinkageFunction</cite>. Takes O(n^2) time and can be improved.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="rktoolkit.functions.linkers.SimpleLinkageFunction.link">
+<span class="sig-name descname"><span class="pre">link</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.graph.HierarchicalGraph" title="rktoolkit.models.graph.HierarchicalGraph"><span class="pre">HierarchicalGraph</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.functions.linkers.SimpleLinkageFunction.link" title="Permalink to this definition"></a></dt>
+<dd><p>Simple recursive link method to add nodes to Graph.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>X</strong> (<a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.graph.HierarchicalGraph" title="rktoolkit.models.graph.HierarchicalGraph"><em>HierarchicalGraph</em></a>) – Graph to be linked, needs to be Hierarchical to implement the linking without issues.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns a linked Hierarchical Graph after recursion is finished</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.graph.HierarchicalGraph" title="rktoolkit.models.graph.HierarchicalGraph">HierarchicalGraph</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="localization-methods">
+<span id="rktoolkit-functions-localizers"></span><h2>Localization methods<a class="headerlink" href="#localization-methods" title="Permalink to this heading"></a></h2>
+<p>Matrix localization methods. Must implement the LocalizationFunction interface.</p>
+<span class="target" id="module-rktoolkit.functions.localizers"></span><dl class="py class">
+<dt class="sig sig-object py" id="rktoolkit.functions.localizers.IterableLocalizationFunction">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rktoolkit.functions.localizers.</span></span><span class="sig-name descname"><span class="pre">IterableLocalizationFunction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterateX</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iterateY</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iterateZ</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.functions.localizers.IterableLocalizationFunction" title="Permalink to this definition"></a></dt>
+<dd><p>An Iterable localization function that localizes a N x D matrix around the max. The class can be initialized with parameters to determine which dimensions should be iterated and modified for a particular application.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="rktoolkit.functions.localizers.IterableLocalizationFunction.localize">
+<span class="sig-name descname"><span class="pre">localize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.functions.localizers.IterableLocalizationFunction.localize" title="Permalink to this definition"></a></dt>
+<dd><p>Localizes  the matrix X around the max iteratively.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>X</strong> (<em>ndarray</em>) – Matrix X to be localized.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Localized X,Y and Z values</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int,int,int</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="rktoolkit.functions.localizers.NDMaxLocalizationFunction">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rktoolkit.functions.localizers.</span></span><span class="sig-name descname"><span class="pre">NDMaxLocalizationFunction</span></span><a class="headerlink" href="#rktoolkit.functions.localizers.NDMaxLocalizationFunction" title="Permalink to this definition"></a></dt>
+<dd><p>Localization function that localizes a N x D matrix around the maximum value of the matrix.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="rktoolkit.functions.localizers.NDMaxLocalizationFunction.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.functions.localizers.NDMaxLocalizationFunction.predict" title="Permalink to this definition"></a></dt>
+<dd><p>Predicts and localizes a given N x D matrix around the maximum of the matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>X</strong> (<em>ndarray</em>) – Matrix to be localized. Should be in N x D dimensions.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Localized values for the matrix X</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>tuple[int], int</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="modules.html" class="btn btn-neutral float-left" title="All Package Modules" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="rktoolkit.io.html" class="btn btn-neutral float-right" title="IO package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2021, Andor Kesselman.
-
-    </p>
+    <p>&#169; Copyright 2021, Andor Kesselman.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

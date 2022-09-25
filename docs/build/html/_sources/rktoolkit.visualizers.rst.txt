@@ -1,24 +1,42 @@
-rktoolkit.visualizers package
+.. _rktoolkit.visualizers:
+
+Visualizers package
 =============================
 
-Submodules
-----------
+Visualizers package contains classes for visualising the RK model into a RK-Diagram.
 
-rktoolkit.visualizers.circular module
--------------------------------------
+.. _rktoolkit.visualizers.circular:
+
+Circular Visualizer
+-------------------
 
 .. automodule:: rktoolkit.visualizers.circular
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
+   :exclude-members: __init__
 
-rktoolkit.visualizers.visualizer module
----------------------------------------
+.. _rktoolkit.visualizers.visualizer:
+
+Base Visualizers
+----------------
 
 .. automodule:: rktoolkit.visualizers.visualizer
    :members:
    :undoc-members:
    :show-inheritance:
+
+.. _rktoolkit.visualizers.util:
+
+Utilities Module for Visualizers
+--------------------------------
+
+.. automodule:: rktoolkit.visualizers.util
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 
 Module contents
 ---------------
@@ -27,3 +45,4 @@ Module contents
    :members:
    :undoc-members:
    :show-inheritance:
+

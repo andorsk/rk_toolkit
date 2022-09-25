@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>R-K Pipeline &mdash; rktoolkit 0.0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/design-tabs.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="R-K Model" href="rktoolkit-modeldiagram.html" />
+    <link rel="prev" title="R-K Modules" href="rktoolkit.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> rktoolkit
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installing the R-K Toolkit and Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="rktoolkit.html">R-K Modules</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">R-K Pipeline</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rktoolkit.models.pipeline.RKPipeline"><code class="docutils literal notranslate"><span class="pre">RKPipeline</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rktoolkit.models.pipeline.RKPipeline.check_valid_node"><code class="docutils literal notranslate"><span class="pre">RKPipeline.check_valid_node()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rktoolkit.models.pipeline.RKPipeline.get_w"><code class="docutils literal notranslate"><span class="pre">RKPipeline.get_w()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rktoolkit.models.pipeline.RKPipeline.remap"><code class="docutils literal notranslate"><span class="pre">RKPipeline.remap()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rktoolkit.models.pipeline.RKPipeline.transform"><code class="docutils literal notranslate"><span class="pre">RKPipeline.transform()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#base-ontology-and-hierarchical-transform-graphs">Base Ontology and Hierarchical Transform Graphs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rktoolkit.functions.htg_transformers.BaseOntologyTransform"><code class="docutils literal notranslate"><span class="pre">BaseOntologyTransform</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rktoolkit.functions.htg_transformers.CorrelationHTGGenerator"><code class="docutils literal notranslate"><span class="pre">CorrelationHTGGenerator</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#hierarchical-embedding-function">Hierarchical Embedding Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#isometric-compressions">Isometric Compressions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="rktoolkit-modeldiagram.html">R-K Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rktoolkit-distance.html">Distance Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rktoolkit-functions.html">R-K Utility Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">All Package Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">rktoolkit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="rktoolkit.html">R-K Modules</a> &raquo;</li>
+      <li>R-K Pipeline</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/rktoolkit-pipeline.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="r-k-pipeline">
+<h1>R-K Pipeline<a class="headerlink" href="#r-k-pipeline" title="Permalink to this heading"></a></h1>
+<p>An R-K Pipeline is a unidirectional pipeline that builds an R-K Model from an incoming dataset or data stream as a precursor to generate domain specific R-K Diagrams with appropriate “range-filters” and “leaf-linkers’’. An R-K Pipeline, involves the process of transforming an NxM Tensor  with 3 or more independent physical/ontological variables into an R-K Model which can then be visualized as an R-K Diagram with the help of domain specific filter and linker functions.
+At a base level, the R-K Pipeline can be understood as a Directed Acyclic Graph (DAG), which provides transformational components that result in a composite model we call an R-K Model. Transforms in an R-K Pipeline can be chained against each other, as long as egress from one component complies with the ingress specifications from another component. We can mathematically represent this with the following representation: <img alt="CRK" src="../../imgs/Pipe/Pipe1.jpg" /> where <img alt="Ci" src="../../imgs/Pipe/Pipe2.jpg" /> represents a pipeline component and the egress of <img alt="Ci" src="../../imgs/Pipe/Pipe2.jpg" /> is compliant with a set of constraints imposed by <img alt="Ci1" src="../../imgs/Pipe/Pipe3.jpg" />‘s ingress. There are a few novel concepts and objects within the pipeline as well as the entire pipeline itself, by virtue of its components and ordering, that provide a novel approach toward topological graph theory and data analysis.</p>
+<p>The figure below demonstrates the various steps of an R-K Pipeline w.r.t. the data-flow as shown:</p>
+<a class="reference internal image-reference" href="_images/rk-flow.png"><img alt="_images/rk-flow.png" src="_images/rk-flow.png" style="width: 600px;" /></a>
+<p>Composed together are the following steps:</p>
+<ol class="arabic simple">
+<li><p>Preprocess Steps</p></li>
+<li><p>Localization Algorithm</p></li>
+<li><p>Hierarchical Feature Extraction Nodes</p></li>
+<li><p>Filter Functions</p></li>
+<li><p>Linkage Functions</p></li>
+</ol>
+<p>Composed together, these independent component modules of the R-K Pipeline can be triggered in sequence to synthesize an R-K Model as a precursor to generating R-K Diagrams.</p>
+<span class="target" id="module-rktoolkit.models.pipeline"></span><dl class="py class">
+<dt class="sig sig-object py" id="rktoolkit.models.pipeline.RKPipeline">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rktoolkit.models.pipeline.</span></span><span class="sig-name descname"><span class="pre">RKPipeline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filter_map</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linkage_map</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">structural_graph</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.models.pipeline.RKPipeline" title="Permalink to this definition"></a></dt>
+<dd><p>Class implementing the R-K Pipeline explained above</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="rktoolkit.models.pipeline.RKPipeline.check_valid_node">
+<span class="sig-name descname"><span class="pre">check_valid_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#rktoolkit.models.pipeline.RKPipeline.check_valid_node" title="Permalink to this definition"></a></dt>
+<dd><p>Check if the node is valid or not</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>node</strong> (<em>Any</em>) – Node to be checked</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Return True if node has value, else False</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rktoolkit.models.pipeline.RKPipeline.get_w">
+<span class="sig-name descname"><span class="pre">get_w</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.models.pipeline.RKPipeline.get_w" title="Permalink to this definition"></a></dt>
+<dd><p>Method to get the vertices and columns for mapping.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Returns both the vertex mapping and columns.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>tuple[list,list]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rktoolkit.models.pipeline.RKPipeline.remap">
+<span class="sig-name descname"><span class="pre">remap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vmap</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.models.pipeline.RKPipeline.remap" title="Permalink to this definition"></a></dt>
+<dd><p>Method to Remap the pipeline for the RKModel</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vmap</strong> (<em>Any</em>) – Vertices Mapping</p></li>
+<li><p><strong>cols</strong> (<em>Any</em>) – Columns for the mapping</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns a remapped R-K Pipeline Class</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.pipeline.RKPipeline" title="rktoolkit.models.pipeline.RKPipeline">RKPipeline</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rktoolkit.models.pipeline.RKPipeline.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_base</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.models.pipeline.RKPipeline.transform" title="Permalink to this definition"></a></dt>
+<dd><p>Transforms the given Graph into a R-K Model</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>G</strong> (<a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.graph.Graph" title="rktoolkit.models.graph.Graph"><em>Graph</em></a>) – Input Graph</p></li>
+<li><p><strong>is_base</strong> (<em>bool</em><em>, </em><em>optional</em>) – If its base graph or not, defaults to True</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>R-K Model of the graph.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.rkmodel.RKModel" title="rktoolkit.models.rkmodel.RKModel">RKModel</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<section id="base-ontology-and-hierarchical-transform-graphs">
+<h2>Base Ontology and Hierarchical Transform Graphs<a class="headerlink" href="#base-ontology-and-hierarchical-transform-graphs" title="Permalink to this heading"></a></h2>
+<p>An ontology in the context of an R-K Model, describes the relationship between two or more measures in the form of a hierarchy. Ontological frameworks are domain dependent and have numerous advantages, such that it makes domain assumptions on data explicit and/or to share a common understanding of structural information across metrics.</p>
+<p>In an R-K Pipeline the ontologies can either be learned via covariance and correlation associations made automatically using the Correlation HTG module from relational databases which represent physical parameters without any explicit framework for determining dependence and relationships. These domain ontologies can also be inherited in the R-K Pipeline from Ontological databases available online or JSON files which contain a particular defined hierarchy. There are numerous ontological databases available for describing relationships between known domains which can be directly applied to the R-K Pipeline to build corresponding models based on the choice of a particular lens function. The Web Ontology Language (OWL) is a specific set of web standards and language devised to standardize ontologies through OWL Documents which can be applied to the R-K Pipeline.</p>
+<p>Classes used to create Base Ontology Transform and Correlated Hierarchical Transform Graphs.</p>
+<span class="target" id="module-rktoolkit.functions.htg_transformers"></span><dl class="py class">
+<dt class="sig sig-object py" id="rktoolkit.functions.htg_transformers.BaseOntologyTransform">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rktoolkit.functions.htg_transformers.</span></span><span class="sig-name descname"><span class="pre">BaseOntologyTransform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mapping</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lens</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'root'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_decay_rate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.functions.htg_transformers.BaseOntologyTransform" title="Permalink to this definition"></a></dt>
+<dd><p>This Class is used for cases in which an ontology is generated or provided for a particular application. It creates a transform for a given Ontology loaded from a JSON file with input given as a Python object. The JSON file contains hierarchical data. This class transforms the ontology into a Graph using the data from the dataframe of any particular data source or from results of the Hierarchical Transform Graph based on covariance parameters.  An empty graph is first created and the rest of vertices and edges are added using a private convert method.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="rktoolkit.functions.htg_transformers.BaseOntologyTransform.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.functions.htg_transformers.BaseOntologyTransform.transform" title="Permalink to this definition"></a></dt>
+<dd><p>Transforms the ontology into a Graph using the data from the dataframe of GWTC.
+An empty graph is created and the rest of vertices and edges are added using a private convert method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>X</strong> (<em>Any</em>) – Data to be transformed to graph</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Graph transform for the given data.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.graph.Graph" title="rktoolkit.models.graph.Graph">Graph</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="rktoolkit.functions.htg_transformers.CorrelationHTGGenerator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rktoolkit.functions.htg_transformers.</span></span><span class="sig-name descname"><span class="pre">CorrelationHTGGenerator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.7</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.functions.htg_transformers.CorrelationHTGGenerator" title="Permalink to this definition"></a></dt>
+<dd><p>This Class is used to create a Correlation and covariance based Hierarchical Transform Graph(HTG) using a given data frame for pre determining dependence and interrelationships between various column variables residing in the master-dataset which could consist of columns and dimensions from different data sources/streams representing the same event or entity. Transforms a given graph into a Correlated HTG with built-in covariance parameters which determine interdependence between dependent and independent variables. In this case an empty HTG is created first and then nodes are added to it based on the correlation factor between different dimensions of the master-dataset.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="rktoolkit.functions.htg_transformers.CorrelationHTGGenerator.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.functions.htg_transformers.CorrelationHTGGenerator.fit" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rktoolkit.functions.htg_transformers.CorrelationHTGGenerator.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.functions.htg_transformers.CorrelationHTGGenerator.transform" title="Permalink to this definition"></a></dt>
+<dd><p>Transforms a given graph into a Correlated HTG. Empty HTG is created and then nodes are added to it based on the correlation factor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>X</strong> (<em>Any</em>) – Input data to be used for creating the transform. Will be converted into a correlated dataframe.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A correlated Hierarchical Transform Graph.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.graph.HierarchicalTransformGraph" title="rktoolkit.models.graph.HierarchicalTransformGraph">HierarchicalTransformGraph</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="hierarchical-embedding-function">
+<h2>Hierarchical Embedding Function<a class="headerlink" href="#hierarchical-embedding-function" title="Permalink to this heading"></a></h2>
+<p>In the R-K Pipeline, a Hierarchical Embedding Function (<img alt="fH" src="../../imgs/HEF/HEF1.jpg" />) generates a graph G from a set of measures M such that the resulting graph G, is a DAG which represents a bijective mapping between <img alt="migi" src="../../imgs/HEF/HEF2.jpg" /> such that all <img alt="vig" src="../../imgs/HEF/HEF3.jpg" /> can be traced back to the original value in the dataset, where V is a vertex. More succinctly, <img alt="fHMG" src="../../imgs/HEF/HEF4.jpg" /> such that <img alt="fHGvi" src="../../imgs/HEF/HEF5.jpg" />. The advantage of this requirement is that any structural graph can be inverted back into original measures used to generate the graph.</p>
+<p>Across the pipeline, the graph generated by <img alt="Hf" src="../../imgs/HEF/HEF6.jpg" /> is referenced as a Structural Graph (S). The structural graph provides the baseline ontological structure that forms the basis for all other transformations in the pipeline.</p>
+</section>
+<section id="isometric-compressions">
+<h2>Isometric Compressions<a class="headerlink" href="#isometric-compressions" title="Permalink to this heading"></a></h2>
+<p>Unlike standard dimensionality reduction techniques, compression techniques applied to the R-K Diagrams do not lose resolution in the data and can also maintain a consistent number of dimensions (2 or 3) of diagrams regardless of the number of model dimensions.</p>
+<p>This makes it far easier to evaluate models in higher dimensional space qualitatively without data loss and is one of the primary advantages to the R-K Pipeline. We used the steps outlined in Isometric Compressions,Inverse Function, and Decompression for graph compression.</p>
+<p>We used a limited compression technique via a 1 degree leaf compression technique, which compressed all 1 degree or “unlinked” leafs into a single compressed leaf branching from the same parent. The steps are maintained internally so that the original structural graph can be reconstructed from the compressed version, thereby providing the inverse transformation.</p>
+<p>TODO: Need to add from the notebook after talking with andorsk</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="rktoolkit.html" class="btn btn-neutral float-left" title="R-K Modules" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="rktoolkit-modeldiagram.html" class="btn btn-neutral float-right" title="R-K Model" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Andor Kesselman.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

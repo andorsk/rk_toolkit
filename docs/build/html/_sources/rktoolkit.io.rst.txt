@@ -1,11 +1,15 @@
-rktoolkit.io package
+.. _rktoolkit.io:
+
+IO package
 ====================
 
 Submodules
 ----------
 
-rktoolkit.io.io module
-----------------------
+.. _rktoolkit.io.io:
+
+Read and Writer Interfaces
+--------------------------
 
 .. automodule:: rktoolkit.io.io
    :members:
