@@ -46,8 +46,14 @@
 <li class="toctree-l1"><a class="reference internal" href="rktoolkit.html">R-K Modules</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">All Package Modules</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Functions package</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#module-rktoolkit.functions">Module contents</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#distance-module">Distance Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#distance-module">Distance Module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#a-topological-distance-function"><strong>A. Topological Distance Function</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#b-the-value-magnitudinal-distance"><strong>B. The Value/Magnitudinal Distance</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c-composite-distance-function"><strong>C. Composite Distance Function</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#d-objective-function"><strong>D. Objective Function:</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#e-non-gradient-combinatorial-ml-optimiser"><strong>E. Non-Gradient Combinatorial ML Optimiser</strong></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#filters-module">Filters Module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#rktoolkit.functions.filters.FilterAll"><code class="docutils literal notranslate"><span class="pre">FilterAll</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#rktoolkit.functions.filters.FilterNone"><code class="docutils literal notranslate"><span class="pre">FilterNone</span></code></a></li>
@@ -107,9 +113,6 @@
              
   <section id="functions-package">
 <span id="rktoolkit-functions"></span><h1>Functions package<a class="headerlink" href="#functions-package" title="Permalink to this heading"></a></h1>
-<section id="module-rktoolkit.functions">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-rktoolkit.functions" title="Permalink to this heading"></a></h2>
-</section>
 <section id="distance-module">
 <span id="rktoolkit-functions-distance"></span><h2>Distance Module<a class="headerlink" href="#distance-module" title="Permalink to this heading"></a></h2>
 <p>R-K Distance is a composite distance function that measures the distance and similarity between any two R-K Diagrams in a metric built to measure homeomorphism using a combination of Topological Distance as an extension of Jaccard Distance &amp; Value/Magnitudinal Distance based on an extension of Mahalanobis Distance. R-K Distance is critical to the tuning and understanding of R-K Diagrams for its ability to quantitatively measure divergence (and its dual, i.e. similarity) across all R-K Diagrams rendered from a particular R-K Model.</p>
@@ -121,27 +124,100 @@ Formulation, such that our final R-K Distance equation can be represented as:</p
 <p>This also allows for the quantitative comparison of  overall homeomorphic similarities between R-K Diagrams defining similarity as a dual of R-K Distance as:</p>
 <img alt="_images/Dist4.jpg" class="align-center" src="_images/Dist4.jpg" />
 <p>With all results normalized between 0 and 1. Such measures of homeomorphic similarities between R-K Diagrams can be optimized in our metric-space via combinatorial machine learning techniques such as <a class="reference external" href="https://facebookresearch.github.io/nevergrad/">Nevergrad</a> which maximize or minimize the R-K Distance for the purpose of ML Classifications.</p>
-<p><strong>A. Topological Distance Function</strong></p>
+<section id="a-topological-distance-function">
+<h3><strong>A. Topological Distance Function</strong><a class="headerlink" href="#a-topological-distance-function" title="Permalink to this heading"></a></h3>
 <p>The Topological Distance Function allows us to compare topological similarities and differences between various clusters and simplexes of any two R-K Diagrams. It allows for the quantitative comparison of  large-scale geometric and topological differences between R-K Diagrams. In our initial implementation, we have extended the Jaccard distance formulation to provide a comparison of  geometric distance across R-K Diagrams. The Jaccard distance is one of many possible distance functions that can be applied toward graph distances. It is simple but effective in many machine learning algorithms and is a widely applied algorithm across many domains.</p>
 <img alt="_images/Topo1.jpg" class="align-center" src="_images/Topo1.jpg" />
 <p>Where in the extension of our formulation A and B are defined as a tuple that represents an edge  <img alt="Vij" src="_images/Topo2.jpg" /> such that <img alt="Vi" src="_images/Topo3.jpg" /> is the source node and <img alt="Vj" src="_images/Topo4.jpg" /> is the sink.</p>
 <p>For the quantitative comparison of R-K Diagrams, it is critical to evaluate the Jaccard distances against the directed edges, such that the distance measure is sensitive to topological differences due to direction. If a Jaccard distance is applied only at the vertex level, key information about the directed edges and the linked vertices would be lost. This would be ineffective for the quantitative comparison of geometric and topological properties across R-K Diagrams. Hence we have modified the original formulation and used edges for Jaccard measurements, such that critical features in the distance measurement are preserved.</p>
-<p><strong>B. The Value/Magnitudinal Distance</strong></p>
+<dl class="py class">
+<dt class="sig sig-object py" id="rktoolkit.functions.distance.jaccard">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rktoolkit.functions.distance.</span></span><span class="sig-name descname"><span class="pre">jaccard</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.functions.distance.jaccard" title="Permalink to this definition"></a></dt>
+<dd><p>Topological Distance Function</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>s1</strong> (<em>set</em>) – Data Set 1</p></li>
+<li><p><strong>s2</strong> (<em>set</em>) – Data Set 2</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Topological Distance</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="b-the-value-magnitudinal-distance">
+<h3><strong>B. The Value/Magnitudinal Distance</strong><a class="headerlink" href="#b-the-value-magnitudinal-distance" title="Permalink to this heading"></a></h3>
 <p>The Value/Magnitudinal Distance is intended to amplify the effects of the distance measure when topology isn’t sufficient to demonstrate differences. For example, in the case of store sales, a purchase could be very similar topologically, but very different in terms of magnitude as the actual sales value differs radically across R-K Diagrams. By comparing the magnitude of the nodes as well as the topology, it provides a clear distinction across R-K Diagrams when topological differences are not sufficient. We extended  the Mahalanobis distance to provide this value/magnitudinal distance measure, which can be computed across the entire dataset and then normalize the values to between 0 and 1 such that we are bound between [0, 1] pre-weighting.</p>
 <img alt="_images/ValueDistance.jpg" class="align-center" src="_images/ValueDistance.jpg" />
-<p><strong>C. Composite Distance Function</strong></p>
+<dl class="py class">
+<dt class="sig sig-object py" id="rktoolkit.functions.distance.mahalanobis">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rktoolkit.functions.distance.</span></span><span class="sig-name descname"><span class="pre">mahalanobis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cov</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.functions.distance.mahalanobis" title="Permalink to this definition"></a></dt>
+<dd><p>Value Distance Funtion</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>ndarray</em><em>, </em><em>optional</em>) – vector or matrix of data with, say, p columns, defaults to None</p></li>
+<li><p><strong>data</strong> (<em>ndarray</em><em>, </em><em>optional</em>) – ndarray of the distribution from which Value distance of each observation of x is to be computed, defaults to None</p></li>
+<li><p><strong>cov</strong> (<em>ndarray</em><em>, </em><em>optional</em>) – covariance matrix (p x p) of the distribution. If None, will be computed from data.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Value/Magnitudinal distance.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="c-composite-distance-function">
+<h3><strong>C. Composite Distance Function</strong><a class="headerlink" href="#c-composite-distance-function" title="Permalink to this heading"></a></h3>
 <p>These two distance functions are then combined in a unique way to give us the final measure of R-K distance and detailed below:</p>
 <img alt="_images/CompositeFormula.jpg" class="align-center" src="_images/CompositeFormula.jpg" />
 <p>R-K Distance thereby produces a composite distance function combing  both components of Topological and Value/Magnitudinal Distance in a unique way to allow for the homeomorphic comparison of both graph and topological properties of R-K Diagrams as demonstrated in the diagram below:</p>
 <img alt="_images/CompositeFunctionGraph.png" src="_images/CompositeFunctionGraph.png" />
-<p><strong>D. Objective Function:</strong>
-The R-K distance has an ML based Objective Function which is defined as follows:</p>
+</section>
+<section id="d-objective-function">
+<h3><strong>D. Objective Function:</strong><a class="headerlink" href="#d-objective-function" title="Permalink to this heading"></a></h3>
+<p>The R-K distance has an ML based Objective Function which is defined as follows:</p>
 <img alt="_images/ObjectiveFunction.jpg" src="_images/ObjectiveFunction.jpg" />
 <p>The goal of the objective function, as defined above, is to maximize divergence across R-K Diagrams by minimizing the similarity across diagrams. This is determined through a distance function defined in the Measuring R-K Distance subsection, which takes into account topological
 and value / magnitudinal similarities across R-K Diagrams using a weighted distance function. We chose an even distribution of [0.5, 0.5] for w as a prior, as there is no reason to bias the weights apriori. Over iteration of θ, we will attempt to minimize the overall loss. Assuming an infinite number of iterations, we would hope that we maximize divergence across R-K Diagrams such that no R-K Diagram is exactly the same except for the same data, which would deterministically produce the same R-K Diagram.</p>
-<span class="target" id="module-rktoolkit.ml.objective_functions"></span><p><strong>E. Non-Gradient Combinatorial ML Optimiser</strong></p>
+<span class="target" id="module-rktoolkit.ml.objective_functions"></span><dl class="py class">
+<dt class="sig sig-object py" id="rktoolkit.ml.objective_functions.SampleObjectiveFunction">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rktoolkit.ml.objective_functions.</span></span><span class="sig-name descname"><span class="pre">SampleObjectiveFunction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pipeline</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hft</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mdist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance_function</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.ml.objective_functions.SampleObjectiveFunction" title="Permalink to this definition"></a></dt>
+<dd><p>Sample objective function reduces distance</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="rktoolkit.ml.objective_functions.SampleObjectiveFunction.evaluate">
+<span class="sig-name descname"><span class="pre">evaluate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">w</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.ml.objective_functions.SampleObjectiveFunction.evaluate" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>w</strong> (<em>tuple</em>) – Weights to be used for evaluation in the objective function</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The R-K distance evaluated from the objective function</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="e-non-gradient-combinatorial-ml-optimiser">
+<h3><strong>E. Non-Gradient Combinatorial ML Optimiser</strong><a class="headerlink" href="#e-non-gradient-combinatorial-ml-optimiser" title="Permalink to this heading"></a></h3>
 <p>Because topological distance functions do not exhibit continuous gradients we employed a gradient free optimization Based on Nevergrad / NGOpts. NGOpts is an optimizer built by Facebook and the default suggested optimizer for non-gradient combinatorial machine learning involving graphs with discrete nodes and edges.</p>
-<p>TODO: Add code from store sales notebook</p>
+<p>An implementation of the Non-Gradient Combinatorial ML Optimiser is <a class="reference external" href="https://github.com/animikhroy/rk_toolkit_pipeline_diagrams/blob/main/02_notebooks/rk_gw_mma/common.py#L63">Here</a>.</p>
+</section>
 </section>
 <section id="filters-module">
 <span id="rktoolkit-functions-filters"></span><h2>Filters Module<a class="headerlink" href="#filters-module" title="Permalink to this heading"></a></h2>
@@ -191,15 +267,21 @@ and value / magnitudinal similarities across R-K Diagrams using a weighted dista
 <dl class="py class">
 <dt class="sig sig-object py" id="rktoolkit.functions.filters.RangeFilter">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rktoolkit.functions.filters.</span></span><span class="sig-name descname"><span class="pre">RangeFilter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">min</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.functions.filters.RangeFilter" title="Permalink to this definition"></a></dt>
-<dd><p><a href="#id1"><span class="problematic" id="id2">|</span></a>A range filter is one of the simplest filters that is provided in version 1 of the R-K Toolkit. We assign the filters to each level of the hierarchy that contains numeric data which operates as follows:
-|
-|    True : if v /∈ {m,M]
-|    False:  else
-|
-<a href="#id3"><span class="problematic" id="id4">|</span></a>where:
-|    • v is the value of the node.
-|    • m is the minimum boundary condition for the filter.
-|    • M is the maximum boundary condition for the filter.</p>
+<dd><div class="line-block">
+<div class="line">A range filter is one of the simplest filters that is provided in version 1 of the R-K Toolkit. We assign the filters to each level of the hierarchy that contains numeric data which operates as follows:</div>
+<div class="line"><br /></div>
+<div class="line-block">
+<div class="line">True : if v /∈ {m,M]</div>
+<div class="line">False:  else</div>
+<div class="line"><br /></div>
+</div>
+<div class="line">where:</div>
+<div class="line-block">
+<div class="line">• v is the value of the node.</div>
+<div class="line">• m is the minimum boundary condition for the filter.</div>
+<div class="line">• M is the maximum boundary condition for the filter.</div>
+</div>
+</div>
 <dl class="py method">
 <dt class="sig sig-object py" id="rktoolkit.functions.filters.RangeFilter.filter">
 <span class="sig-name descname"><span class="pre">filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.functions.filters.RangeFilter.filter" title="Permalink to this definition"></a></dt>
@@ -271,7 +353,7 @@ An empty graph is created and the rest of vertices and edges are added using a p
 <dd class="field-even"><p>Graph transform for the given data.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="rktoolkit-modeldiagram.html#rktoolkit.models.graph.Graph" title="rktoolkit.models.graph.Graph">Graph</a></p>
+<dd class="field-odd"><p><a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.graph.Graph" title="rktoolkit.models.graph.Graph">Graph</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -351,13 +433,13 @@ An empty graph is created and the rest of vertices and edges are added using a p
 <dd><p>Links the nodes of the given Graph by creating a copy of the graph  and adding nodes to it based on criteria</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>G</strong> (<a class="reference internal" href="rktoolkit-modeldiagram.html#rktoolkit.models.graph.Graph" title="rktoolkit.models.graph.Graph"><em>Graph</em></a>) – Graph to be linked.</p>
+<dd class="field-odd"><p><strong>G</strong> (<a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.graph.Graph" title="rktoolkit.models.graph.Graph"><em>Graph</em></a>) – Graph to be linked.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A linked graph with all child nodes linked.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="rktoolkit-modeldiagram.html#rktoolkit.models.graph.Graph" title="rktoolkit.models.graph.Graph">Graph</a></p>
+<dd class="field-odd"><p><a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.graph.Graph" title="rktoolkit.models.graph.Graph">Graph</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -365,7 +447,7 @@ An empty graph is created and the rest of vertices and edges are added using a p
 <dl class="py method">
 <dt class="sig sig-object py" id="rktoolkit.functions.linkers.SimpleChildLinker.set_knob">
 <span class="sig-name descname"><span class="pre">set_knob</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">knb</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.functions.linkers.SimpleChildLinker.set_knob" title="Permalink to this definition"></a></dt>
-<dd><p>_summary_</p>
+<dd><p>Set the knobs for linking.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -374,7 +456,7 @@ An empty graph is created and the rest of vertices and edges are added using a p
 </ul>
 </dd>
 <dt class="field-even">Raises</dt>
-<dd class="field-even"><p><strong>ValueError</strong> – If knob isn’t theta raises Valu  error</p>
+<dd class="field-even"><p><strong>ValueError</strong> – If knob isn’t theta raises Value  error</p>
 </dd>
 </dl>
 </dd></dl>
@@ -387,17 +469,17 @@ An empty graph is created and the rest of vertices and edges are added using a p
 <dd><p>A greedy and quick linkage function implementing <cite>LinkageFunction</cite>. Takes O(n^2) time and can be improved.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="rktoolkit.functions.linkers.SimpleLinkageFunction.link">
-<span class="sig-name descname"><span class="pre">link</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="rktoolkit-modeldiagram.html#rktoolkit.models.graph.HierarchicalGraph" title="rktoolkit.models.graph.HierarchicalGraph"><span class="pre">HierarchicalGraph</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.functions.linkers.SimpleLinkageFunction.link" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">link</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.graph.HierarchicalGraph" title="rktoolkit.models.graph.HierarchicalGraph"><span class="pre">HierarchicalGraph</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.functions.linkers.SimpleLinkageFunction.link" title="Permalink to this definition"></a></dt>
 <dd><p>Simple recursive link method to add nodes to Graph.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>X</strong> (<a class="reference internal" href="rktoolkit-modeldiagram.html#rktoolkit.models.graph.HierarchicalGraph" title="rktoolkit.models.graph.HierarchicalGraph"><em>HierarchicalGraph</em></a>) – Graph to be linked, needs to be Hierarchical to implement the linking without issues.</p>
+<dd class="field-odd"><p><strong>X</strong> (<a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.graph.HierarchicalGraph" title="rktoolkit.models.graph.HierarchicalGraph"><em>HierarchicalGraph</em></a>) – Graph to be linked, needs to be Hierarchical to implement the linking without issues.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>Returns a linked Hierarchical Graph after recursion is finished</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="rktoolkit-modeldiagram.html#rktoolkit.models.graph.HierarchicalGraph" title="rktoolkit.models.graph.HierarchicalGraph">HierarchicalGraph</a></p>
+<dd class="field-odd"><p><a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.graph.HierarchicalGraph" title="rktoolkit.models.graph.HierarchicalGraph">HierarchicalGraph</a></p>
 </dd>
 </dl>
 </dd></dl>

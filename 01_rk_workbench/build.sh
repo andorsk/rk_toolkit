@@ -11,7 +11,7 @@ SSH_KEY=${GITHUB_SSH_KEY:-"~/.ssh/id_rsa"}
 
 echo "Using SSH key $SSH_KEY"
 
-TARGET=cloud.canister.io:5000/andorsk/rk_toolkit/tree/documentation/01_rk_workbench
+TARGET=cloud.canister.io:5000/andorsk/rk_toolkit/01_rk_workbench
 
 docker build \
     -t ${TARGET}:${tag} \

@@ -19,6 +19,8 @@ R-K Utility Functions
 ++++++++++++++++++++++++++
 
 .. automodule:: rktoolkit.functions.localizers
+    :members:
+    :undoc-members:
 
 **Circular Visualizer**
 +++++++++++++++++++++++
@@ -36,4 +38,8 @@ decreases each iteration.
 You can override any particular value using the attributes of a node.
 
 .. automodule:: rktoolkit.visualizers.circular
-
+    :members:
+    :undoc-members:
+    :show-inheritance:
+    :private-members:
+    :exclude-members: __init__

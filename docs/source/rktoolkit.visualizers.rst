@@ -26,23 +26,17 @@ Base Visualizers
    :members:
    :undoc-members:
    :show-inheritance:
+   :exclude-members: set
 
 .. _rktoolkit.visualizers.util:
 
-Utilities Module for Visualizers
---------------------------------
+..
+   Utilities Module for Visualizers
+   --------------------------------
 
-.. automodule:: rktoolkit.visualizers.util
-   :members:
-   :undoc-members:
-   :show-inheritance:
+   .. automethod:: rktoolkit.visualizers.util.draw_graph
 
+   .. automethod:: rktoolkit.visualizers.util.draw_rk_diagram
 
-Module contents
----------------
-
-.. automodule:: rktoolkit.visualizers
-   :members:
-   :undoc-members:
-   :show-inheritance:
+   
 

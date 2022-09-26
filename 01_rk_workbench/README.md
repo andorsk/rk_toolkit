@@ -35,8 +35,9 @@ Open up your browser and go to localhost:8080. Put "mytoken" into authentication
 ## Help me find things!
 
 1. [Documentation](https://github.com/andorsk/rk_toolkit/tree/documentation/01_rk_workbench/Documentation.md)
-2. [User Guide]()
+2. [User Guide](https://docs.docker.com/get-started/overview)
 3. [Examples](https://github.com/animikhroy/rk_toolkit_pipeline_diagrams/tree/main/02_notebooks/rk_general_applications)
 
 ## Contributions and Licensing
 
+[Creative Commons Licensing](https://creativecommons.org/licenses/by-nc/4.0/)

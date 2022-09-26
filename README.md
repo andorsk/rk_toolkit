@@ -9,17 +9,21 @@ python -m pip install .
 
 #### Using a module
 
-**TODO: FIX**
+**TODO: Check FIXES**
 To use a module:
 ``` sh
-from rktoolkit.visualizers.networkx.dendrogram import hierarchy_pos
+from rktoolkit.visualizers.visualizer import RKModelVisualizer
 from rktoolkit.pipeline import RKPipeline
-# make filters and get structural graph
+
+# Make filters and get structural graph using Filters, Linkers and Graph modules
 pipeline = RKPipeline(filter_map=filters, linkage_map=linkers, structural_graph=g) 
-# get the base transform
-base = hft.transform(event)
-rkm = pipeline.transform(base, is_base=False)
-visualize_rkmodel(rkm)
+
+# Transform the pipeline into a R-K Model
+rkm = pipeline.transform(g)
+#Build the R-K Model Visualization
+RKModelVisualizer.build(rkm)
+#Render the R-K Model Visualization
+RKModelVisualizer.render()
 ```
 
 ##### Running Tests
@@ -28,4 +32,7 @@ pytest -m .
 ```
 
 ### Demos
-Check the notebooks sections for more details.
+Check these notebooks for more details.
+
+* [Tableau Sales TDA w/ RK Diagrams](https://github.com/animikhroy/rk_toolkit_pipeline_diagrams/blob/main/02_notebooks/rk_general_applications)
+* [Ligo GW Analysis](https://github.com/animikhroy/rk_toolkit_pipeline_diagrams/tree/main/02_notebooks/rk_gw_mma)

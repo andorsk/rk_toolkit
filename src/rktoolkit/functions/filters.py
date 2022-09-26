@@ -1,14 +1,14 @@
 class RangeFilter():
     '''
-    |A range filter is one of the simplest filters that is provided in version 1 of the R-K Toolkit. We assign the filters to each level of the hierarchy that contains numeric data which operates as follows:
+    |   A range filter is one of the simplest filters that is provided in version 1 of the R-K Toolkit. We assign the filters to each level of the hierarchy that contains numeric data which operates as follows:
     |
-    |    True : if v /∈ {m,M]
-    |    False:  else
+    |       True : if v /∈ {m,M]
+    |       False:  else
     |
-    |where:
-    |    • v is the value of the node.
-    |    • m is the minimum boundary condition for the filter.
-    |    • M is the maximum boundary condition for the filter.
+    |   where:
+    |       • v is the value of the node.
+    |       • m is the minimum boundary condition for the filter.
+    |       • M is the maximum boundary condition for the filter.
 
     '''
     def __init__(self, min:float=0, max:float=1):

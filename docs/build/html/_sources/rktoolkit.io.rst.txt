@@ -3,9 +3,6 @@
 IO package
 ====================
 
-Submodules
-----------
-
 .. _rktoolkit.io.io:
 
 Read and Writer Interfaces
@@ -16,10 +13,3 @@ Read and Writer Interfaces
    :undoc-members:
    :show-inheritance:
 
-Module contents
----------------
-
-.. automodule:: rktoolkit.io
-   :members:
-   :undoc-members:
-   :show-inheritance:

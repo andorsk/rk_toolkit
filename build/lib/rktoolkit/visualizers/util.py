@@ -8,7 +8,7 @@ import networkx as nx
 def draw_graph(G, ax=None, with_labels=True, minsize=100,
                     alpha=300, emult=2, make_axis=False, width=2*math.pi):
     '''Method to draw a general graph of an ontology that is transformed using BaseOntologyTransform.
-    Refer to :ref:`HTG transformers<rktoolkit.functions.htg_transformers>` for information on Base Ontology Transform.
+    Refer to :ref:`HTG transformers <rktoolkit.functions.htg_transformers>` for information on Base Ontology Transform.
 
     :param G: Transformed Graph to be drawn
     :type G: Graph
