@@ -3,17 +3,7 @@ from .localizers import NDMaxLocalizationFunction
 from .linkers import  SimpleLinkageFunction
 from ..models.graph import TreeNode, HierarchicalGraph
 
-'''
-
-TODO: Clean tests
-Some tests are old.
-Some tests are not relevant anymore
-Add tests to other functions
-'''
 def test_NDLocalizationFunction():
-    '''
-    TODO: remove this. not required
-    '''
     ll = NDMaxLocalizationFunction()
     x = np.linspace(0,100,100)
     y = np.linspace(101, 200, 100)
