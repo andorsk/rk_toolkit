@@ -101,9 +101,14 @@ class Graph(DiGraph):
         :raises ValueError: Raises an error if the input is not of the Edge Type
         '''
         if isinstance(e, Edge):
-            #print(help(super().add_edges_from))
             d = e.to_dict()
-            super().add_edges_from([(d[0].id, d[1].id, d[2])])
+            u = d[0]
+            v = d[1]
+            if isinstance(u, Vertex):
+                u = u.id
+            if isinstance(v, Vertex):
+                v = v.id
+            super().add_edges_from([(u, v, d[2])])
         else:
             raise ValueError("Expected a Edge Type")
 
