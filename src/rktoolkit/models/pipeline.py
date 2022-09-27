@@ -77,7 +77,7 @@ class RKPipeline():
         :type vmap: Any
         :param cols: Columns for the mapping
         :type cols: Any
-        :return: Returns a remapped R-K Pipeline Class
+        return: Returns a remapped R-K Pipeline Class
         :rtype: RKPipeline
         '''
         pcopy = copy.deepcopy(self)

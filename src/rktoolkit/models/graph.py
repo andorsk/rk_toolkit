@@ -354,7 +354,7 @@ class Vertex():
         self.attributes = attributes
         self._disallowed_keys = set(['id', 'value'])
 
-    def add_attribute(k: str, v: Any, unsafe=True):
+    def add_attribute(self, k: str, v: Any, unsafe=True):
         '''
         adds an attributes
 
