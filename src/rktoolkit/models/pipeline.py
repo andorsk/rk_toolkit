@@ -20,6 +20,14 @@ class RKPipeline():
     Class implementing the R-K Pipeline explained above
     '''
 
+    def __init__(self,
+                 filter_map: dict,
+                 linkage_map: dict,
+                 structural_graph = None):
+        self.filter_map = filter_map
+        self.linkage_map = linkage_map
+        self.structural_graph = structural_graph
+
     def check_valid_node(self, node) -> bool:
         '''
         Check if the node is valid or not
@@ -34,11 +42,6 @@ class RKPipeline():
         if not isinstance(node["value"], numbers.Number):
             return False
         return True
-
-    def __init__(self, filter_map: dict, linkage_map: dict, structural_graph = None):
-        self.filter_map = filter_map
-        self.linkage_map = linkage_map
-        self.structural_graph = structural_graph
 
     def transform(self, G, is_base=True):
         '''
