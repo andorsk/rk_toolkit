@@ -2,7 +2,7 @@ import scipy as sp
 import numpy as np
 
 
-def topological_distance_function(s1, s2): # two sets
+def jaccard(s1, s2): # two sets
     '''
     
     Topological Distance Function
@@ -11,24 +11,24 @@ def topological_distance_function(s1, s2): # two sets
     :type s1: set
     :param s2: Data Set 2
     :type s2: set
-    :return: Jaccard distance 
+    :return: Topological Distance 
     :rtype: float
     '''
     intersect = s1 & s2
     jin = len(intersect)  / (len(s1) + len(s2) - len(intersect))
     return 1-jin
 
-def magnitudinal_dist_function(x=None, data=None, cov=None):
+def mahalanobis(x=None, data=None, cov=None):
     '''
     Value Distance Funtion
     
     :param x: vector or matrix of data with, say, p columns, defaults to None
     :type x: ndarray, optional
-    :param data: ndarray of the distribution from which Mahalanobis distance of each observation of x is to be computed, defaults to None
+    :param data: ndarray of the distribution from which Value distance of each observation of x is to be computed, defaults to None
     :type data: ndarray, optional
     :param cov: covariance matrix (p x p) of the distribution. If None, will be computed from data.
     :type cov: ndarray, optional
-    :return: Mahalanobis distance.
+    :return: Value/Magnitudinal distance.
     :rtype: ndarray
     '''
     x_minus_mu = x - np.mean(data)

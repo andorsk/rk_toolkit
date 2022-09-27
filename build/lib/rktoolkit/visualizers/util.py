@@ -8,7 +8,7 @@ import networkx as nx
 def draw_graph(G, ax=None, with_labels=True, minsize=100,
                     alpha=300, emult=2, make_axis=False, width=2*math.pi):
     '''Method to draw a general graph of an ontology that is transformed using BaseOntologyTransform.
-    Refer to :ref:`HTG transformers<rktoolkit.functions.htg_transformers>` for information on Base Ontology Transform.
+    Refer to :ref:`HTG transformers <rktoolkit.functions.htg_transformers>` for information on Base Ontology Transform.
 
     :param G: Transformed Graph to be drawn
     :type G: Graph
@@ -24,7 +24,7 @@ def draw_graph(G, ax=None, with_labels=True, minsize=100,
     :type emult: int, optional
     :param make_axis: Should axes be made in graph or not, defaults to False
     :type make_axis: bool, optional
-    :param width: Width of the nodes in graph, defaults to 2*math.pi
+    :param width: Horizontal space allocated for this branch - avoids overlap with other branches, defaults to 2*math.pi
     :type width: float, optional
     '''
     if make_axis:
@@ -87,7 +87,7 @@ def draw_rk_diagram(rkmodel, spread=1, ax=None, with_labels=True, minsize=100, c
     :type emult: int, optional
     :param make_axis: Parameter to choose if axes should be made in the model or not, defaults to False
     :type make_axis: bool, optional
-    :param width: Width of the nodes, defaults to 2*math.pi
+    :param width: Horizontal space allocated for this branch - avoids overlap with other branches, defaults to 2*math.pi
     :type width: float, optional
     :param xoff: Offset of X-axis, defaults to 0
     :type xoff: int, optional

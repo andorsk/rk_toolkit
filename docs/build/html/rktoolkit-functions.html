@@ -56,8 +56,16 @@
 <li class="toctree-l4"><a class="reference internal" href="#rktoolkit.functions.linkers.SimpleChildLinker"><code class="docutils literal notranslate"><span class="pre">SimpleChildLinker</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#module-rktoolkit.functions.localizers"><strong>Localization Functions</strong></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#circular-visualizer"><strong>Circular Visualizer</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-rktoolkit.functions.localizers"><strong>Localization Functions</strong></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rktoolkit.functions.localizers.IterableLocalizationFunction"><code class="docutils literal notranslate"><span class="pre">IterableLocalizationFunction</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rktoolkit.functions.localizers.NDMaxLocalizationFunction"><code class="docutils literal notranslate"><span class="pre">NDMaxLocalizationFunction</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#circular-visualizer"><strong>Circular Visualizer</strong></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rktoolkit.visualizers.circular.CircularVisualizer"><code class="docutils literal notranslate"><span class="pre">CircularVisualizer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rktoolkit.visualizers.circular.CircularVisualizerSpec"><code class="docutils literal notranslate"><span class="pre">CircularVisualizerSpec</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -98,15 +106,21 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="rktoolkit.functions.filters.RangeFilter">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rktoolkit.functions.filters.</span></span><span class="sig-name descname"><span class="pre">RangeFilter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">min</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.functions.filters.RangeFilter" title="Permalink to this definition"></a></dt>
-<dd><p><a href="#id1"><span class="problematic" id="id2">|</span></a>A range filter is one of the simplest filters that is provided in version 1 of the R-K Toolkit. We assign the filters to each level of the hierarchy that contains numeric data which operates as follows:
-|
-|    True : if v /∈ {m,M]
-|    False:  else
-|
-<a href="#id3"><span class="problematic" id="id4">|</span></a>where:
-|    • v is the value of the node.
-|    • m is the minimum boundary condition for the filter.
-|    • M is the maximum boundary condition for the filter.</p>
+<dd><div class="line-block">
+<div class="line">A range filter is one of the simplest filters that is provided in version 1 of the R-K Toolkit. We assign the filters to each level of the hierarchy that contains numeric data which operates as follows:</div>
+<div class="line"><br /></div>
+<div class="line-block">
+<div class="line">True : if v /∈ {m,M]</div>
+<div class="line">False:  else</div>
+<div class="line"><br /></div>
+</div>
+<div class="line">where:</div>
+<div class="line-block">
+<div class="line">• v is the value of the node.</div>
+<div class="line">• m is the minimum boundary condition for the filter.</div>
+<div class="line">• M is the maximum boundary condition for the filter.</div>
+</div>
+</div>
 <dl class="py method">
 <dt class="sig sig-object py" id="rktoolkit.functions.filters.RangeFilter.filter">
 <span class="sig-name descname"><span class="pre">filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.functions.filters.RangeFilter.filter" title="Permalink to this definition"></a></dt>
@@ -215,7 +229,7 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="rktoolkit.functions.linkers.SimpleChildLinker.set_knob">
 <span class="sig-name descname"><span class="pre">set_knob</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">knb</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.functions.linkers.SimpleChildLinker.set_knob" title="Permalink to this definition"></a></dt>
-<dd><p>_summary_</p>
+<dd><p>Set the knobs for linking.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -224,7 +238,7 @@
 </ul>
 </dd>
 <dt class="field-even">Raises</dt>
-<dd class="field-even"><p><strong>ValueError</strong> – If knob isn’t theta raises Valu  error</p>
+<dd class="field-even"><p><strong>ValueError</strong> – If knob isn’t theta raises Value  error</p>
 </dd>
 </dl>
 </dd></dl>
@@ -234,6 +248,52 @@
 </section>
 <section id="module-rktoolkit.functions.localizers">
 <span id="localization-functions"></span><h2><strong>Localization Functions</strong><a class="headerlink" href="#module-rktoolkit.functions.localizers" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="rktoolkit.functions.localizers.IterableLocalizationFunction">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rktoolkit.functions.localizers.</span></span><span class="sig-name descname"><span class="pre">IterableLocalizationFunction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterateX</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iterateY</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iterateZ</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.functions.localizers.IterableLocalizationFunction" title="Permalink to this definition"></a></dt>
+<dd><p>An Iterable localization function that localizes a N x D matrix around the max. The class can be initialized with parameters to determine which dimensions should be iterated and modified for a particular application.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="rktoolkit.functions.localizers.IterableLocalizationFunction.localize">
+<span class="sig-name descname"><span class="pre">localize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.functions.localizers.IterableLocalizationFunction.localize" title="Permalink to this definition"></a></dt>
+<dd><p>Localizes  the matrix X around the max iteratively.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>X</strong> (<em>ndarray</em>) – Matrix X to be localized.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Localized X,Y and Z values</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int,int,int</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="rktoolkit.functions.localizers.NDMaxLocalizationFunction">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rktoolkit.functions.localizers.</span></span><span class="sig-name descname"><span class="pre">NDMaxLocalizationFunction</span></span><a class="headerlink" href="#rktoolkit.functions.localizers.NDMaxLocalizationFunction" title="Permalink to this definition"></a></dt>
+<dd><p>Localization function that localizes a N x D matrix around the maximum value of the matrix.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="rktoolkit.functions.localizers.NDMaxLocalizationFunction.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.functions.localizers.NDMaxLocalizationFunction.predict" title="Permalink to this definition"></a></dt>
+<dd><p>Predicts and localizes a given N x D matrix around the maximum of the matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>X</strong> (<em>ndarray</em>) – Matrix to be localized. Should be in N x D dimensions.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Localized values for the matrix X</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>tuple[int], int</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 <section id="circular-visualizer">
 <h2><strong>Circular Visualizer</strong><a class="headerlink" href="#circular-visualizer" title="Permalink to this heading"></a></h2>
@@ -245,7 +305,154 @@ children birth more children in circular patterns.</p>
 <p>The distance and sizes of of the node between each parent -&gt; child in the visualization
 decreases each iteration.</p>
 <p>You can override any particular value using the attributes of a node.</p>
-<span class="target" id="module-rktoolkit.visualizers.circular"></span></section>
+<span class="target" id="module-rktoolkit.visualizers.circular"></span><dl class="py class">
+<dt class="sig sig-object py" id="rktoolkit.visualizers.circular.CircularVisualizer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rktoolkit.visualizers.circular.</span></span><span class="sig-name descname"><span class="pre">CircularVisualizer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spec</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="rktoolkit.visualizers.html#rktoolkit.visualizers.circular.CircularVisualizerSpec" title="rktoolkit.visualizers.circular.CircularVisualizerSpec"><span class="pre">CircularVisualizerSpec</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.visualizers.circular.CircularVisualizer" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="rktoolkit.visualizers.html#rktoolkit.visualizers.visualizer.RKModelVisualizer" title="rktoolkit.visualizers.visualizer.RKModelVisualizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">RKModelVisualizer</span></code></a></p>
+<p>Cicular Visualizer  visualizes an R-K Model
+by plotting clusters and measures in a circular
+pattern in 3D space</p>
+<p>It assumes the R-K Model is at least in 3d
+TODO: Visualizer only gives locations and specs.
+RK-Diagram Renderer renders the specs</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="rktoolkit.visualizers.circular.CircularVisualizer._build">
+<span class="sig-name descname"><span class="pre">_build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.rkmodel.RKModel" title="rktoolkit.models.rkmodel.RKModel"><span class="pre">RKModel</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.visualizers.circular.CircularVisualizer._build" title="Permalink to this definition"></a></dt>
+<dd><p>Builds a Visualization of the RKModel.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>model</strong> (<em>List</em><em>[</em><a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.rkmodel.RKModel" title="rktoolkit.models.rkmodel.RKModel"><em>RKModel</em></a><em>]</em>) – RKModel(s) to be visualized.</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>e</strong> – If RKModel is unable to be created, returns an exception.</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>An RKDiagram visualization .</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="rktoolkit.visualizers.html#rktoolkit.visualizers.visualizer.RKDiagram" title="rktoolkit.visualizers.visualizer.RKDiagram">RKDiagram</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rktoolkit.visualizers.circular.CircularVisualizer._get_node_position">
+<span class="sig-name descname"><span class="pre">_get_node_position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#rktoolkit.visualizers.circular.CircularVisualizer._get_node_position" title="Permalink to this definition"></a></dt>
+<dd><p>Get the position of the node to be used for plotting</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>node</strong> (<em>Any</em>) – The node whose position is needed.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Position of the node</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>List</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rktoolkit.visualizers.circular.CircularVisualizer._plot_children">
+<span class="sig-name descname"><span class="pre">_plot_children</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.visualizers.circular.CircularVisualizer._plot_children" title="Permalink to this definition"></a></dt>
+<dd><p>Plots a first level child of an rkmodel</p>
+<p>The first level child is positioned in a cicular
+pattern, incrementing rads through the position in the list.</p>
+<p>The entire RKModel must be built out so the spacing can be
+determined between clusters.Plots a first level child of an rkmodel</p>
+<p>The first level child is positioned in a cicular
+pattern, incrementing rads through the position in the list.</p>
+<p>The entire RKModel must be built out so the spacing can be
+determined between clusters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>parent</strong> (<em>Any</em>) – Parent node (Starting node) from where the children should be plotted.</p></li>
+<li><p><strong>mask</strong> (<em>GraphMask</em><em>, </em><em>optional</em>) – Any child nodes to be masked, defaults to None</p></li>
+<li><p><strong>level</strong> (<em>int</em><em>, </em><em>optional</em>) – Child nodes level, defaults to 1</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – Raises a ValueError if Parent node’s position hasn’t been placed i.e, not in positions list.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rktoolkit.visualizers.circular.CircularVisualizer._plot_cluster_centroid">
+<span class="sig-name descname"><span class="pre">_plot_cluster_centroid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.visualizers.circular.CircularVisualizer._plot_cluster_centroid" title="Permalink to this definition"></a></dt>
+<dd><p>Plot the centroid of the clusters of RKModel</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>model</strong> (<a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.rkmodel.RKModel" title="rktoolkit.models.rkmodel.RKModel"><em>RKModel</em></a>) – The RKModel whose centroid needs to be plotted</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – Raises ValueError if no model position is available for centroid.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rktoolkit.visualizers.circular.CircularVisualizer._plot_clusters">
+<span class="sig-name descname"><span class="pre">_plot_clusters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.visualizers.circular.CircularVisualizer._plot_clusters" title="Permalink to this definition"></a></dt>
+<dd><p>Plot the clusters of the RKModel</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>model</strong> (<a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.rkmodel.RKModel" title="rktoolkit.models.rkmodel.RKModel"><em>RKModel</em></a>) – The RKModel whose clusters need to be plotted.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rktoolkit.visualizers.circular.CircularVisualizer._plot_links">
+<span class="sig-name descname"><span class="pre">_plot_links</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.rkmodel.RKModel" title="rktoolkit.models.rkmodel.RKModel"><span class="pre">RKModel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.graph.NodeMask" title="rktoolkit.models.graph.NodeMask"><span class="pre">NodeMask</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.visualizers.circular.CircularVisualizer._plot_links" title="Permalink to this definition"></a></dt>
+<dd><p>Plots the links between the nodesplots the links between the nodes</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> (<a class="reference internal" href="rktoolkit.models.html#rktoolkit.models.rkmodel.RKModel" title="rktoolkit.models.rkmodel.RKModel"><em>RKModel</em></a>) – The RKModel for which links need to be plotted for the nodes.</p></li>
+<li><p><strong>mask</strong> (<em>GraphMask</em><em>, </em><em>optional</em>) – Nodes that are/need to be masked, defaults to None</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – Raises ValueError if no links are provided in the RKModel.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rktoolkit.visualizers.circular.CircularVisualizer._register_node">
+<span class="sig-name descname"><span class="pre">_register_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.visualizers.circular.CircularVisualizer._register_node" title="Permalink to this definition"></a></dt>
+<dd><p>Register the nodes’ positions for plotting.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="rktoolkit.visualizers.circular.CircularVisualizerSpec">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rktoolkit.visualizers.circular.</span></span><span class="sig-name descname"><span class="pre">CircularVisualizerSpec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">center_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'#000000'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">300</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance_from_center</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_node_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rktoolkit.visualizers.circular.CircularVisualizerSpec" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>These are specs for the circular visualiation
+They define how close the clsuters are to the
+centroid, the size of the centroid bubble,
+alpha, etc.</p>
+<p>You can compute these dynamically or
+use static fields. Initialization specs are:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>center_color</strong> (<em>str</em>) – Color for center in unicode, defaults to ‘#000000’</p></li>
+<li><p><strong>center_size</strong> (<em>int</em>) – Size of the center node, defaults to 300</p></li>
+<li><p><strong>distance_from_center</strong> (<em>int</em>) – Distance of nodes from center, defaults to 10.</p></li>
+<li><p><strong>cluster_size</strong> (<em>int</em>) – Size of the cluster, defaults to 10.</p></li>
+<li><p><strong>add_node_labels</strong> (<em>bool</em>) – To check if nodes need to be labelled or not,defaults to False.</p></li>
+<li><p><strong>alpha</strong> (<em>float</em>) – Alpha index value, defaults to .5.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
 </section>
 
 

@@ -81,19 +81,48 @@
 <section id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h2>
 <p>The R-K Toolkit depends on a few scientific libraries, which come preinstalled with environments like Anaconda.
-The R-K Toolkit also depends on :code: <cite>nevergrad</cite> library which can be installed via :code: <cite>pip</cite> as below.</p>
+The R-K Toolkit also depends on <code class="code docutils literal notranslate"><span class="pre">nevergrad</span></code> library which can be installed via <code class="code docutils literal notranslate"><span class="pre">pip</span></code> as below.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">nevergrad</span>
 </pre></div>
 </div>
-<p>More information about :code: <cite>nevergrad</cite> can be found at their official <a class="reference external" href="https://facebookresearch.github.io/nevergrad/">Git Repository</a> .</p>
-<p>The R-K Toolkit can be installed using :code: <cite>pip</cite> from the toolkit folder as given below.</p>
+<p>More information about <code class="code docutils literal notranslate"><span class="pre">nevergrad</span></code> can be found at their official <a class="reference external" href="https://facebookresearch.github.io/nevergrad/">Git Repository</a> .</p>
+<p>The R-K Toolkit can be installed using <code class="code docutils literal notranslate"><span class="pre">pip</span></code> from the toolkit folder as given below.</p>
 <p>This will install the R-K Toolkit package. A virtualenv may also be used to install for a specific project.</p>
-<p>..image:</p>
+<p>The R-K Toolkit can also be installed from the main project <a class="reference external" href="https://github.com/animikhroy/rk_toolkit_pipeline_diagrams">repository</a> through the following steps:</p>
+<ol class="arabic simple">
+<li><p>Clone the repository via the following command:</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">animikhroy</span><span class="o">/</span><span class="n">rk_toolkit_pipeline_diagrams</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Change to the repository folder via the terminal/command prompt:</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">rk_toolkit_pipeline_diagrams</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>As R-K Toolkit is a submodule, we need to pull the submodule to our local repository. This is done by the following command:</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">submodule</span> <span class="n">update</span> <span class="o">--</span><span class="n">init</span> <span class="o">--</span><span class="n">recursive</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Change to the R-K Toolkit directory (located as /01_rk_toolkit) via the terminal/command prompt:</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="mi">01</span><span class="n">_rk_toolkit</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p><strong>[Optional]</strong> Before installing, if we want to install in a virtual environment, ensure that we are in the virtual environment, else create one.</p></li>
+<li><p>Install the R-K toolkit using <code class="code docutils literal notranslate"><span class="pre">pip</span></code> as mentioned above.</p></li>
+</ol>
+<p>The full installation process:</p>
+<a class="reference internal image-reference" href="_images/installmain.gif"><img alt="_images/installmain.gif" src="_images/installmain.gif" style="height: 300px;" /></a>
 </section>
 <section id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading"></a></h2>
-<p>The following is an example usage from the Jupyter notebook:</p>
-<p>TODO: Add the example from Jupyter notebook after checking in with &#64;andorsk</p>
+<p>The following is an example usage from the Jupyter <a class="reference external" href="https://github.com/animikhroy/rk_toolkit_pipeline_diagrams/tree/main/02_notebooks">notebooks</a>:</p>
 <p>..image:</p>
 </section>
 </section>

@@ -25,13 +25,14 @@ class SimpleChildLinker():
         return {"theta": self.theta}
 
     def set_knob(self, knb, v):
-        '''_summary_
+        '''
+        Set the knobs for linking.
 
         :param knb: Knob value
         :type knb: str
         :param v: Value for theta
         :type v: int
-        :raises ValueError: If knob isn't theta raises Valu  error
+        :raises ValueError: If knob isn't theta raises Value  error
         '''
         if knb == "theta":
             self.theta = v

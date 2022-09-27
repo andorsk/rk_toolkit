@@ -4,7 +4,7 @@ from networkx.classes.digraph import DiGraph
 import networkx as nx
 import copy
 import numbers
-from ..functions.distance import topological_distance_function, magnitudinal_dist_function
+from ..functions.distance import jaccard, mahalanobis
 from pydantic import BaseModel, PrivateAttr
 from enum import Enum
 from typing import List, Optional, Callable, Any
@@ -43,8 +43,7 @@ class NodeMask():
 class Graph(DiGraph):
 
     '''
-    Excerpt from initial paper:
-    https://arxiv.org/pdf/2201.06923.pdf
+    Excerpt from initial `paper <https://arxiv.org/pdf/2201.06923.pdf>`_ :
 
     It is important to note, that in the field of Graph Theory,
     the term "graph" does not refer to data charts, such as
@@ -158,7 +157,7 @@ class Graph(DiGraph):
         if method == "jaccard":
             s1 = set(list(self.edges.keys()))
             s2 = set(list(G.edges.keys()))
-            return topological_distance_function(s1, s2)
+            return jaccard(s1, s2)
         raise ValueError("Unknown method to compute distances")
 
     def node_distance(self, G, method="jaccard"):
@@ -176,10 +175,22 @@ class Graph(DiGraph):
         if method == "jaccard":
             s1 = set(list(self.nodes.keys()))
             s2 = set(list(G.nodes.keys()))
-            return topological_distance_function(s1, s2)
+            return jaccard(s1, s2)
         raise ValueError("Unknown method to compute distances")
 
     def topological_distance(self, G, method="jaccard", weights=[.5,.5]):
+        '''
+        Calculate the topological distance using the edge and node distances generated for the given graph
+
+        :param G: Graph whose topological distance should be found
+        :type G: Graph
+        :param method: Distance method used to find the edge and node distances, defaults to "jaccard"
+        :type method: str, optional
+        :param weights: Weights for the edges and nodes, defaults to [.5,.5]
+        :type weights: list, optional
+        :return: Topological distance for the graph
+        :rtype: float
+        '''
         ed = self.edge_distance(G, method)
         nd = self.node_distance(G, method)
         return sum([ed * weights[0], nd * weights[1]]) / 2
@@ -194,6 +205,12 @@ class Graph(DiGraph):
         return ((vd + td) / 2)[0]
 
     def similarity(self, *args, **kwargs):
+        '''
+        Returns the similarity coefficient.
+
+        :return: Similarity coefficient 
+        :rtype: float
+        '''
         #returns the inverse of the normalized distance.
         return 1- self.weighted_distance(*args, **kwargs)
 
@@ -228,9 +245,21 @@ class Graph(DiGraph):
         return 1 - cosine_similarity(arr1, arr2)
 
     def is_dag(self):
+        '''
+        Check if the graph is a Directed Acyclic Graph
+
+        :return: Returns True if graph is a DAG, else False
+        :rtype: bool
+        '''
         return nx.is_directed_acyclic_graph(self)
 
     def sort(self, *args, **kwargs):
+        '''
+        Sort the graph in topological order. Uses the :code:`topological_sort()` method of NetworkX
+
+        :return: Returns a list of nodes sorted in topological order
+        :rtype: Generator[Any]
+        '''
         return nx.topological_sort(self, *args, **kwargs)
 
     def get_value_dict(self, key="value"):
@@ -245,11 +274,26 @@ class Graph(DiGraph):
             raise e
         raise Exception("Cycle Detected! Invalid Graph.")
 
+    def get_signature(f) -> str:
+        '''
+        Determine which distance functions to be used
+
+        :param f: Distance function to be used.
+        :type f: Any
+        :return: Signature of the distance function to be used
+        :rtype: str
+        '''
+        match f.__name__:
+            case "mahalonobis":
+                return "mag"
+            case "jaccard":
+                return "top"
+
 class Edge():
     '''
-    For an undirected graph, an unordered pair of nodes that specify a line joining these two nodes are said to form an edge which represents a relationship or dependence between any two nodes. For a directed graph, the edge is an ordered pair of nodes. The terms "arc," "branch," "line," "link," and "1-simplex" are sometimes used to describe an Edge in Graph Theory.    
-
-    https://mathworld.wolfram.com/GraphEdge.html#:~:text=For%20an%20undirected%20graph%2C%20an,e.g.%2C%20Skiena%201990%2C%20p.
+    For an undirected graph, an unordered pair of nodes that specify a line joining these two nodes are said to form an edge which represents a relationship or dependence between any two nodes. For a directed graph, the edge is an ordered pair of nodes. The terms "arc," "branch," "line," "link," and "1-simplex" are sometimes used to describe an Edge in Graph Theory.   
+    
+    Refer to this `article <https://mathworld.wolfram.com/GraphEdge.html#:~:text=For%20an%20undirected%20graph%2C%20an,e.g.%2C%20Skiena%201990%2C%20p>`_ for more information on Graph Edge.
 
     TODO: Consider moving this to pydantic.
     '''
@@ -262,16 +306,16 @@ class Edge():
         self.attributes = attributes
 
     def to_dict(self):
-        ''' returns a tuple of the
+        ''' Returns a tuple of the Edge
 
         TODO: Fix. this should actually be called to_tuple and then
         TODO: Should also return promoted values
 
-        to_dict should send back dictionary in the form of:
+            to_dict should send back dictionary in the form of:
             {
-            'u': a,
-            'v': b,
-            'attributes': c
+                'u': a,
+                'v': b,
+                'attributes': c
             }
             
         '''
@@ -281,9 +325,7 @@ class Vertex():
     '''
     "Vertex" is a synonym for a node of a graph, i.e., one of the points on which the graph is defined and which may be connected by graph edges. The terms "point," "junction," and 0-simplex are also used to describe a Vertex in Graph Theory.
 
-    See
-    https://mathworld.wolfram.com/GraphVertex.html#:~:text=%22Vertex%22%20is%20a%20synonym%20for,80).
-    for more information
+    See `Here <https://mathworld.wolfram.com/GraphVertex.html#:~:text=%22Vertex%22%20is%20a%20synonym%20for,80)>`_ for more information.
 
     NOT threadsafe implementation
 
@@ -401,10 +443,24 @@ class HierarchicalGraph(GraphModel):
         self.root.is_root = True
 
     def add_edge(self, edge:Edge):
+        '''
+        Adds an edge to the graph.
+
+        :param edge: Edge to be added to the graph, must be a directed Edge
+        :type edge: Edge
+        :raises ValueError: Raises ValueError if the Edge type is not directed.
+        '''
         if edge.edge_type != EdgeType.DIRECTED:
             raise ValueError("Edge type needs to be directed in heirarchial graph")
 
     def add_node(self, node: TreeNode):
+        '''
+        Adds a node to the graph
+
+        :param node: Node to be added to the graph, must be TreeNode
+        :type node: TreeNode
+        :raises ValueError: Raises ValueError if the Node is not a TreeNode
+        '''
         if not isinstance(node, TreeNode):
             raise ValueError("Node must be a tree node")
         if node.parent is not None:
@@ -431,9 +487,23 @@ class HierarchicalGraph(GraphModel):
         return levels, nmap
 
     def get_root(self) -> Node:
+        '''
+        :return: Returns the root node of the graph.
+        :rtype: Node
+        '''
         return self.root
 
     def get_level(self, level, rebuild=True) -> List[Node]:
+        '''
+        Returns the nodes of the given level from the graph
+
+        :param level: Level of the nodes to be shown from.
+        :type level: int
+        :param rebuild: Choose if the node levels need to be rebuilded from the given level, defaults to True
+        :type rebuild: bool, optional
+        :return: List of nodes at current level, optionally after rebuilding.
+        :rtype: List[Node]
+        '''
         if self._level_ref is None or rebuild:
             self._level_ref, self._node_ref = self._build_levels()
         return self._level_ref.get(level, [])
@@ -460,9 +530,8 @@ class HierarchicalTransformGraph(HierarchicalGraph):
 
 class HierarchicalGraph(GraphModel):
     '''
-    A Hierarchical Graph
-    is a subset of the general graph in which
-    all elements are directed.
+    A Hierarchical Graph is a subset of the general graph in which all elements are directed and have a dependence relationship such as parent and child which is defined by a particular domain Ontology.
+
     '''
     root: TreeNode
     _level_ref: Optional[dict] = PrivateAttr()

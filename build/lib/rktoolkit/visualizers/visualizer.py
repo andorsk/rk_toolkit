@@ -66,12 +66,15 @@ class Arrow3D(FancyArrowPatch):
         FancyArrowPatch.draw(self, renderer)
 
 class RKDiagram():
-    
+
     def __init__(self, rkmodel: RKModel, placed_nodes, links):
         self.rkmodel = rkmodel
         self.placed_nodes = placed_nodes
         self.links = links
 
     def render(self):
+        '''
+        Renders a R-K Diagram using :code:`pyplot.show()` method.
+        '''
         # render specs here are done
         plt.show()

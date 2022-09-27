@@ -90,9 +90,9 @@ class RKPipeline():
 
     def get_w(self):
         '''
-        Method to get the vertices and columns for mapping.
+        Method to get the vertices and columns (weights) for mapping.
 
-        :return: Returns both the vertex mapping and columns.
+        :return: Returns both the vertex mapping and columns (weights).
         :rtype: tuple[list,list]
         '''
         vmap, cols = [], []
