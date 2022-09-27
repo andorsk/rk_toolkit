@@ -13,7 +13,15 @@ from copy import deepcopy, copy
 
 class NodeMask():
     '''
-    A graph mask is a mask over an existing structural graph. It essentially provides an overlay representation, which can be used to filter out particular nodes and edges.    Typically,a mask over a node, should also mask child-nodes associated with it. A node mask represents a masking structure that when applied to a structural graph S, reduces the number of nodes into a subgraph S. Node masks in the R-K Model are binary operators, which when set to true, filter a node and its direct children. To derive the node masks, we produce a set of filters Fn(G), which takes in a graph and returns a mask.
+    A graph mask is a mask over an existing structural graph. It essentially
+    provides an overlay representation, which can be used to filter out
+    particular nodes and edges. Typically,a mask over a node, should also mask
+    child-nodes associated with it. A node mask represents a masking structure
+    that when applied to a structural graph S, reduces the number of nodes into
+    a subgraph S. Node masks in the R-K Model are binary operators, which when
+    set to true, filter a node and its direct children. To derive the node
+    masks, we produce a set of filters Fn(G), which takes in a graph and returns
+    a mask.
     '''
 
     def __init__(self, nmasks=[], emasks=[]):
@@ -93,7 +101,14 @@ class Graph(DiGraph):
         :raises ValueError: Raises an error if the input is not of the Edge Type
         '''
         if isinstance(e, Edge):
-            super().add_edges_from([e.to_dict()])
+            d = e.to_dict()
+            u = d[0]
+            v = d[1]
+            if isinstance(u, Vertex):
+                u = u.id
+            if isinstance(v, Vertex):
+                v = v.id
+            super().add_edges_from([(u, v, d[2])])
         else:
             raise ValueError("Expected a Edge Type")
 
@@ -102,7 +117,7 @@ class Graph(DiGraph):
         Get the children nodes of the given node.
 
         :param node_id: ID of the node whose children needs to be found
-        :type node_id: str
+  dojjkkk      :type node_id: str
         :param recursive: Condition to choose if the child nodes be found recursively till leaf node, defaults to False
         :type recursive: bool, optional
         :return: Returns all nodes reachable from the given node ID.
@@ -283,20 +298,24 @@ class Graph(DiGraph):
         :return: Signature of the distance function to be used
         :rtype: str
         '''
-        match f.__name__:
-            case "mahalonobis":
+        if f.__name__ == "mahalonobis":
                 return "mag"
-            case "jaccard":
+        if f.__name__ == "jaccard":
                 return "top"
+        return None
 
 class Edge():
-    '''
-    For an undirected graph, an unordered pair of nodes that specify a line joining these two nodes are said to form an edge which represents a relationship or dependence between any two nodes. For a directed graph, the edge is an ordered pair of nodes. The terms "arc," "branch," "line," "link," and "1-simplex" are sometimes used to describe an Edge in Graph Theory.   
+    ''' For an undirected graph, an unordered pair of nodes that specify a line
+    joining these two nodes are said to form an edge which represents a
+    relationship or dependence between any two nodes. For a directed graph, the
+    edge is an ordered pair of nodes. The terms "arc," "branch," "line," "link,"
+    and "1-simplex" are sometimes used to describe an Edge in Graph Theory.
     
-    Refer to this `article <https://mathworld.wolfram.com/GraphEdge.html#:~:text=For%20an%20undirected%20graph%2C%20an,e.g.%2C%20Skiena%201990%2C%20p>`_ for more information on Graph Edge.
+    Refer to this `article
+    <https://mathworld.wolfram.com/GraphEdge.html#:~:text=For%20an%20undirected%20graph%2C%20an,e.g.%2C%20Skiena%201990%2C%20p>`_
+    for more information on Graph Edge.
 
-    TODO: Consider moving this to pydantic.
-    '''
+    TODO: Consider moving this to pydantic. '''
 
     def __init__(self, u, v, w=1, type=None, attributes={}):
         self.u = u
@@ -323,9 +342,14 @@ class Edge():
 
 class Vertex():
     '''
-    "Vertex" is a synonym for a node of a graph, i.e., one of the points on which the graph is defined and which may be connected by graph edges. The terms "point," "junction," and 0-simplex are also used to describe a Vertex in Graph Theory.
+    "Vertex" is a synonym for a node of a graph, i.e., one of the points on
+    which the graph is defined and which may be connected by graph edges. The
+    terms "point," "junction," and 0-simplex are also used to describe a Vertex
+    in Graph Theory.
 
-    See `Here <https://mathworld.wolfram.com/GraphVertex.html#:~:text=%22Vertex%22%20is%20a%20synonym%20for,80)>`_ for more information.
+    See `Here
+    <https://mathworld.wolfram.com/GraphVertex.html#:~:text=%22Vertex%22%20is%20a%20synonym%20for,80)>`_
+    for more information.
 
     NOT threadsafe implementation
 
@@ -335,9 +359,9 @@ class Vertex():
         self.value = value
         self.id = id
         self.attributes = attributes
-        self._disallowed_keys = set('id', 'value')
+        self._disallowed_keys = set(['id', 'value'])
 
-    def add_attribute(k: str, v: Any, unsafe=True):
+    def add_attribute(self, k: str, v: Any, unsafe=True):
         '''
         adds an attributes
 
@@ -346,7 +370,7 @@ class Vertex():
         '''
 
         if k in self._disallowed_keys:
-            raise ValueError("key {} is not allowed".format(k))
+            raise ValueError("key {} by attributes is not allowed".format(k))
 
         if not unsafe:
             if k in self.attributes:

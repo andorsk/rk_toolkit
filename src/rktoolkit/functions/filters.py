@@ -12,6 +12,10 @@ class RangeFilter():
 
     '''
     def __init__(self, min:float=0, max:float=1):
+
+        if min > max:
+            return ValueError("min can't be greater than max")
+
         self.min = min
         self.max = max
 

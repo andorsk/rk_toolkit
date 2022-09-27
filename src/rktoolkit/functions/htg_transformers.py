@@ -28,7 +28,7 @@ class BaseOntologyTransform():
         H.add_vertex(Vertex(self.lens))
         return self._convert(X, H, self.mapping, parent=self.lens, level=1)
 
-    def _convert(self, X, H, hmap=None, parent=None, level=0, color=None, lens="root"):
+    def _convert(self, X, H, hmap=None, parent=None, level=0, color=None, lens="root", no_self_refrence=True):
         count = 0
         for k, v in hmap.items():
             if level == 1:
@@ -37,7 +37,8 @@ class BaseOntologyTransform():
             color[3] *= 1- self.color_decay_rate
             node = Vertex(id=k, attributes={"color": color}, value=value)
             H.add_vertex(node)
-            H.add_edge(Edge(u=parent, v=k))
+            if no_self_refrence and parent != k:
+                H.add_edge(Edge(u=parent, v=k))
             self._convert(X, H, v, parent=k, level=level+1, color=color)
             count+=1
         return H

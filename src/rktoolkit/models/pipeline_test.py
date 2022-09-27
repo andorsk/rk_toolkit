@@ -6,62 +6,57 @@ from ..functions.filters import RangeFilter
 
 from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
+from ..functions.linkers import SimpleChildLinker
+from .graph import Graph, Vertex, Edge
 
-'''
-TODO: update tests to work with new core
-'''
 def test_rk_pipeline():
+    # TODO: functional tests that tests pipeline transforms
+    # more robustly
+    structural_graph = build_sample_graph()
+    filters, linkers = make_linkers_and_filters(structural_graph)
+    pipeline = RKPipeline(filters, linkers, structural_graph)
 
-    # TODO: Is this relevant now?
-    # Check the implementations and see.
+    # Check if valid node
+    v = Vertex(id="vvv")
+    assert pipeline.check_valid_node(v) == False
 
-    root = TreeNode(parent=None, id="root", name="test")
-    hgraph = HierarchicalTransformGraph(root=root)
-    measures = TreeNode(parent=root, name="measures", id="measures")
-    m1 = TreeTransformNode(name="m1", id="m1", parent=measures,
-                           attributes={'color':'green'}, transformf=lambda X: X[0]) # we are computing using exsting measures. So we just pass the column
-    m2 = TreeTransformNode(name="m2", id="m2", parent=measures,
-                           attributes={'color':'green'}, transformf=lambda X: X[1]) # we are computing using exsting measures. So we just pass the column
-    m3 = TreeTransformNode(name="m3", id="m3", parent=measures,
-                           attributes={'color':'green'}, transformf=lambda X: X[2]) # we are computing using exsting measures. So we just pass the column
+    v.value = 1
+    assert pipeline.check_valid_node(v) == True
 
-    [hgraph.add_node(n) for n in [measures, m1, m2, m3]]
-    pipeline = RKPipeline(
-      #  preprocess_nodes = [TreeTransformNode()],
-        localization_algorithm = IterableLocalizationFunction(),
-        linkage_function = SimpleLinkageFunction(threshold=-1),
-        filter_functions = {
-            'm1': RangeFilter(max=3), #passes
-            'm2': RangeFilter(min=0, max=1) #fails
-        },
-        hfe=hgraph
-    )
+    model = pipeline.transform(structural_graph)
+    pipeline.get_w()
 
-    sample_data = [1,2,3]
-    rkmodel = pipeline.transform(sample_data)
-    rkmodel.name = "p1"
 
-    sample_data = [50,-.5, 30]
-    rkmodel2 = pipeline.transform(sample_data)
-    rkmodel2.name = "p2"
+def make_linkers_and_filters(graph, opts={}):
+    '''
+    Defaults all filters to be a range filter. And the linker to be a simple
+    child linker.
+    '''
+    ENDL = " | "
+    filters, linkers = {}, {}
+    for k, v in graph.nodes.items():
+        if 'value' in v and isinstance(v['value'], numbers.Number):
+            if v["id"] in opts:
+                print("Set {:s} from options".format(v["id"]), end=ENDL)
+            else:
+                print("Set {:s} to default".format(v["id"]), end=ENDL)
+            minv, maxv = opts.get(v["id"][0], 0), opts.get(v["id"][1], 1)
+            filters[k] = RangeFilter(min=minv, max=maxv)
+    linkers['root'] = SimpleChildLinker()
+    return filters, linkers
 
-    from rktoolkit.visualizers.circular import CircularVisualizer, CircularVisualizerSpec
+def build_sample_graph():
+    '''build sample graph'''
+    g = Graph()
+    root = Vertex('root')
+    a = Vertex('a')
+    b = Vertex('a')
+    root_a = Edge(a, b)
+    root_b = Edge(a, b)
 
-    ax = None
-    fig = None
-    spec = CircularVisualizerSpec(add_node_labels=True)
-
-    for r in [ rkmodel2, rkmodel]:
-        visualizer = CircularVisualizer(spec=spec, ax=ax, fig=fig)
-        if ax is None:
-            ax = visualizer.ax
-        if fig is None:
-            fig = visualizer.fig
-
-        visualizer.build([r])
-
-    visualizer.ax.set_title("Test Render")
-    visualizer.ax.set_xlabel("X label")
-    visualizer.ax.set_ylabel("Y label")
-    visualizer.ax.set_zlabel("Z label")
-    visualizer.render()
+    g.add_vertex(root)
+    g.add_vertex(a)
+    g.add_vertex(b)
+    g.add_edge(root_a)
+    g.add_edge(root_b)
+    return g
