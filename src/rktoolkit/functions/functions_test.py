@@ -1,7 +1,8 @@
 import numpy as np
 from .localizers import NDMaxLocalizationFunction
 from .linkers import  SimpleLinkageFunction
-from ..models.graph import TreeNode, HierarchicalGraph
+from ..models.graph import TreeNode, HierarchicalGraph, Edge, Node
+from typing import List
 
 def test_NDLocalizationFunction():
     ll = NDMaxLocalizationFunction()
@@ -14,5 +15,16 @@ def test_NDLocalizationFunction():
     y2 = np.where(y==l[1])[0][0]
     assert z.max() == z[x1, y2]
 
-def test_simple_linkage_function():
-    pass
+def testLinkageAbstraction():
+
+    class GoodTestClass():
+
+        def predict(self, nodes: List[Node]) -> List[Edge]: # given a graph the edges
+            return []
+
+    class BadTestClass():
+
+        def bad(self):
+            return None
+
+    #TODO: Test interface

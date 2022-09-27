@@ -10,6 +10,9 @@ def testFilters():
             assert f.filter.filter({'value': c[0]}) == c[1]
 
 def testRangeFilterRemap():
+    '''
+    test remapping
+    '''
     test = make_filter_tests()[0]
     for c in test.cases:
         assert test.filter.filter({'value': c[0]}) == c[1]
@@ -36,6 +39,9 @@ class FilterTests():
         return self._filter
 
 def make_filter_tests() :
+    '''
+    make filter test
+    '''
     return [
         FilterTests(
             RangeFilter(min=0, max=1),

@@ -101,7 +101,9 @@ class Graph(DiGraph):
         :raises ValueError: Raises an error if the input is not of the Edge Type
         '''
         if isinstance(e, Edge):
-            super().add_edges_from([e.to_dict()])
+            #print(help(super().add_edges_from))
+            d = e.to_dict()
+            super().add_edges_from([(d[0].id, d[1].id, d[2])])
         else:
             raise ValueError("Expected a Edge Type")
 
@@ -363,7 +365,7 @@ class Vertex():
         '''
 
         if k in self._disallowed_keys:
-            raise ValueError("key {} is not allowed".format(k))
+            raise ValueError("key {} by attributes is not allowed".format(k))
 
         if not unsafe:
             if k in self.attributes:
