@@ -630,4 +630,3 @@ class PipelineNode(TreeNode):
 
     def fit(self, X, y):
         pass
-

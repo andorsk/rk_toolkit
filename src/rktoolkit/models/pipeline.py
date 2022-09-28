@@ -10,7 +10,6 @@ from .functions import *
 from typing import List, Optional, Callable, TypedDict
 from ..functions.localizers import IterableLocalizationFunction
 from .graph import Vertex
-from ..functions.htg_transformers import CorrelationHTGGenerator
 from ..functions.filters import RangeFilter
 import copy
 import numbers
