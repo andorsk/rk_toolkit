@@ -1,7 +1,6 @@
 from .graph import *
 from .pipeline import RKPipeline
 from ..functions.localizers import IterableLocalizationFunction
-from ..functions.linkers import SimpleLinkageFunction
 from ..functions.filters import RangeFilter
 
 from mpl_toolkits.mplot3d import Axes3D

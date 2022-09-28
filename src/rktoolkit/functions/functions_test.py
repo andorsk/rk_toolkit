@@ -1,6 +1,5 @@
 import numpy as np
 from .localizers import NDMaxLocalizationFunction
-from .linkers import  SimpleLinkageFunction
 from ..models.graph import TreeNode, HierarchicalGraph, Edge, Node
 from typing import List
 
