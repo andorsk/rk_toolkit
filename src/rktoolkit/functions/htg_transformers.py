@@ -1,7 +1,12 @@
-from ..models.graph import HierarchicalTransformGraph, TreeNode, TreeTransformNode, Graph, Vertex, Edge
-import pandas as pd
-import matplotlib
+from ..models.graph import (
+    Graph,
+    Vertex,
+    Edge
+)
+
 import numpy as np
+import matplotlib
+import matplotlib.cm as cm
 
 class BaseOntologyTransform():
     '''
@@ -43,56 +48,3 @@ class BaseOntologyTransform():
             count+=1
         return H
 
-class CorrelationHTGGenerator():
-    '''
-    This Class is used to create a Correlation and covariance based Hierarchical Transform Graph(HTG) using a given data frame for pre determining dependence and interrelationships between various column variables residing in the master-dataset which could consist of columns and dimensions from different data sources/streams representing the same event or entity. Transforms a given graph into a Correlated HTG with built-in covariance parameters which determine interdependence between dependent and independent variables. In this case an empty HTG is created first and then nodes are added to it based on the correlation factor between different dimensions of the master-dataset.  
-    '''
-    def __init__(self, threshold=.7):
-        self.threshold = threshold
-        self._corr = None
-
-    def fit(self, X,y):
-        pass
-
-    def transform(self, X):
-        '''
-        Transforms a given graph into a Correlated HTG. Empty HTG is created and then nodes are added to it based on the correlation factor.
-
-        :param X: Input data to be used for creating the transform. Will be converted into a correlated dataframe.
-        :type X: Any
-        :return: A correlated Hierarchical Transform Graph.
-        :rtype: HierarchicalTransformGraph
-        '''
-
-        cdf = pd.DataFrame(X).corr().abs()
-        measures = TreeNode(parent=None, id='measures')
-        H = HierarchicalTransformGraph(root=measures)
-
-        nodes = []
-        for i,v in cdf.iterrows():
-
-            parent = TreeNode(name="{}_measure".format(i), id="{}_measure".format(i),
-                    parent=measures)
-            j = i
-
-            nodes.append(parent)
-
-            n_id = "{}_{}".format(i,i)
-            n1 = TreeTransformNode(name=n_id, id=n_id, parent=parent,
-                                   transformf=lambda X: X[i])
-            nodes.append(n1)
-
-            while j < len(v) - 1:
-
-                if j == i:
-                    j+=1
-                    continue
-
-                if v[j] > self.threshold:
-                    n_id = "{}_{}".format(i,j)
-                    n1 = TreeTransformNode(name=n_id, id=n_id, parent=parent,
-                                           transformf=lambda X: X[j])
-                    nodes.append(n1)
-                j+=1
-        [H.add_node(n) for n in nodes]
-        return H
