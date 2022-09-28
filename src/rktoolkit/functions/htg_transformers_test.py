@@ -1,7 +1,6 @@
 import pandas as pd
 from .htg_transformers import (
-    BaseOntologyTransform,
-    CorrelationHTGGenerator
+    BaseOntologyTransform
 )
 
 sampleHierarchy = {
@@ -23,10 +22,7 @@ def testBaseOntologyTransform():
     g = transform.transform(df.iloc[0])
     assert len(g.nodes) == 7
     assert len(g.edges) == 6
-    print(g.edges)
     assert g.is_connected() == True
     assert g.is_dag() == True
     assert g.validate() == True
 
-def testCorrelationTransform():
-    transform = CorrelationHTGGenerator()

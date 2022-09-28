@@ -1,6 +1,16 @@
 # graph test
-from .graph import Graph, Vertex, Edge
+
 import pytest
+from .graph import (
+    Graph,
+    Vertex,
+    Edge
+)
+
+from ..functions.distance import (
+    jaccard,
+    mahalanobis
+)
 
 def make_graph_components():
     root = Vertex(id="root")
@@ -13,9 +23,6 @@ def make_graph_components():
     root_A = Edge(root, A)
     return [root, A, B, C], [A_B, A_C, root_A]
 
-
-def test_node_masks():
-    pass
 
 def test_graph():
     comp = make_graph_components()
@@ -62,3 +69,26 @@ def test_vertex():
     with pytest.raises(ValueError):
         a.add_attribute("id", "bad")
     assert a.to_dict().get("id", None) == "a"
+
+
+def test_edge_distance():
+    pass
+
+def test_topological_distance():
+    pass
+
+def test_weighted_distance():
+    pass
+
+def test_similarity():
+    pass
+
+def test_value_distance():
+    pass
+
+def test_sort():
+    pass
+
+def test_signature():
+    assert Graph.get_signature(mahalanobis) == "mag"
+    assert Graph.get_signature(jaccard) == "top"
