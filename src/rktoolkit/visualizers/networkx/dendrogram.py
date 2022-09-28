@@ -135,7 +135,7 @@ class DendrogramVisualizer(RKModelVisualizer):
         self.spec = spec
         self.positions = {}
 
-    def _build(self, model: GraphModel):
+    def _build(self, model):
         try:
             G = nx.DiGraph()
             [ G.add_node(n.id) for n in tr.nodes ] #TODO: A dendrogram
