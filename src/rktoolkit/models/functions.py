@@ -1,5 +1,5 @@
-from .graph import HierarchicalGraph, Edge, Node
 from typing import List
+from .graph import Vertex, Edge
 
 '''
 Function abstractions
@@ -50,7 +50,7 @@ class LinkageFunction():
     def __subclasshook__(cls, subclass):
         return (hasattr(subclass, 'predict') and callable(subclass.link))
 
-    def predict(self, nodes: List[Node]) -> List[Edge]: # given a graph the edges
+    def predict(self, nodes: List[Vertex]) -> List[Edge]: # given a graph the edges
         return []
 
 class FilterFunction():

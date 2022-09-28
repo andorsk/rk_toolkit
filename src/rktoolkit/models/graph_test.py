@@ -90,6 +90,5 @@ def test_sort():
     pass
 
 def test_signature():
-    g = Graph()
-    assert g.get_signature(mahalanobis) == "mag"
-    assert g.get_signature(jaccard) == "top"
+    assert Graph.get_signature(mahalanobis) == "mag"
+    assert Graph.get_signature(jaccard) == "top"

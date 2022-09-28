@@ -1,14 +1,12 @@
 from ..models.graph import (
-    HierarchicalTransformGraph,
-    TreeNode,
-    TreeTransformNode,
     Graph,
     Vertex,
     Edge
 )
-import pandas as pd
-import matplotlib
+
 import numpy as np
+import matplotlib
+import matplotlib.cm as cm
 
 class BaseOntologyTransform():
     '''

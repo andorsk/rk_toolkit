@@ -1,5 +1,5 @@
 from ..models.functions import LinkageFunction
-from ..models.graph import HierarchicalGraph, Edge
+from ..models.graph import Edge
 import logging
 import numpy as np
 import itertools

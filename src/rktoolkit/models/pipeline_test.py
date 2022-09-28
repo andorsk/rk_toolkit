@@ -1,10 +1,7 @@
 from .graph import *
 from .pipeline import RKPipeline
-from ..functions.localizers import IterableLocalizationFunction
 from ..functions.filters import RangeFilter
 
-from mpl_toolkits.mplot3d import Axes3D
-import matplotlib.pyplot as plt
 from ..functions.linkers import SimpleChildLinker
 from .graph import Graph, Vertex, Edge
 

@@ -1,6 +1,6 @@
 import numpy as np
 from .localizers import NDMaxLocalizationFunction
-from ..models.graph import TreeNode, HierarchicalGraph, Edge, Node
+from ..models.graph import Edge, Vertex
 from typing import List
 
 def test_NDLocalizationFunction():
@@ -18,7 +18,7 @@ def testLinkageAbstraction():
 
     class GoodTestClass():
 
-        def predict(self, nodes: List[Node]) -> List[Edge]: # given a graph the edges
+        def predict(self, nodes: List[Vertex]) -> List[Edge]: # given a graph the edges
             return []
 
     class BadTestClass():
