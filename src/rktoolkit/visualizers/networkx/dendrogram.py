@@ -5,7 +5,7 @@ from ..visualizer import RKModelVisualizer, RKDiagram
 import matplotlib.pyplot as plt
 import numpy as np
 from typing import List
-from rktoolkit.models.graph import Node, NodeMask, GraphModel
+from rktoolkit.models.graph import NodeMask, GraphModel
 from rktoolkit.models.rkmodel import RKModel
 import copy
 import logging
