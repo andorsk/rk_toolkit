@@ -1,4 +1,4 @@
-FROM python:3.7 as intermediate
+FROM python:3.8 as intermediate
 MAINTAINER Andor Kesselman <andor@henosisknot.com>
 
 ARG SSH_PRIVATE_KEY 
