@@ -1,3 +1,2 @@
-git+ssh://git@github.com/andorsk/rk_toolkit.git@ask-store-sales-updates
+git+https://github.com/andorsk/rk_toolkit
 
-git+ssh://git@github.com/animikhroy/rk_toolkit_pipeline_diagrams/tree/main/02_notebooks/rk_general_applications@main#egg=general_applications
