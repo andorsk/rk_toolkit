@@ -1,12 +1,6 @@
 FROM python:3.8 as intermediate
 MAINTAINER Andor Kesselman <andor@henosisknot.com>
 
-ARG SSH_PRIVATE_KEY 
-RUN mkdir /root/.ssh/
-RUN echo "${SSH_PRIVATE_KEY}" > /root/.ssh/id_rsa
-RUN chmod 600 /root/.ssh/id_rsa
-RUN touch /root/.ssh/known_hosts
-RUN ssh-keyscan github.com >> /root/.ssh/known_hosts
 COPY requirements.txt /
 WORKDIR /pip-packages/
 ARG CACHEBUST=1

@@ -2,7 +2,7 @@ version: '3'
 services:
 
   rkworkbench:
-    image: "cloud.canister.io:5000/andorsk/rk_toolkit/01_rk_workbench:0.0.1"
+    image: "andorsk/rk_workbench:0.0.2"
     container_name: "rkworkbench"
     environment:
       AUTHENTICATE_VIA_JUPYTER: "mytoken"
