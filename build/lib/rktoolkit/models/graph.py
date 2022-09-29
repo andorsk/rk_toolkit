@@ -13,7 +13,15 @@ from copy import deepcopy, copy
 
 class NodeMask():
     '''
-    A graph mask is a mask over an existing structural graph. It essentially provides an overlay representation, which can be used to filter out particular nodes and edges.    Typically,a mask over a node, should also mask child-nodes associated with it. A node mask represents a masking structure that when applied to a structural graph S, reduces the number of nodes into a subgraph S. Node masks in the R-K Model are binary operators, which when set to true, filter a node and its direct children. To derive the node masks, we produce a set of filters Fn(G), which takes in a graph and returns a mask.
+    A graph mask is a mask over an existing structural graph. It essentially
+    provides an overlay representation, which can be used to filter out
+    particular nodes and edges. Typically,a mask over a node, should also mask
+    child-nodes associated with it. A node mask represents a masking structure
+    that when applied to a structural graph S, reduces the number of nodes into
+    a subgraph S. Node masks in the R-K Model are binary operators, which when
+    set to true, filter a node and its direct children. To derive the node
+    masks, we produce a set of filters Fn(G), which takes in a graph and returns
+    a mask.
     '''
 
     def __init__(self, nmasks=[], emasks=[]):
@@ -93,7 +101,14 @@ class Graph(DiGraph):
         :raises ValueError: Raises an error if the input is not of the Edge Type
         '''
         if isinstance(e, Edge):
-            super().add_edges_from([e.to_dict()])
+            d = e.to_dict()
+            u = d[0]
+            v = d[1]
+            if isinstance(u, Vertex):
+                u = u.id
+            if isinstance(v, Vertex):
+                v = v.id
+            super().add_edges_from([(u, v, d[2])])
         else:
             raise ValueError("Expected a Edge Type")
 
@@ -102,7 +117,7 @@ class Graph(DiGraph):
         Get the children nodes of the given node.
 
         :param node_id: ID of the node whose children needs to be found
-        :type node_id: str
+  dojjkkk      :type node_id: str
         :param recursive: Condition to choose if the child nodes be found recursively till leaf node, defaults to False
         :type recursive: bool, optional
         :return: Returns all nodes reachable from the given node ID.
@@ -274,6 +289,7 @@ class Graph(DiGraph):
             raise e
         raise Exception("Cycle Detected! Invalid Graph.")
 
+    @staticmethod
     def get_signature(f) -> str:
         '''
         Determine which distance functions to be used
@@ -283,20 +299,25 @@ class Graph(DiGraph):
         :return: Signature of the distance function to be used
         :rtype: str
         '''
-        match f.__name__:
-            case "mahalonobis":
+        q = f.__qualname__
+        if q == "mahalanobis":
                 return "mag"
-            case "jaccard":
+        if q == "jaccard":
                 return "top"
+        return None
 
 class Edge():
-    '''
-    For an undirected graph, an unordered pair of nodes that specify a line joining these two nodes are said to form an edge which represents a relationship or dependence between any two nodes. For a directed graph, the edge is an ordered pair of nodes. The terms "arc," "branch," "line," "link," and "1-simplex" are sometimes used to describe an Edge in Graph Theory.   
+    ''' For an undirected graph, an unordered pair of nodes that specify a line
+    joining these two nodes are said to form an edge which represents a
+    relationship or dependence between any two nodes. For a directed graph, the
+    edge is an ordered pair of nodes. The terms "arc," "branch," "line," "link,"
+    and "1-simplex" are sometimes used to describe an Edge in Graph Theory.
     
-    Refer to this `article <https://mathworld.wolfram.com/GraphEdge.html#:~:text=For%20an%20undirected%20graph%2C%20an,e.g.%2C%20Skiena%201990%2C%20p>`_ for more information on Graph Edge.
+    Refer to this `article
+    <https://mathworld.wolfram.com/GraphEdge.html#:~:text=For%20an%20undirected%20graph%2C%20an,e.g.%2C%20Skiena%201990%2C%20p>`_
+    for more information on Graph Edge.
 
-    TODO: Consider moving this to pydantic.
-    '''
+    TODO: Consider moving this to pydantic. '''
 
     def __init__(self, u, v, w=1, type=None, attributes={}):
         self.u = u
@@ -323,9 +344,14 @@ class Edge():
 
 class Vertex():
     '''
-    "Vertex" is a synonym for a node of a graph, i.e., one of the points on which the graph is defined and which may be connected by graph edges. The terms "point," "junction," and 0-simplex are also used to describe a Vertex in Graph Theory.
+    "Vertex" is a synonym for a node of a graph, i.e., one of the points on
+    which the graph is defined and which may be connected by graph edges. The
+    terms "point," "junction," and 0-simplex are also used to describe a Vertex
+    in Graph Theory.
 
-    See `Here <https://mathworld.wolfram.com/GraphVertex.html#:~:text=%22Vertex%22%20is%20a%20synonym%20for,80)>`_ for more information.
+    See `Here
+    <https://mathworld.wolfram.com/GraphVertex.html#:~:text=%22Vertex%22%20is%20a%20synonym%20for,80)>`_
+    for more information.
 
     NOT threadsafe implementation
 
@@ -335,9 +361,9 @@ class Vertex():
         self.value = value
         self.id = id
         self.attributes = attributes
-        self._disallowed_keys = set('id', 'value')
+        self._disallowed_keys = set(['id', 'value'])
 
-    def add_attribute(k: str, v: Any, unsafe=True):
+    def add_attribute(self, k: str, v: Any, unsafe=True):
         '''
         adds an attributes
 
@@ -346,7 +372,7 @@ class Vertex():
         '''
 
         if k in self._disallowed_keys:
-            raise ValueError("key {} is not allowed".format(k))
+            raise ValueError("key {} by attributes is not allowed".format(k))
 
         if not unsafe:
             if k in self.attributes:
@@ -365,245 +391,4 @@ class Vertex():
             "value": self.value,
             **self.attributes
         }
-
-'''
-Older Stuff
-TODO: figure out how much is still used and remove bad components
-'''
-# Edge types for edges
-class EdgeType(Enum):
-    UNDIRECTED=1
-    DIRECTED=2
-
-class Node(BaseModel):
-    '''
-    A node represents a distinct object in a graph that has magnitude but no direction and accounts for the quantitative value of a particular property of a variable. A special class  of nodes are used in the creation of DAGs (Directed Acyclic Graphs) which have a few unique features beyond that of a normal node, such as checking boundary conditions and an executing function for data transformation which are of interest in the case of building R-K Models.
-    '''
-    id: Optional[str] = None
-    name: Optional[str] = None,
-    value: Optional[float] = None
-    attributes: Optional[dict] = {}
-
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        if self.id is None:
-            self.id = str(uuid.uuid4())
-
-class TreeNode(Node):
-    parent: Optional[Node] = None
-    children: Optional[List[Node]] = []
-    is_root: Optional[bool] = False
-
-    def get_level(self):
-        level = 0
-        p = self.parent
-        while p:
-            level += 1
-            p = p.parent
-        return level
-
-class GraphModel(BaseModel):
-    '''
-    The underlying graph model is a relationship
-    of nodes and edges
-    '''
-    nodes: Optional[Node] = []
-#    edges: Optional[Edge] = []
-    _nids: dict = PrivateAttr()
-
-    def __init__(self, **data):
-        super().__init__(**data)
-        self._nids = {}
-
-    def add_node(self, node: Node):
-        self.nodes.append(node)
-        self._nids[node.id] = node
-
-    def add_edge(self, edge: Edge):
-        self.edges.append(edge)
-
-    def get_node_by_id(self, id: str) -> Node:
-        if id not in self._nids:
-            raise ValueError("Node ID: {} not in graph.".format(id))
-        return self._nids[id]
-
-class HierarchicalGraph(GraphModel):
-    '''
-    A Hierarchical Graph is a subset of the general graph in which all elements are directed and have a dependence relationship such as parent and child which is defined by a particular domain Ontology.
-
-    '''
-    root: TreeNode
-    _level_ref: Optional[dict] = PrivateAttr()
-    _node_ref: Optional[dict] = PrivateAttr()
-
-    def __init__(self, **data):
-        super().__init__(**data)
-        self._level_ref = None
-        self._node_ref = None
-        self.root.is_root = True
-
-    def add_edge(self, edge:Edge):
-        '''
-        Adds an edge to the graph.
-
-        :param edge: Edge to be added to the graph, must be a directed Edge
-        :type edge: Edge
-        :raises ValueError: Raises ValueError if the Edge type is not directed.
-        '''
-        if edge.edge_type != EdgeType.DIRECTED:
-            raise ValueError("Edge type needs to be directed in heirarchial graph")
-
-    def add_node(self, node: TreeNode):
-        '''
-        Adds a node to the graph
-
-        :param node: Node to be added to the graph, must be TreeNode
-        :type node: TreeNode
-        :raises ValueError: Raises ValueError if the Node is not a TreeNode
-        '''
-        if not isinstance(node, TreeNode):
-            raise ValueError("Node must be a tree node")
-        if node.parent is not None:
-            node.parent.children.append(node)
-        super().add_node(node)
-
-    def _build_levels(self) -> (dict(), dict()):
-        '''
-        Inefficient method to build the levels of a graph
-        based. Returns two dictionaries:
-        1: A dictionary where dict[level] -> [list of nodes]
-        2. A dictionary where dict[id] -> level
-        TODO: Build a more efficient data structure to index levels
-        '''
-        levels, nmap = {}, {}
-        def _build_level_from_parent(n, d, d1, c):
-            if c not in d:
-                d[c] = []
-            d[c].append(n)
-            d1[n.id] = c
-            for child in n.children:
-                _build_level_from_parent(child, d, d1, c+1)
-        _build_level_from_parent(self.root, levels, nmap, 0)
-        return levels, nmap
-
-    def get_root(self) -> Node:
-        '''
-        :return: Returns the root node of the graph.
-        :rtype: Node
-        '''
-        return self.root
-
-    def get_level(self, level, rebuild=True) -> List[Node]:
-        '''
-        Returns the nodes of the given level from the graph
-
-        :param level: Level of the nodes to be shown from.
-        :type level: int
-        :param rebuild: Choose if the node levels need to be rebuilded from the given level, defaults to True
-        :type rebuild: bool, optional
-        :return: List of nodes at current level, optionally after rebuilding.
-        :rtype: List[Node]
-        '''
-        if self._level_ref is None or rebuild:
-            self._level_ref, self._node_ref = self._build_levels()
-        return self._level_ref.get(level, [])
-
-class HierarchicalTransformGraph(HierarchicalGraph):
-    '''
-    Heirarchical Transform Graph contains
-    transform functions
-    '''
-    def __init__(self, **data):
-        super().__init__(**data)
-
-    def _transform(self, parent, X):
-        for n in parent.children:
-            if isinstance(n, TreeTransformNode):
-                v = n.transform(X)
-                n.value = v
-            self._transform(n, X)
-
-    def transform(self, X):
-        self._transform(self.get_root(), X)
-        return self
-
-
-class HierarchicalGraph(GraphModel):
-    '''
-    A Hierarchical Graph is a subset of the general graph in which all elements are directed and have a dependence relationship such as parent and child which is defined by a particular domain Ontology.
-
-    '''
-    root: TreeNode
-    _level_ref: Optional[dict] = PrivateAttr()
-    _node_ref: Optional[dict] = PrivateAttr()
-
-    def __init__(self, **data):
-        super().__init__(**data)
-        self._level_ref = None
-        self._node_ref = None
-        self.root.is_root = True
-
-    def add_edge(self, edge:Edge):
-        if edge.edge_type != EdgeType.DIRECTED:
-            raise ValueError("Edge type needs to be directed in heirarchial graph")
-
-    def add_node(self, node: TreeNode):
-        if not isinstance(node, TreeNode):
-            raise ValueError("Node must be a tree node")
-        if node.parent is not None:
-            node.parent.children.append(node)
-        super().add_node(node)
-
-    def _build_levels(self) -> (dict(), dict()):
-        '''
-        Inefficient method to build the levels of a graph
-        based. Returns two dictionaries:
-        1: A dictionary where dict[level] -> [list of nodes]
-        2. A dictionary where dict[id] -> level
-        TODO: Build a more efficient data structure to index levels
-        '''
-        levels, nmap = {}, {}
-        def _build_level_from_parent(n, d, d1, c):
-            if c not in d:
-                d[c] = []
-            d[c].append(n)
-            d1[n.id] = c
-            for child in n.children:
-                _build_level_from_parent(child, d, d1, c+1)
-        _build_level_from_parent(self.root, levels, nmap, 0)
-        return levels, nmap
-
-    def get_root(self) -> Node:
-        return self.root
-
-    def get_level(self, level, rebuild=True) -> List[Node]:
-        if self._level_ref is None or rebuild:
-            self._level_ref, self._node_ref = self._build_levels()
-        return self._level_ref.get(level, [])
-
-
-
-class TreeTransformNode(TreeNode):
-
-    transformf: Optional[Callable] = lambda x: x
-    fitf: Optional[Callable] = lambda X,y: None
-
-    def __init__(self, **data):
-        super().__init__(**data)
-
-    def transform(self, X):
-        return self.transformf(X)
-
-    def fit(self, X, y):
-        self.fit(X,y)
-
-class PipelineNode(TreeNode):
-    '''
-    defines a pipeline node
-    '''
-    def predict(self, X):
-        pass
-
-    def fit(self, X, y):
-        pass
 

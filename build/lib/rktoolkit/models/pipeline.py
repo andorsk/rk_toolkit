@@ -1,16 +1,12 @@
 from pydantic import BaseModel
 from .graph import (
-    HierarchicalTransformGraph,
-    TreeTransformNode,
     NodeMask,
 )
 
 from .rkmodel import RKModel
 from .functions import *
 from typing import List, Optional, Callable, TypedDict
-from ..functions.localizers import IterableLocalizationFunction
-from ..functions.linkers import SimpleLinkageFunction
-from ..functions.htg_transformers import CorrelationHTGGenerator
+from .graph import Vertex
 from ..functions.filters import RangeFilter
 import copy
 import numbers
@@ -19,6 +15,13 @@ class RKPipeline():
     '''
     Class implementing the R-K Pipeline explained above
     '''
+    def __init__(self,
+                 filter_map: dict,
+                 linkage_map: dict,
+                 structural_graph = None):
+        self.filter_map = filter_map
+        self.linkage_map = linkage_map
+        self.structural_graph = structural_graph
 
     def check_valid_node(self, node) -> bool:
         '''
@@ -29,16 +32,13 @@ class RKPipeline():
         :return: Return True if node has value, else False
         :rtype: bool
         '''
+        if isinstance(node, Vertex):
+            node = node.to_dict()
         if "value" not in node:
             return False
         if not isinstance(node["value"], numbers.Number):
             return False
         return True
-
-    def __init__(self, filter_map: dict, linkage_map: dict, structural_graph = None):
-        self.filter_map = filter_map
-        self.linkage_map = linkage_map
-        self.structural_graph = structural_graph
 
     def transform(self, G, is_base=True):
         '''
@@ -74,7 +74,7 @@ class RKPipeline():
         :type vmap: Any
         :param cols: Columns for the mapping
         :type cols: Any
-        :return: Returns a remapped R-K Pipeline Class
+        return: Returns a remapped R-K Pipeline Class
         :rtype: RKPipeline
         '''
         pcopy = copy.deepcopy(self)

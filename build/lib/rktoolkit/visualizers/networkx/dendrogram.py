@@ -5,7 +5,7 @@ from ..visualizer import RKModelVisualizer, RKDiagram
 import matplotlib.pyplot as plt
 import numpy as np
 from typing import List
-from rktoolkit.models.graph import Node, NodeMask, GraphModel
+from rktoolkit.models.graph import NodeMask
 from rktoolkit.models.rkmodel import RKModel
 import copy
 import logging
@@ -135,7 +135,7 @@ class DendrogramVisualizer(RKModelVisualizer):
         self.spec = spec
         self.positions = {}
 
-    def _build(self, model: GraphModel):
+    def _build(self, model):
         try:
             G = nx.DiGraph()
             [ G.add_node(n.id) for n in tr.nodes ] #TODO: A dendrogram
