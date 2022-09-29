@@ -9,7 +9,7 @@ python -m pip install .
 ##### Running Tests
 
 ``` sh
-pytest -m .
+pytest .
 ```
 
 ### Test Coverage Report
