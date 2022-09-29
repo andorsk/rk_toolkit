@@ -4,26 +4,21 @@ R-K Workbench is a pre-built docker image that contains examples and documentati
 
 ## Getting Started:
 
-### Step 1: Login to Docker
 
-``` sh
-docker login --username=<username_here> cloud.canister.io:5000
-```
-
-### Step 2: Run image
+### Step 1: Run image
 
 ``` sh
 docker run -d \
     -p 8080:8080 \
-    --name "ml-workspace" \
+    --name "rk-workspace" \
     -v "${PWD}:/workspace" \
     --env AUTHENTICATE_VIA_JUPYTER="mytoken" \
     --shm-size 512m \
     --restart always \
-    cloud.canister.io:5000/andorsk/rk_toolkit/01_rk_workbench:latest
+    and0rsk/rk_workspace:latest
 ```
 
-### Step 3:  Go to the browser
+### Step 2:  Go to the browser
 
 Open up your browser and go to localhost:8080. Put "mytoken" into authentication.
 
