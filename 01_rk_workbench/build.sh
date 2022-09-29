@@ -7,14 +7,9 @@ fi
 
 tag=$1
 
-SSH_KEY=${GITHUB_SSH_KEY:-"~/.ssh/id_rsa"}
-
-echo "Using SSH key $SSH_KEY"
-
-TARGET=cloud.canister.io:5000/andorsk/rk_toolkit/01_rk_workbench
+TARGET=and0rsk/rk_workspace
 
 docker build \
     -t ${TARGET}:${tag} \
-    --build-arg SSH_PRIVATE_KEY="$(cat $SSH_KEY)" \
     --build-arg CACHEBUST=$(date +%s)  \
     .
