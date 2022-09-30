@@ -5,7 +5,7 @@ import networkx as nx
 import copy
 import numbers
 from ..functions.distance import jaccard, mahalanobis
-from pydantic import BaseModel, PrivateAttr
+from pydantic import BaseModel
 from enum import Enum
 from typing import List, Optional, Callable, Any
 import uuid
