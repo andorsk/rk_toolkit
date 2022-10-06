@@ -25,3 +25,7 @@ Check these notebooks for more details.
 
 * [Tableau Sales TDA w/ RK Diagrams](https://github.com/animikhroy/rk_toolkit_pipeline_diagrams/blob/main/02_notebooks/rk_general_applications)
 * [Ligo GW Analysis](https://github.com/animikhroy/rk_toolkit_pipeline_diagrams/tree/main/02_notebooks/rk_gw_mma)
+
+## Contributions and Licensing
+
+[Creative Commons Licensing](https://creativecommons.org/licenses/by-nc/4.0/)
